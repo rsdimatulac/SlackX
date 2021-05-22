@@ -1,1 +1,1 @@
-# SlackX
+SlackX
