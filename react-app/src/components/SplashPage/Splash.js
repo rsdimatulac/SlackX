@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import './splash.css';
-import NavBar from "../NavBar/NavBar"
+import './Splash.css';
+import NavBar from "./NavBar"
 
 function SplashPage({isLoaded}) {
 
