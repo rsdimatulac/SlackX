@@ -16,3 +16,9 @@
     margin-left: 50px;
     margin-right: 50px;
 }
+
+.navBar-left button{
+    color: white;
+    border: none;
+    background: none;
+}
