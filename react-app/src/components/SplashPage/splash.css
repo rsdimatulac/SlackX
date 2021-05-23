@@ -1,0 +1,17 @@
+body {
+    background-image:url("https://a.slack-edge.com/c2bc65/marketing/img/homepage/bold-prospect/hero/hero-large.png");
+    background-color: #4a154b;
+    background-position-x: center;
+    background-position-y: top;
+    background-repeat: repeat-y;
+    background-size: 100%;
+    min-height: 100vh;
+    /* font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif; */
+}
+
+/* .bkg-img{
+    width: 1600px;
+    height: 1000px;
+    position: absolute;
+
+} */
