@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import './Splash.css';
-import NavBar from "../NavBar/NavBar"
 import IntroImg from '../../imgs/whatisslackx.png';
 import SplashImg1 from '../../imgs/splashpageimg1.png'
+import NavBar from "./NavBar"
 
 function SplashPage({isLoaded}) {
 

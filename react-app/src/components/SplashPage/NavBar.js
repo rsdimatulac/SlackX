@@ -4,6 +4,8 @@ import LogoutButton from '../auth/LogoutButton';
 import { useState, useEffect } from "react";
 import SlackXLogo from '../../imgs/SlackX-Logo.png';
 import "./NavBar.css";
+import SearchButton from '../../imgs/searchButton.png';
+import { CgChevronDown, CgSearch } from 'react-icons/cg';
 
 
 
@@ -25,25 +27,28 @@ const NavBar = ({ isLoaded }) => {
 
         <h1 className="SlackX"> slackX</h1>
         <div className="navBar-left">
-          <button>Product</button>
+          <button>Product <CgChevronDown /></button>
           <button>Enterprise</button>
           <button>Resources</button>
           <button>Pricing</button>
         </div>
         <div className="navBar-right">
-          <NavLink to="/login" exact={true} activeClassName="active">
+          {/* <CgSearch /> */}
+          <button className="button1" to="/login" exact={true} >
             Login
-          </NavLink>
+          </button>
 
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
+          <button className="button1" to="/sign-up" exact={true}>
             Sign Up
-          </NavLink>
+          </button>
+          <button className="button2">MEET THE TEAM</button>
+          <button className="button3">TRY FOR FREE</button>
 
-          <NavLink to="/users" exact={true} activeClassName="active">
+          {/* <NavLink to="/users" exact={true} activeClassName="active">
             Users
-          </NavLink>
+          </NavLink> */}
 
-          <LogoutButton />
+          {/* <LogoutButton /> */}
         </div>
     </nav>
   );
