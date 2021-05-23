@@ -19,28 +19,9 @@ const SignUpForm = () => {
     }
   };
 
-  const updateFirstname = (e) => {
-    setFirstname(e.target.value);
-  };
-
-  const updateLastname = (e) => {
-    setLastname(e.target.value);
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateConfirmPassword = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
   if (user) {
-    return <Redirect to="/" />;
+    // redirect to Channels Page if session user exist
+    return <Redirect to={`/users/${user.id}`} />;
   }
 
   return (
@@ -50,7 +31,7 @@ const SignUpForm = () => {
         <input
           type="text"
           name="firstname"
-          onChange={updateFirstname}
+          onChange={e =>setFirstname(e.target.value)}
           value={firstname}
         ></input>
       </div>
@@ -59,7 +40,7 @@ const SignUpForm = () => {
         <input
           type="text"
           name="lastname"
-          onChange={updateLastname}
+          onChange={e => setLastname(e.target.value)}
           value={lastname}
         ></input>
       </div>
@@ -68,7 +49,7 @@ const SignUpForm = () => {
         <input
           type="text"
           name="email"
-          onChange={updateEmail}
+          onChange={e => setEmail(e.target.value)}
           value={email}
         ></input>
       </div>
@@ -77,7 +58,7 @@ const SignUpForm = () => {
         <input
           type="password"
           name="password"
-          onChange={updatePassword}
+          onChange={e => setPassword(e.target.value)}
           value={password}
         ></input>
       </div>
@@ -86,7 +67,7 @@ const SignUpForm = () => {
         <input
           type="password"
           name="confirm_password"
-          onChange={updateConfirmPassword}
+          onChange={e => setConfirmPassword(e.target.value)}
           value={confirmPassword}
           required={true}
         ></input>
