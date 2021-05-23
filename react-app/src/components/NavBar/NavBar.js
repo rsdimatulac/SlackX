@@ -24,7 +24,13 @@ const NavBar = ({ isLoaded }) => {
         </NavLink>
 
         <h1 className="SlackX"> slackX</h1>
-
+        <div className="navBar-left">
+          <button>Product</button>
+          <button>Enterprise</button>
+          <button>Resources</button>
+          <button>Pricing</button>
+        </div>
+        <div className="navBar-right">
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
           </NavLink>
@@ -38,7 +44,7 @@ const NavBar = ({ isLoaded }) => {
           </NavLink>
 
           <LogoutButton />
-
+        </div>
     </nav>
   );
 }
