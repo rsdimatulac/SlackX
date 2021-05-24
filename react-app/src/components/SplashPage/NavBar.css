@@ -1,0 +1,93 @@
+
+.navbar__logo{
+    display: flex;
+    align-items: center;
+    width: 30px;
+    margin-top: 25px;
+    margin-left: 50px;
+}
+.SlackX{
+    color: white;
+    font-family: Verdana;
+    margin-left: 10px;
+    margin-top: 25px;
+}
+.NavbarContainer{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.navBar-left{
+    margin-left: 20px;
+}
+.navBar-right{
+    margin-left: auto;
+    order:2
+}
+.button1{
+    color: white;
+    border: none;
+    background: none;
+    font-family: Helvetica;
+    font-size: 15px;
+    font-weight: 560;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.button2{
+
+    margin-left: 30px;
+    padding: 12px;
+    border-radius: 5px;
+    background-color:#4a154b ;
+    color:white;
+    font-size: 15px;
+    font-weight: 560;
+    border-color: white;
+    border-width: 1px;
+}
+.button3{
+    border: white;
+    margin-left: 30px;
+    padding: 12px;
+    border-radius: 5px;
+    color: #4a154b ;
+    background-color: white;
+    font-size: 15px;
+    font-weight: 560;
+    margin-right: 50px;
+}
+
+.searchButton{
+    height: 40px;
+    width: 40px;
+}
+
+.navBar-left button {
+    color: white;
+    border: none;
+    background: none;
+    font-family: Helvetica;
+    font-size: 15px;
+    margin-top: 30px;
+    margin-left: 30px;
+    font-weight: 560;
+
+}
+
+.NavbarContainerWhite {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    margin-left: 40px;
+    margin-right: 50px;
+    margin-top:0px;
+    border: none;
+    background-color: white;
+    border-radius: 25px;
+    width: 93%;
+}
