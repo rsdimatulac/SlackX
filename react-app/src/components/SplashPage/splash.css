@@ -61,9 +61,11 @@ body {
 
 .splash_page_video1 {
     padding-top: 500px;
+    width: 80%;
+    padding-bottom: 1000px;
 }
 
-.splash_title_1 {
+/* .splash_title_1 {
     margin-left: 100px;
     width: 80%;
     font-family: Verdana;
@@ -76,6 +78,7 @@ body {
     width: 80%;
     font-family: Verdana;
     font-size: 50px;
+    color: white;
 }
 
 .splash_title_3 {
@@ -84,9 +87,16 @@ body {
     width: 80%;
     font-family: Verdana;
     font-size: 50px;
-}
+    color: white;
+} */
 
 .fixed_position {
     position: fixed;
+    top: 200px;
+    max-width: 580px;
+    font-family: Verdana;
+    font-size: 50px;
+    margin-left: 100px;
+    /* transition: visibility 0.2s; */
 }
 
