@@ -9,6 +9,10 @@ body {
     transition: background-color 0.5s
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .splash_page_container {
     margin-top: 300px;
     display: grid;
@@ -16,10 +20,7 @@ body {
     grid-template-areas: 'splash-left splash-right';
     min-height: 0;
     min-width: 0;
-
 }
-
-
 
 .opening_title {
     color: white;

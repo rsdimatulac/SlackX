@@ -22,10 +22,10 @@ function SplashPage({isLoaded}) {
                 title3.style.visibility = "hidden";
 
                 let navBarContainer = document.getElementById("navbar");
-                let slackXLogoText = document.querySelector(".SlackX");
-                slackXLogoText.style.color = "white";
+                // let slackXLogoText = document.querySelector(".SlackX");
+                // slackXLogoText.style.color = "white";
                 navBarContainer.className = "NavbarContainer";
-                let leftNavBarButtons = document.querySelector(".navBar-left").childNodes;
+                let leftNavBarButtons = document.querySelector(".navbar__left").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "white");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "white");
@@ -37,10 +37,10 @@ function SplashPage({isLoaded}) {
             if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
 
                 let navBarContainer = document.getElementById("navbar");
-                let slackXLogoText = document.querySelector(".SlackX");
-                slackXLogoText.style.color = "black";
+                // let slackXLogoText = document.querySelector(".SlackX");
+                // slackXLogoText.style.color = "black";
                 navBarContainer.className = "NavbarContainerWhite";
-                let leftNavBarButtons = document.querySelector(".navBar-left").childNodes;
+                let leftNavBarButtons = document.querySelector(".navbar__left").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "black");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "black");
@@ -108,7 +108,7 @@ function SplashPage({isLoaded}) {
         <div className="MainBKG">
             <NavBar />
             <div className="opening_title">SlackX Makes <span className="orange">downright pleasant</span> to work together</div>
-            <img className="splash_page_top_img" src={IntroImg}/>
+            <img className="splash_page_top_img" src={IntroImg} alt=""/>
             <div className="splash_page_container">
                 <div className="splash_page_container_left">
                     <div id="title1" className="splash_title_1">It brings your whole team together</div>
@@ -116,8 +116,8 @@ function SplashPage({isLoaded}) {
                     <div id="title3" className="splash_title_3"> And you can chat face to face, with just a click </div>
                 </div>
                 <div className="splash_page_container_right">
-                    <img className="splash_page_img_1" src={SplashImg1}/>
-                    <img className="splash_page_img_2" src="https://a.slack-edge.com/e7bc8/marketing/img/homepage/bold-prospect/customer-stories/companies-small/molly-moon/molly-moon-ui@2x.png" />
+                    <img className="splash_page_img_1" src={SplashImg1} alt=""/>
+                        <img className="splash_page_img_2" src="https://a.slack-edge.com/e7bc8/marketing/img/homepage/bold-prospect/customer-stories/companies-small/molly-moon/molly-moon-ui@2x.png" alt=""/>
                     <video className="splash_page_video1" src="https://a.slack-edge.com/3b4b5/marketing/img/homepage/bold-prospect/video-calling/video-calling.mp4" autoPlay muted loop />
                 </div>
             </div>
@@ -130,4 +130,3 @@ function SplashPage({isLoaded}) {
 
 
 export default SplashPage;
-

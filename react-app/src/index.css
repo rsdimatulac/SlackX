@@ -2,8 +2,8 @@
 
 body {
     margin: 0;
-    font-family: Slack-Lato, appleLogo, sans-serif;;
+    font-family: Slack-Circular-Pro,"Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
