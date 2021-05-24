@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import useConsumeContext from '../../context/FormModalContext'
 
 const SignUpForm = () => {
   const [firstname, setFirstname] = useState("");
@@ -11,6 +12,7 @@ const SignUpForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const {handleLoginModal} = useConsumeContext();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -73,7 +75,9 @@ const SignUpForm = () => {
         ></input>
       </div>
       <button type="submit">Sign Up</button>
-      {/* TODO  */}
+      <div>
+        Already have an account? <strong onClick={handleLoginModal} style={{ cursor: 'pointer' }}>Log in instead</strong>
+      </div>
     </form>
   );
 };
