@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { NavLink, Redirect } from 'react-router-dom';
 import { CgChevronDown, CgSearch } from 'react-icons/cg';
 import { useHistory } from "react-router-dom";
-// import LogoutButton from '../Auth/LogoutButton';
 import { login } from "../../store/session";
 import LoginFormModal from "../Auth/LoginFormModal";
 import SignUpFormModal from "../Auth/SignUpFormModal";
@@ -21,43 +20,36 @@ const NavBar = ({ isLoaded }) => {
 
   const loginDemoUser = async (e) => {
     e.preventDefault();
-    await dispatch(login("demo@aa.io", "password"))
-    // return <Redirect to={`/users/1`} />
-    history.push("/users/1")
+    // TODO: UPDATE THE DEMO CREDENTIALS
+    await dispatch(login("demo@aa.io", "password"));
+    history.push("/users/1");
   }
 
 
   return (
-    <nav id="navbar" className="NavbarContainer">
-      <NavLink to="/" activeClassName="active">
-        <img
-          className="navbar__logo"
-          src={logo}
-          alt="SlackX Logo" />
-      </NavLink>
-
-      <h1 className="SlackX"> SlackX</h1>
-      <div className="navBar-left">
-        <button style={{ cursor: 'pointer' }}>Product <CgChevronDown /></button>
-        <button>Enterprise</button>
-        <button>Resources</button>
-        <button>Pricing</button>
+    <nav id="navbar">
+      <div className="navbar__left">
+        <NavLink to="/" activeClassName="active">
+          <img
+            className="navbar__logo"
+            src={logo}
+            alt="SlackX Logo" />
+        </NavLink>
+        <div className="navbar__headers">
+          <button style={{ cursor: 'pointer' }}>Product <CgChevronDown /></button>
+          <button>Enterprise</button>
+          <button>Resources</button>
+          <button>Pricing</button>
+        </div>
       </div>
-      <div className="navBar-right">
+      <div className="navbar__right">
         {/* <CgSearch /> */}
         <button className="button1" onClick={handleLoginModal} style={{ cursor: 'pointer' }}>Login</button>
         {showLogin && <LoginFormModal />}
         <button className="button1" onClick={handleSignUpModal} style={{ cursor: 'pointer' }}>Sign Up</button>
         {showSignUp && <SignUpFormModal />}
         <button className="button2" style={{ cursor: 'pointer' }}>MEET THE TEAM</button>
-        <form onSubmit={loginDemoUser}>
-        <button className="button3" type="submit" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
-        </form>
-        {/* <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink> */}
-
-        {/* <LogoutButton /> */}
+        <button onSubmit={loginDemoUser} className="button3" type="submit" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
       </div>
     </nav>
   );

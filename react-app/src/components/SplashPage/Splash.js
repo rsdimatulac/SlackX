@@ -22,8 +22,8 @@ function SplashPage({isLoaded}) {
                 title3.style.visibility = "hidden";
 
                 let navBarContainer = document.getElementById("navbar");
-                let slackXLogoText = document.querySelector(".SlackX");
-                slackXLogoText.style.color = "white";
+                // let slackXLogoText = document.querySelector(".SlackX");
+                // slackXLogoText.style.color = "white";
                 navBarContainer.className = "NavbarContainer";
                 let leftNavBarButtons = document.querySelector(".navBar-left").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "white");
@@ -37,8 +37,8 @@ function SplashPage({isLoaded}) {
             if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
 
                 let navBarContainer = document.getElementById("navbar");
-                let slackXLogoText = document.querySelector(".SlackX");
-                slackXLogoText.style.color = "black";
+                // let slackXLogoText = document.querySelector(".SlackX");
+                // slackXLogoText.style.color = "black";
                 navBarContainer.className = "NavbarContainerWhite";
                 let leftNavBarButtons = document.querySelector(".navBar-left").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "black");

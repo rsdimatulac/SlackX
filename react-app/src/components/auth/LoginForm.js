@@ -20,10 +20,10 @@ const LoginForm = () => {
     }
   };
 
-  const loginDemoUser = async (e) => {
-    e.preventDefault();
-    return await dispatch(login("demouser@slackx.com", "password"))
-  }
+  // const loginDemoUser = async (e) => {
+  //   e.preventDefault();
+  //   return await dispatch(login("demouser@slackx.com", "password"))
+  // }
 
   if (user) {
     // redirect to Channels Page if session user exist
@@ -61,7 +61,7 @@ const LoginForm = () => {
       <div>
         Don't have an account yet? <strong onClick={handleSignUpModal} style={{ cursor: 'pointer' }}>Create an Account</strong>
       </div>
-      <button className="button3" onClick={loginDemoUser} type="submit" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
+      {/* <button className="button3" onClick={loginDemoUser} type="submit" style={{ cursor: 'pointer' }}>TRY FOR FREE</button> */}
     </form>
   );
 };
