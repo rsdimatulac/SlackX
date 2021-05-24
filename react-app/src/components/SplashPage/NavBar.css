@@ -58,7 +58,7 @@
 
 .button2:hover {
     border: 2px solid white;
-    padding: 11px;
+    padding: 10px;
 }
 
 .button3 {
@@ -97,4 +97,3 @@
     border-radius: 25px;
     width: 93%;
 }
-

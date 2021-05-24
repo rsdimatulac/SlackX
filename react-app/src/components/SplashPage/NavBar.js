@@ -36,10 +36,10 @@ const NavBar = ({ isLoaded }) => {
             alt="SlackX Logo" />
         </NavLink>
         <div className="navbar__headers">
-          <button style={{ cursor: 'pointer' }}>Product <CgChevronDown /></button>
-          <button>Enterprise</button>
-          <button>Resources</button>
-          <button>Pricing</button>
+          <button style={{ cursor: 'pointer' }}>Features <CgChevronDown /></button>
+          <button>Technologies</button>
+          <button>Team</button>
+          {/* <button>Pricing</button> */}
         </div>
       </div>
       <div className="navbar__right">
@@ -49,7 +49,7 @@ const NavBar = ({ isLoaded }) => {
         <button className="button1" onClick={handleSignUpModal} style={{ cursor: 'pointer' }}>Sign Up</button>
         {showSignUp && <SignUpFormModal />}
         <button className="button2" style={{ cursor: 'pointer' }}>MEET THE TEAM</button>
-        <button onSubmit={loginDemoUser} className="button3" type="submit" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
+        <button onClick={loginDemoUser} className="button3" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
       </div>
     </nav>
   );
