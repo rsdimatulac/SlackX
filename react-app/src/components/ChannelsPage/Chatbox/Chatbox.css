@@ -1,0 +1,45 @@
+.chatbox__profile {
+    display: grid;
+    /* grid-template-columns: 1fr 360px; */
+    /* position: relative; */
+}
+
+.chatbox {
+    /* grid-area: 1 / 1 / 2 / 3; */
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+}
+
+.profile {
+    background-color: lightsalmon;
+    z-index: 100;
+    top: 44px;
+}
+
+.chat__header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    height: 71px;
+    position: fixed;
+    width: 100%;
+    border-bottom: 2px lightgray solid;
+}
+
+.chatbox__content {
+    margin-top: 69px;
+}
+
+.chatbox__messages {
+    height: calc(100vh - 50px - 68px - 50px);
+    overflow: auto;
+}
+
+
+.chatbox__messages::-webkit-scrollbar {
+    display: none;
+}

@@ -1,0 +1,106 @@
+body {
+    background-image:url("https://a.slack-edge.com/c2bc65/marketing/img/homepage/bold-prospect/hero/hero-large.png");
+    background-color: #4a154b;
+    background-position-x: center;
+    background-position-y: top;
+    background-repeat: repeat-y;
+    background-size: 100%;
+    min-height: 100vh;
+    transition: background-color 0.5s
+}
+
+.splash_page_container {
+    margin-top: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'splash-left splash-right';
+    min-height: 0;
+    min-width: 0;
+
+}
+
+
+
+.opening_title {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
+    width: 80%;
+    font-size: 64px;
+    text-align: center;
+    padding: 64px;
+    font-weight: 600;
+}
+
+.splash_page_top_img {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+}
+
+.orange {
+    color: #ecb22e;
+}
+
+.splash_page_container_left {
+    grid-area: splash-left;
+    overflow: hidden;
+}
+
+.splash_page_container_right {
+    grid-area: splash-right;
+    overflow: hidden;
+
+}
+
+.splash_page_img_1 {
+    width: 80%;
+}
+
+.splash_page_img_2 {
+    padding-top: 500px;
+    width: 80%;
+}
+
+.splash_page_video1 {
+    padding-top: 500px;
+    width: 80%;
+    padding-bottom: 1000px;
+}
+
+/* .splash_title_1 {
+    margin-left: 100px;
+    width: 80%;
+    font-family: Verdana;
+    font-size: 50px;
+}
+
+.splash_title_2 {
+    padding-top: 900px;
+    margin-left: 100px;
+    width: 80%;
+    font-family: Verdana;
+    font-size: 50px;
+    color: white;
+}
+
+.splash_title_3 {
+    padding-top: 800px;
+    margin-left: 100px;
+    width: 80%;
+    font-family: Verdana;
+    font-size: 50px;
+    color: white;
+} */
+
+.fixed_position {
+    position: fixed;
+    top: 200px;
+    max-width: 580px;
+    font-family: Verdana;
+    font-size: 50px;
+    margin-left: 100px;
+    /* transition: visibility 0.2s; */
+}
