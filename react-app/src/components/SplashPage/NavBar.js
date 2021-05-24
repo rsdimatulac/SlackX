@@ -25,7 +25,7 @@ const NavBar = ({ isLoaded }) => {
 
         </NavLink>
 
-        <h1 className="SlackX"> slackX</h1>
+        <h1 className="SlackX"> SlackX</h1>
         <div className="navBar-left">
           <button>Product <CgChevronDown /></button>
           <button>Enterprise</button>

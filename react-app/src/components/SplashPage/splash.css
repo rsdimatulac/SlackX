@@ -16,15 +16,18 @@ body {
     grid-template-areas: 'splash-left splash-right';
     min-height: 0;
     min-width: 0;
+
 }
 
 .opening_title {
     color: white;
-    font-family: Verdana;
+    font-family: Arial, Helvetica, sans-serif;
     margin: auto;
     width: 80%;
-    font-size: 50px;
+    font-size: 64px;
     text-align: center;
+    padding: 64px;
+    font-weight: 600;
 }
 
 .splash_page_top_img {
@@ -99,4 +102,3 @@ body {
     margin-left: 100px;
     /* transition: visibility 0.2s; */
 }
-
