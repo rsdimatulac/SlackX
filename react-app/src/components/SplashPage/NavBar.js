@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../Auth/LogoutButton';
 import { useState, useEffect } from "react";
 import SlackXLogo from '../../imgs/SlackX-Logo.png';
 import "./NavBar.css";

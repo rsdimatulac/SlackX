@@ -7,6 +7,7 @@ import Splash from "./components/SplashPage/Splash";
 import About from "./components/AboutPage/About";
 import Channels from "./components/ChannelsPage/Channels";
 import UserProfile from "./components/ChannelsPage/UserProfile";
+import User from "./components/User";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import { authenticate } from "./store/session";
