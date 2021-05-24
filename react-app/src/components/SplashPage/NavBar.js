@@ -9,7 +9,6 @@ import { CgChevronDown, CgSearch } from 'react-icons/cg';
 import { useHistory } from "react-router-dom";
 
 
-
 const NavBar = ({ isLoaded }) => {
   const history = useHistory();
   const [logo, setLogo] = useState(SlackXLogo);

@@ -1,0 +1,30 @@
+.options {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.options:hover {
+    opacity: 0.9;
+    background-color: #340e36;
+}
+
+.options__icon {
+    padding: 8px 15px;
+    padding-right: 10px;
+    font-size: 18px;
+}
+
+.options__channel {
+    padding: 10px 0;
+}
+
+.options__hash {
+    padding: 10px;
+}
+
+.options > h3 {
+    font-weight: 400;
+    font-size: 15px;
+}

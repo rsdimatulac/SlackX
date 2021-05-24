@@ -129,5 +129,5 @@ function SplashPage({isLoaded}) {
 }
 
 
-
 export default SplashPage;
+
