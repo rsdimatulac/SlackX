@@ -13,7 +13,7 @@ const NavBar = ({ isLoaded }) => {
   const [logo, setLogo] = useState(SlackXLogo);
 
   return (
-    <nav className="NavbarContainer">
+    <nav id = "navbar" className="NavbarContainer">
 
 
         <NavLink to="/" exact={true} activeClassName="active">

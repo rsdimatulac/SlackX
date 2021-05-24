@@ -12,17 +12,42 @@ function SplashPage({isLoaded}) {
             let title1 = document.getElementById("title1");
             let title2 = document.getElementById("title2");
             let title3 = document.getElementById("title3");
-            
-            if (window.pageYOffset <= 450) {
-                
+
+            if (window.pageYOffset <= 650) {
+
                 mainpage.style.backgroundColor = "#4a154b";
                 mainpage.style.backgroundImage = "url('https://a.slack-edge.com/c2bc65/marketing/img/homepage/bold-prospect/hero/hero-large.png')";
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
-            } 
 
-            if (window.pageYOffset > 450 && window.pageYOffset <= 1450) {
+                let navBarContainer = document.getElementById("navbar");
+                let slackXLogoText = document.querySelector(".SlackX");
+                slackXLogoText.style.color = "white";
+                navBarContainer.className = "NavbarContainer";
+                let leftNavBarButtons = document.querySelector(".navBar-left").childNodes;
+                leftNavBarButtons.forEach(e => e.style.color = "white");
+                let loginSignup = document.querySelectorAll(".button1");
+                loginSignup.forEach(e => e.style.color = "white");
+                let button3 =  document.querySelector(".button3");
+                button3.style.border = "none";
+
+            }
+
+            if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
+
+                let navBarContainer = document.getElementById("navbar");
+                let slackXLogoText = document.querySelector(".SlackX");
+                slackXLogoText.style.color = "black";
+                navBarContainer.className = "NavbarContainerWhite";
+                let leftNavBarButtons = document.querySelector(".navBar-left").childNodes;
+                leftNavBarButtons.forEach(e => e.style.color = "black");
+                let loginSignup = document.querySelectorAll(".button1");
+                loginSignup.forEach(e => e.style.color = "black");
+                let button3 =  document.querySelector(".button3");
+                button3.style.border = "solid #4a154b 1px";
+
+
 
                 mainpage.style.backgroundColor = "#F6EFE8";
                 mainpage.style.backgroundImage = 'none';
@@ -33,13 +58,13 @@ function SplashPage({isLoaded}) {
                 title1.style.visibility = "visible";
                 title1.className = "fixed_position";
 
-            } 
+            }
 
             if (window.pageYOffset > 1450 && window.pageYOffset <= 2400) {
 
                 mainpage.style.backgroundColor = "#0b2440";
                 mainpage.style.backgroundImage = 'none';
-                
+
                 title1.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
 
@@ -47,7 +72,7 @@ function SplashPage({isLoaded}) {
                 title2.className = "fixed_position";
                 title2.style.color = "white";
 
-            } 
+            }
 
             if (window.pageYOffset > 2400 && window.pageYOffset <= 2850) {
 
@@ -60,19 +85,19 @@ function SplashPage({isLoaded}) {
                 title3.style.visibility = "visible";
                 title3.className = "fixed_position";
                 title3.style.color = "white";
-                
-            } 
+
+            }
 
             if (window.pageYOffset > 3050) {
 
                 mainpage.style.backgroundColor = "#4a154b";
                 mainpage.style.backgroundImage = mainpage.style.backgroundImage = "url('https://a.slack-edge.com/c2bc65/marketing/img/homepage/bold-prospect/hero/hero-large.png')";
-                
+
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
 
-            } 
+            }
         };
         window.addEventListener('scroll', scrollFunction);
         return () => window.removeEventListener('scroll', scrollFunction);

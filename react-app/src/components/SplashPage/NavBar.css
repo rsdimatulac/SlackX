@@ -4,6 +4,7 @@
     align-items: center;
     width: 30px;
     margin-top: 25px;
+    margin-left: 50px;
 }
 .SlackX{
     color: white;
@@ -57,6 +58,7 @@
     background-color: white;
     font-size: 15px;
     font-weight: 560;
+    margin-right: 50px;
 }
 
 .searchButton{
@@ -64,7 +66,7 @@
     width: 40px;
 }
 
-.navBar-left button{
+.navBar-left button {
     color: white;
     border: none;
     background: none;
@@ -74,4 +76,18 @@
     margin-left: 30px;
     font-weight: 560;
 
+}
+
+.NavbarContainerWhite {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    margin-left: 40px;
+    margin-right: 50px;
+    margin-top:0px;
+    border: none;
+    background-color: white;
+    border-radius: 25px;
+    width: 93%;
 }
