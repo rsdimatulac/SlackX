@@ -21,7 +21,7 @@ const NavBar = ({ isLoaded }) => {
   const loginDemoUser = async (e) => {
     e.preventDefault();
     // TODO: UPDATE THE DEMO CREDENTIALS
-    await dispatch(login("demo@aa.io", "password"));
+    await dispatch(login("demouser@slackx.com", "password"));
     history.push("/users/1");
   }
 
