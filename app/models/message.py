@@ -11,3 +11,4 @@ class Message(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now())
     user = db.relationship("User", back_populates="messages")
+    channel = db.relationship("Channel", back_populates="messages")
