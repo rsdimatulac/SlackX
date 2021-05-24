@@ -18,6 +18,10 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+# @auth_routes.route('/channels')
+# def test():
+#     return print("hello")
+
 @auth_routes.route('/')
 def authenticate():
     """
@@ -26,6 +30,7 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
+
 
 
 @auth_routes.route('/login', methods=['POST'])
