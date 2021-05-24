@@ -7,6 +7,10 @@ import "./Channels.css";
 
 const Channels = ({ user }) => {
 
+    if (window.location.pathname.includes("/users"))  {
+        window.document.body.style.overflow = "hidden";
+    };
+
     return (
         <div className="channels">
            <Header user={user}/>

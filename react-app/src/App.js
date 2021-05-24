@@ -11,7 +11,7 @@ import User from "./components/User";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import { authenticate } from "./store/session";
-import SplashPage from "./components/SplashPage/Splash";
+// import SplashPage from "./components/SplashPage/Splash";
 import "./index.css";
 import "./reset.css";
 
@@ -60,9 +60,6 @@ const App = () => {
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path="/" exact={true} >
-          <SplashPage />
-        </Route>
       </Switch>
     </BrowserRouter>
   );
