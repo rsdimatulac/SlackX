@@ -6,7 +6,7 @@ body {
     background-repeat: repeat-y;
     background-size: 100%;
     min-height: 100vh;
-    transition: background-color 0.5s
+    transition: background-color 0.5s;
 }
 
 body::-webkit-scrollbar {

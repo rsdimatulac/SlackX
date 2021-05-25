@@ -33,7 +33,7 @@ function SplashPage({isLoaded}) {
                 loginSignup.forEach(e => e.style.color = "white");
             }
 
-            if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
+            if (window.pageYOffset > 0 && window.pageYOffset <= 1450) {
 
                 let navBarContainer = document.getElementById("navbar");
                 let slackLogo = document.querySelector(".navbar__logo");
