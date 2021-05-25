@@ -1,15 +1,15 @@
 import React from 'react';
 import "./ChatMessage.css";
 
-const ChatMessage = () => {
+const ChatMessage = ({ message, idx, user }) => {
     return (
-        <div className="message">
+        <div key={idx} className="message">
             <div className="message__avatar">
-                <img src="https://slackx.s3.amazonaws.com/user-1.jpg" alt=""/>
+                <img src={user?.avatar} alt=""/>
             </div>
             <div className="message__content">
-                <h2>User Name<span>Timestamp here</span></h2>
-                <p>Message bodyyyyyyyyyyyyyy</p>
+                <h2>{user?.firstname}<span>Timestamp here</span></h2>
+                <p>{message?.body}</p>
             </div>
         </div>
     )
