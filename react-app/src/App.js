@@ -37,11 +37,11 @@ const App = () => {
         <Route path="/about" exact>
           <About />
         </Route>
-        <ProtectedRoute path="/users/:userId(\d+)" exact>
+        <ProtectedRoute path="/users/:userId(\d+)/:channelId(\d+)" exact>
           <Channels user={user} />
         </ProtectedRoute>
         {/* TODO: Route might not be needed.. Either implement a popup sidebar or MODAL */}
-        <ProtectedRoute path="/users/:userId(\d+)/:channelId(\d+)/profile" exact>
+        <ProtectedRoute path="/users/:userId(\d+)/(\d+)/profile" exact>
           <UserProfile />
         </ProtectedRoute>
         <ProtectedRoute path="/users" exact>

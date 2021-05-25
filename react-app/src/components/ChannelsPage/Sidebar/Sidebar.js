@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { BsPencilSquare as CreateIcon } from "react-icons/bs";
 import { BiMessageRoundedDetail as ThreadIcon } from "react-icons/bi";
@@ -11,14 +11,53 @@ import { RiAddFill as AddIcon } from "react-icons/ri";
 import { FiLock as Private } from "react-icons/fi";
 import SidebarOptions from "./SidebarOptions";
 import "./Sidebar.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { getChannels } from '../../../store/channel';
+
+
 
 
 const Sidebar = ({user}) => {
+    const channels = useSelector(state => state.channels);
     const [showChannel, setShowChannel] = useState(false);
     const [showDM, setShowDM] = useState(false);
+    const [dm, setDM] = useState([])
+    const [pp, setPP] = useState([])
+    const dispatch = useDispatch()
 
     const handleClickChannel = () => setShowChannel(prevState => !prevState);
     const handleClickDM = () => setShowDM(prevState => !prevState);
+
+    //grab channels
+    useEffect(() => {
+        async function fetchData() {
+           await dispatch(getChannels())
+        }
+        fetchData();
+    }, [dispatch])
+
+    useEffect(() => {
+        let dmArr = []
+        let ppArr = []
+        for (let channel in channels) {
+
+            if (channels[channel].channel_type === "dm") {
+                dmArr.push(channels[channel])
+            } else {
+                ppArr.push(channels[channel])
+            }
+        }
+        if (dmArr.length !== dm.length) {
+            setDM(dmArr)
+        }
+        if (ppArr.length !== pp.length) {
+            setPP(ppArr)
+        }
+
+    }, [channels, dm, pp])
+
+
+
 
     return (
         <div className="sidebar">
@@ -51,27 +90,13 @@ const Sidebar = ({user}) => {
                             </div>
                             <div className="add__icon" ><AddIcon id="add__icon1"/></div>
                         </div>
-                        {showChannel && 
+                        {showChannel &&
                         // TODO: channels.map here. ADD route for each DM by id
-                        <div>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div"><span className="private__icon"># or <Private /></span> Map Channels here</div>
+                        <div> {pp?.map(channel =>
+                            (<NavLink key={channel.name} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                                <div className="channels__div"><span className="private__icon"># or <Private /></span>{channel.name}</div>
                             </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div"><span className="private__icon"># or <Private /></span> Map Channels here</div>
-                            </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div"><span className="private__icon"># or <Private /></span> Map Channels here</div>
-                            </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div"><span className="private__icon"># or <Private /></span> Map Channels here</div>
-                            </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div"><span className="private__icon"># or <Private /></span> Map Channels here</div>
-                            </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div"><span className="private__icon"># or <Private /></span> Map Channels here</div>
-                            </NavLink>
+                            ))}
                         </div>
                         }
                     </div>
@@ -84,22 +109,11 @@ const Sidebar = ({user}) => {
                         </div>
                         {showDM &&
                         // TODO: dms.map here. ADD route for each DM by id
-                        (<div>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div">Avatar: Map DMs here</div>
+                        (<div>{dm?.map(channel => (
+                            <NavLink key={channel.name} to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
+                                <div className="channels__div">{channel.name}</div>
                             </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div">Avatar: Map DMs here</div>
-                            </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div">Avatar: Map DMs here</div>
-                            </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div">Avatar: Map DMs here</div>
-                            </NavLink>
-                            <NavLink to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div">Avatar: Map DMs here</div>
-                            </NavLink>
+                        ))}
 
                         </div>)}
                     </div>

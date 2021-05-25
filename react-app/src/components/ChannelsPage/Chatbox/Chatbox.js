@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from 'react';
-// import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
 import "./Chatbox.css";
 import { io } from 'socket.io-client';
 import { useSelector } from "react-redux"
 import { IoMdSend as SendButton } from "react-icons/io";
 import "./ChatInput.css";
+import "./ChatMessage.css";
+import { useParams } from 'react-router';
 
 
 // outside of your component, initialize the socket variable
 let socket;
+// useparam
 
 const Chatbox = () => {
+    const user = useSelector(state => state.session.user)
+    const channels = useSelector(state => state.channels)
+    const { channelId } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
-    const user = useSelector(state => state.session.user)
+
+
+
+    const chatMessages = channels[channelId]?.messages
+    let newMsArr = []
+    for (let key in chatMessages) {
+       newMsArr.push(chatMessages[key])
+    }
 
     useEffect(() => {
 
@@ -33,10 +45,18 @@ const Chatbox = () => {
         })
     }, [])
 
+    useEffect(() => {
+        console.log("channelId", channelId)
+    }, [channelId])
+
+    useEffect(() => {
+        setMessages(newMsArr)
+    }, [channels])
+
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("potato", { user: user?.firstname, body: chatInput });
+        socket.emit("potato", { user: user?.firstname, body: chatInput, channel_id: "channel_id from param" });
         setChatInput("")
         // console.log("________chatInpt!!", chatInput)
         // thunk: update database with message (fetch to post create message)
@@ -54,7 +74,15 @@ const Chatbox = () => {
                 <div className="chatbox__content">
                    <div className="chatbox__messages">
                    {messages.map((message, idx) => (
-                     <ChatMessage props={message, idx, user} />
+                     <div key={idx} className="message">
+                        <div className="message__avatar">
+                            <img src={user?.avatar} alt=""/>
+                        </div>
+                        <div className="message__content">
+                            <h2>{user?.firstname}<span>Timestamp here</span></h2>
+                            <p>{message?.body}</p>
+                        </div>
+                    </div>
                 ))}
                     </div>
                 </div>

@@ -22,7 +22,7 @@ const NavBar = ({ isLoaded }) => {
     e.preventDefault();
     // TODO: UPDATE THE DEMO CREDENTIALS
     await dispatch(login("demouser@slackx.com", "password"));
-    history.push("/users/1");
+    history.push("/users/1/1");
   }
 
 
