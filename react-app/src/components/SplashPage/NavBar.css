@@ -99,12 +99,9 @@
     position: fixed;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
-    /* margin-left: 40px; */
-    /* margin-right: 50px;
-    margin-top:0px; */
     border: none;
     background-color: white;
     border-radius: 25px;
-    width: 93%;
+    width: 100%;
+    margin: 0px 80px;
 }

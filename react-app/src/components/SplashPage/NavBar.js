@@ -35,14 +35,12 @@ const NavBar = ({ isLoaded }) => {
             alt="SlackX Logo" />
         </NavLink>
         <div className="navbar__headers">
-          <button style={{ cursor: 'pointer' }}>Features <span className="icon__span"><DownIcon id="down__icon" /></span></button>
-          <button>Technologies</button>
-          <button>Team</button>
-          {/* <button>Pricing</button> */}
+          <button className="header__name" style={{ cursor: 'pointer' }}>Features <span className="icon__span"><DownIcon id="down__icon" /></span></button>
+          <button className="header__name">Technologies</button>
+          <button className="header__name"> Team</button>
         </div>
       </div>
       <div className="navbar__right">
-        {/* <CgSearch /> */}
         <button className="button1" onClick={handleLoginModal} style={{ cursor: 'pointer' }}>Login</button>
         {showLogin && <LoginFormModal />}
         <button className="button1" onClick={handleSignUpModal} style={{ cursor: 'pointer' }}>Sign Up</button>

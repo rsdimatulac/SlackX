@@ -26,11 +26,13 @@ function SplashPage({isLoaded}) {
                 let navBarContainer = document.getElementById("navbar");
                 let slackLogo = document.querySelector(".navbar__logo");
                 slackLogo.src = SlackLogoWhite;
-                navBarContainer.className = "NavbarContainer";
-                let leftNavBarButtons = document.querySelector(".navbar__left").childNodes;
+                // navBarContainer.className = "NavbarContainer";
+                let leftNavBarButtons = document.querySelector(".navbar__headers").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "white");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "white");
+
+
                 // let button3 =  document.querySelector(".button3");
                 // button3.style.border = "none";
 
@@ -42,7 +44,7 @@ function SplashPage({isLoaded}) {
                 let slackLogo = document.querySelector(".navbar__logo");
                 slackLogo.src = SlackLogoBlack;
                 navBarContainer.className = "NavbarContainerWhite";
-                let leftNavBarButtons = document.querySelector(".navbar__left").childNodes;
+                let leftNavBarButtons = document.querySelector(".navbar__headers").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "black");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "black");
