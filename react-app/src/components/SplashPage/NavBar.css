@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 15px;
 }
 
 .navbar__logo {
@@ -27,12 +28,18 @@
     font-size: 15px;
     font-weight: 560;
     padding: 0 15px;
+    cursor: pointer;
+}
+
+.navbar__headers button:hover {
+    text-decoration: underline;
 }
 
 .navbar__right {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 20px;
 }
 
 .button1 {
@@ -43,6 +50,10 @@
     font-size: 15px;
     font-weight: 560;
     padding: 0 15px;
+}
+
+.button1:hover {
+    text-decoration: underline;
 }
 
 .button2 {
@@ -88,20 +99,10 @@
     left: 4px;
 }
 
-
-.searchButton{
-    height: 40px;
-    width: 40px;
-}
-
-
 .NavbarContainerWhite {
     position: fixed;
-    display: flex;
-    flex-direction: row;
-    border: none;
     background-color: white;
-    border-radius: 25px;
-    width: 100%;
-    margin: 0px 80px;
+    border-radius: 999px;
+    width: 89%;
+    top: 10px;
 }

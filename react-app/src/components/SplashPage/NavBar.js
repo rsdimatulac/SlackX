@@ -45,7 +45,9 @@ const NavBar = ({ isLoaded }) => {
         {showLogin && <LoginFormModal />}
         <button className="button1" onClick={handleSignUpModal} style={{ cursor: 'pointer' }}>Sign Up</button>
         {showSignUp && <SignUpFormModal />}
-        <button className="button2" style={{ cursor: 'pointer' }}>MEET THE TEAM</button>
+        <NavLink to="/about" style={{ color: "inherit" }}>
+          <button className="button2" style={{ cursor: 'pointer' }}>MEET THE TEAM</button>
+        </NavLink>
         <button onClick={loginDemoUser} className="button3" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
       </div>
     </nav>

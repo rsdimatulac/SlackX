@@ -26,16 +26,11 @@ function SplashPage({isLoaded}) {
                 let navBarContainer = document.getElementById("navbar");
                 let slackLogo = document.querySelector(".navbar__logo");
                 slackLogo.src = SlackLogoWhite;
-                // navBarContainer.className = "NavbarContainer";
+                navBarContainer.className = "NavbarContainer";
                 let leftNavBarButtons = document.querySelector(".navbar__headers").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "white");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "white");
-
-
-                // let button3 =  document.querySelector(".button3");
-                // button3.style.border = "none";
-
             }
 
             if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
@@ -48,10 +43,6 @@ function SplashPage({isLoaded}) {
                 leftNavBarButtons.forEach(e => e.style.color = "black");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "black");
-                // let button3 =  document.querySelector(".button3");
-                // button3.style.border = "solid #4a154b 1px";
-
-
 
                 mainpage.style.backgroundColor = "#F6EFE8";
                 mainpage.style.backgroundImage = 'none';
@@ -61,7 +52,6 @@ function SplashPage({isLoaded}) {
 
                 title1.style.visibility = "visible";
                 title1.className = "fixed_position";
-
             }
 
             if (window.pageYOffset > 1450 && window.pageYOffset <= 2400) {
@@ -75,7 +65,6 @@ function SplashPage({isLoaded}) {
                 title2.style.visibility = "visible";
                 title2.className = "fixed_position";
                 title2.style.color = "white";
-
             }
 
             if (window.pageYOffset > 2400 && window.pageYOffset <= 2850) {
@@ -89,7 +78,6 @@ function SplashPage({isLoaded}) {
                 title3.style.visibility = "visible";
                 title3.className = "fixed_position";
                 title3.style.color = "white";
-
             }
 
             if (window.pageYOffset > 3050) {
@@ -100,7 +88,6 @@ function SplashPage({isLoaded}) {
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
-
             }
         };
         window.addEventListener('scroll', scrollFunction);
