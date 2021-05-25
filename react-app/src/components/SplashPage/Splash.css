@@ -24,13 +24,16 @@ body::-webkit-scrollbar {
 
 .opening_title {
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Slack-Larsseit,“Helvetica Neue”,Helvetica,“Segoe UI”,Tahoma,Arial,sans-serif;
     margin: auto;
     width: 80%;
-    font-size: 64px;
+    /* font-size: 64px; */
     text-align: center;
     padding: 64px;
     font-weight: 600;
+    margin-top: 80px;
+    font-size: 3.8rem;
+    line-height: 70px;
 }
 
 .splash_page_top_img {
@@ -38,7 +41,7 @@ body::-webkit-scrollbar {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
+
 }
 
 .orange {
@@ -57,7 +60,7 @@ body::-webkit-scrollbar {
 }
 
 .splash_page_img_1 {
-    width: 80%;
+    width: 85%;
 }
 
 .splash_page_img_2 {
@@ -71,9 +74,9 @@ body::-webkit-scrollbar {
     padding-bottom: 1000px;
 }
 
-.splash_page_container_left div{
+/* .splash_page_container_left div{
     z-index: 0;
-}
+} */
 /* .splash_title_1 {
     margin-left: 100px;
     width: 80%;
@@ -101,7 +104,7 @@ body::-webkit-scrollbar {
 
 .fixed_position {
     position: fixed;
-    top: 200px;
+    top: 358px;
     max-width: 580px;
     font-family: Verdana;
     font-size: 50px;

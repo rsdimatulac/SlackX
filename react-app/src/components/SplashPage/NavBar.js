@@ -37,13 +37,17 @@ const NavBar = ({ isLoaded }) => {
             alt="SlackX Logo" />
         </NavLink>
         <div className="navbar__headers">
-          <button className="header__name" onMouseOver={() => setShowFeatures(prevState => !prevState)} style={{ cursor: 'pointer' }}>Features <span className="icon__span"><DownIcon id="down__icon" /></span></button>
+          <button className="header__name"
+          onMouseEnter={() => setShowFeatures(prevState => !prevState)}
+          // onMouseLeave={() => setShowFeatures(prevState => !prevState)}
+          style={{ cursor: 'pointer' }}>
+          Features <span className="icon__span"><DownIcon id="down__icon" /></span></button>
           <button className="header__name">Technologies</button>
           <button className="header__name"> Team</button>
         </div>
 
       </div>
-      {showFeatures && <div className="features__dropdown" >
+      {showFeatures && <div onMouseLeave={() => setShowFeatures(prevState => !prevState)} className="features__dropdown" >
           <div>Create account | Login </div>
           <div>Live Chat </div>
           <div>Create | Join Channels</div>

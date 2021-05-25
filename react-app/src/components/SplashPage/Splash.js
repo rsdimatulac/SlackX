@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Splash.css';
 import IntroImg from '../../imgs/whatisslackx.png';
-import SplashImg1 from '../../imgs/splashpageimg1.png';
+import FeaturesImg from '../../imgs/features.png';
 import SlackLogoBlack from '../../imgs/slack_logo_black.png';
 import SlackLogoWhite from "../../imgs/slack_logo_white.png";
 import NavBar from "./NavBar"
@@ -83,7 +83,7 @@ function SplashPage({isLoaded}) {
             if (window.pageYOffset > 3050) {
 
                 mainpage.style.backgroundColor = "#4a154b";
-                mainpage.style.backgroundImage = mainpage.style.backgroundImage = "url('https://a.slack-edge.com/c2bc65/marketing/img/homepage/bold-prospect/hero/hero-large.png')";
+                mainpage.style.backgroundImage = mainpage.style.backgroundImage = "url('https://slackx.s3.amazonaws.com/slack_background.png')";
 
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
@@ -98,7 +98,7 @@ function SplashPage({isLoaded}) {
     <div>
         <div className="MainBKG">
             <NavBar />
-            <div className="opening_title">SlackX Makes <span className="orange">downright pleasant</span> to work together</div>
+            <div className="opening_title">SlackX makes <span className="orange">downright pleasant</span><br /> to work together</div>
             <img className="splash_page_top_img" src={IntroImg} alt=""/>
             <div className="splash_page_container">
                 <div className="splash_page_container_left">
@@ -107,7 +107,7 @@ function SplashPage({isLoaded}) {
                     <div id="title3" className="splash_title_3"> And you can chat face to face, with just a click </div>
                 </div>
                 <div className="splash_page_container_right">
-                    <img className="splash_page_img_1" src={SplashImg1} alt=""/>
+                    <img className="splash_page_img_1" src={FeaturesImg} alt=""/>
                         <img className="splash_page_img_2" src="https://a.slack-edge.com/e7bc8/marketing/img/homepage/bold-prospect/customer-stories/companies-small/molly-moon/molly-moon-ui@2x.png" alt=""/>
                     <video className="splash_page_video1" src="https://a.slack-edge.com/3b4b5/marketing/img/homepage/bold-prospect/video-calling/video-calling.mp4" autoPlay muted loop />
                 </div>
