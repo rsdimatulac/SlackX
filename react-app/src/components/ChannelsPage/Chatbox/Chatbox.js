@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import ChatInput from "./ChatInput";
+// import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
 import "./Chatbox.css";
 import { io } from 'socket.io-client';
 import { useSelector } from "react-redux"
+import { IoMdSend as SendButton } from "react-icons/io";
+import "./ChatInput.css";
 
 
 // outside of your component, initialize the socket variable
@@ -20,7 +22,7 @@ const Chatbox = () => {
         socket = io();
 
         // listen for chat events
-        socket.on("chat", (chat) => {
+        socket.on("potato", (chat) => {
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
         })
@@ -34,9 +36,9 @@ const Chatbox = () => {
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("chat", { user: user?.email, msg: chatInput });
+        socket.emit("potato", { user: user?.firstname, body: chatInput });
         setChatInput("")
-        console.log("________chatInpt!!", chatInput)
+        // console.log("________chatInpt!!", chatInput)
         // thunk: update database with message (fetch to post create message)
     }
 
@@ -56,7 +58,24 @@ const Chatbox = () => {
                 ))}
                     </div>
                 </div>
-                <ChatInput props={{ sendChat, updateChatInput, chatInput }}/>
+                <div className="chat__input">
+                    <div className="input__wrap">
+                        <form method="post" action="" onSubmit={sendChat}>
+                            <input
+                                className="input__box"
+                                placeholder={"Message #channel-name or user firstname"}
+                                // placeholder={`Message #${channelName}`}
+                                value={chatInput}
+                                onChange={updateChatInput}
+                            />
+                            {chatInput ?
+                                <button className="send__button enabled" type="submit"><SendButton /></button>
+                                :
+                                <button className="send__button" disabled={true}><SendButton /></button>
+                            }
+                        </form>
+                    </div>
+                </div>
             </div>
             <div className="profile">
                 {/* TODO: Add UserProfile Component here. BONUS feature, popup sidebar. If not, use MODAL. */}
