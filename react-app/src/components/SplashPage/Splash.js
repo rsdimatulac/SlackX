@@ -43,7 +43,7 @@ function SplashPage({isLoaded}) {
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "black");
             }
-            
+
             // First image
             if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
                 mainpage.style.backgroundColor = "#F4EDE4";
@@ -105,9 +105,9 @@ function SplashPage({isLoaded}) {
             <img className="splash_page_top_img" src={IntroImg} alt=""/>
             <div className="splash_page_container">
                 <div className="splash_page_container_left">
-                    <div id="title1" className="splash_title_1">It brings your whole team together</div>
-                    <div id="title2" className="splash_title_2">There’s a space for every project</div>
-                    <div id="title3" className="splash_title_3"> And you can chat face to face, with just a click </div>
+                    <div id="title1" className="splash_title_1">It brings your whole team together with these features</div>
+                    <div id="title2" className="splash_title_2">SlackX is built with these technologies</div>
+                    <div id="title3" className="splash_title_3"> Meet the developers of SlackX </div>
                 </div>
                 <div className="splash_page_container_right">
                     <img className="splash_page_img_1" src={FeaturesImg} alt=""/>
