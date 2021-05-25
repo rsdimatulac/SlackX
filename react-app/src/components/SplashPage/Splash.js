@@ -18,7 +18,7 @@ function SplashPage({isLoaded}) {
             if (window.pageYOffset <= 650) {
 
                 mainpage.style.backgroundColor = "#4a154b";
-                mainpage.style.backgroundImage = "url('https://a.slack-edge.com/c2bc65/marketing/img/homepage/bold-prospect/hero/hero-large.png')";
+                mainpage.style.backgroundImage = "url('https://slackx.s3.amazonaws.com/slack_background.png')";
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
@@ -33,8 +33,7 @@ function SplashPage({isLoaded}) {
                 loginSignup.forEach(e => e.style.color = "white");
             }
 
-            if (window.pageYOffset > 0 && window.pageYOffset <= 1450) {
-
+            if (window.pageYOffset > 0) { // This is for the NavBar white
                 let navBarContainer = document.getElementById("navbar");
                 let slackLogo = document.querySelector(".navbar__logo");
                 slackLogo.src = SlackLogoBlack;
@@ -43,8 +42,11 @@ function SplashPage({isLoaded}) {
                 leftNavBarButtons.forEach(e => e.style.color = "black");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "black");
-
-                mainpage.style.backgroundColor = "#F6EFE8";
+            }
+            
+            // First image
+            if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
+                mainpage.style.backgroundColor = "#F4EDE4";
                 mainpage.style.backgroundImage = 'none';
 
                 title2.style.visibility = "hidden";
@@ -54,6 +56,7 @@ function SplashPage({isLoaded}) {
                 title1.className = "fixed_position";
             }
 
+            //
             if (window.pageYOffset > 1450 && window.pageYOffset <= 2400) {
 
                 mainpage.style.backgroundColor = "#0b2440";
@@ -108,8 +111,8 @@ function SplashPage({isLoaded}) {
                 </div>
                 <div className="splash_page_container_right">
                     <img className="splash_page_img_1" src={FeaturesImg} alt=""/>
-                        <img className="splash_page_img_2" src="https://a.slack-edge.com/e7bc8/marketing/img/homepage/bold-prospect/customer-stories/companies-small/molly-moon/molly-moon-ui@2x.png" alt=""/>
-                    <video className="splash_page_video1" src="https://a.slack-edge.com/3b4b5/marketing/img/homepage/bold-prospect/video-calling/video-calling.mp4" autoPlay muted loop />
+                    <img className="splash_page_img_2" src="https://a.slack-edge.com/e7bc8/marketing/img/homepage/bold-prospect/customer-stories/companies-small/molly-moon/molly-moon-ui@2x.png" alt="" />
+                    <img className="splash_page_img_3" src="https://a.slack-edge.com/e7bc8/marketing/img/homepage/bold-prospect/customer-stories/companies-small/molly-moon/molly-moon-ui@2x.png" alt=""/>
                 </div>
             </div>
         </div>

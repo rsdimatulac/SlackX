@@ -1,5 +1,5 @@
 body {
-    background-image:url("https://a.slack-edge.com/c2bc65/marketing/img/homepage/bold-prospect/hero/hero-large.png");
+    background-image:url("https://slackx.s3.amazonaws.com/slack_background.png");
     background-color: #4a154b;
     background-position-x: center;
     background-position-y: top;
@@ -16,7 +16,8 @@ body::-webkit-scrollbar {
 .splash_page_container {
     margin-top: 300px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.75fr 1fr;
+    grid-column-gap: 60px;
     grid-template-areas: 'splash-left splash-right';
     min-height: 0;
     min-width: 0;
@@ -41,7 +42,6 @@ body::-webkit-scrollbar {
     display: block;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .orange {
@@ -51,16 +51,20 @@ body::-webkit-scrollbar {
 .splash_page_container_left {
     grid-area: splash-left;
     overflow: hidden;
+    font-weight: 600;
 }
 
 .splash_page_container_right {
     grid-area: splash-right;
     overflow: hidden;
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .splash_page_img_1 {
-    width: 85%;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .splash_page_img_2 {
@@ -68,15 +72,23 @@ body::-webkit-scrollbar {
     width: 80%;
 }
 
-.splash_page_video1 {
+.splash_page_img_3 {
     padding-top: 500px;
     width: 80%;
     padding-bottom: 1000px;
 }
 
-/* .splash_page_container_left div{
-    z-index: 0;
-} */
+.fixed_position {
+    position: fixed;
+    top: 358px;
+    max-width: 580px;
+    font-family: Verdana;
+    font-size: 50px;
+    margin-left: 80px;
+    line-height: 60px;
+    /* transition: visibility 0.2s; */
+}
+
 /* .splash_title_1 {
     margin-left: 100px;
     width: 80%;
@@ -102,12 +114,3 @@ body::-webkit-scrollbar {
     color: white;
 } */
 
-.fixed_position {
-    position: fixed;
-    top: 358px;
-    max-width: 580px;
-    font-family: Verdana;
-    font-size: 50px;
-    margin-left: 100px;
-    /* transition: visibility 0.2s; */
-}
