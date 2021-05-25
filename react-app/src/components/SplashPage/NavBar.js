@@ -1,13 +1,14 @@
 import React, { useState, useEffect }  from 'react';
 import { useDispatch } from "react-redux";
 import { NavLink, Redirect } from 'react-router-dom';
-import { CgChevronDown, CgSearch } from 'react-icons/cg';
+import { CgSearch } from 'react-icons/cg';
+import { FiChevronDown as DownIcon, FiChevronUp as UpIcon } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import LoginFormModal from "../Auth/LoginFormModal";
 import SignUpFormModal from "../Auth/SignUpFormModal";
 import useConsumeContext from "../../context/FormModalContext.js";
-import SlackXLogo from '../../imgs/SlackX-Logo.png';
+import SlackLogoWhite from "../../imgs/slack_logo_white.png";
 import SearchButton from '../../imgs/searchButton.png';
 import "./NavBar.css";
 
@@ -15,12 +16,10 @@ import "./NavBar.css";
 const NavBar = ({ isLoaded }) => {
   const history = useHistory();
   const { handleLoginModal, showLogin, handleSignUpModal, showSignUp } = useConsumeContext();
-  const [logo, setLogo] = useState(SlackXLogo);
   const dispatch = useDispatch();
 
   const loginDemoUser = async (e) => {
     e.preventDefault();
-    // TODO: UPDATE THE DEMO CREDENTIALS
     await dispatch(login("demouser@slackx.com", "password"));
     history.push("/users/1");
   }
@@ -32,11 +31,11 @@ const NavBar = ({ isLoaded }) => {
         <NavLink to="/" activeClassName="active">
           <img
             className="navbar__logo"
-            src={logo}
+            src={SlackLogoWhite}
             alt="SlackX Logo" />
         </NavLink>
         <div className="navbar__headers">
-          <button style={{ cursor: 'pointer' }}>Features <CgChevronDown /></button>
+          <button style={{ cursor: 'pointer' }}>Features <span className="icon__span"><DownIcon id="down__icon" /></span></button>
           <button>Technologies</button>
           <button>Team</button>
           {/* <button>Pricing</button> */}

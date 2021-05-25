@@ -58,11 +58,11 @@
 
 .button2:hover {
     border: 2px solid white;
-    padding: 10px;
+    padding: 11px;
 }
 
 .button3 {
-    border: white;
+    border: #4a154b;
     padding: 12px;
     border-radius: 5px;
     color: #4a154b ;
@@ -73,8 +73,19 @@
 }
 
 .button3:hover {
-    border: 2px solid #4a154bd2;
+    border: 2px solid #4a154b;
     padding: 10px;
+}
+
+.icon__span {
+    position: relative;
+    padding-right: 10px;
+}
+
+#down__icon {
+    position: absolute;
+    top: 1px;
+    left: 4px;
 }
 
 

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import './Splash.css';
 import IntroImg from '../../imgs/whatisslackx.png';
-import SplashImg1 from '../../imgs/splashpageimg1.png'
+import SplashImg1 from '../../imgs/splashpageimg1.png';
+import SlackLogoBlack from '../../imgs/slack_logo_black.png';
+import SlackLogoWhite from "../../imgs/slack_logo_white.png";
 import NavBar from "./NavBar"
 
 function SplashPage({isLoaded}) {
@@ -22,30 +24,30 @@ function SplashPage({isLoaded}) {
                 title3.style.visibility = "hidden";
 
                 let navBarContainer = document.getElementById("navbar");
-                // let slackXLogoText = document.querySelector(".SlackX");
-                // slackXLogoText.style.color = "white";
+                let slackLogo = document.querySelector(".navbar__logo");
+                slackLogo.src = SlackLogoWhite;
                 navBarContainer.className = "NavbarContainer";
                 let leftNavBarButtons = document.querySelector(".navbar__left").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "white");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "white");
-                let button3 =  document.querySelector(".button3");
-                button3.style.border = "none";
+                // let button3 =  document.querySelector(".button3");
+                // button3.style.border = "none";
 
             }
 
             if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
 
                 let navBarContainer = document.getElementById("navbar");
-                // let slackXLogoText = document.querySelector(".SlackX");
-                // slackXLogoText.style.color = "black";
+                let slackLogo = document.querySelector(".navbar__logo");
+                slackLogo.src = SlackLogoBlack;
                 navBarContainer.className = "NavbarContainerWhite";
                 let leftNavBarButtons = document.querySelector(".navbar__left").childNodes;
                 leftNavBarButtons.forEach(e => e.style.color = "black");
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "black");
-                let button3 =  document.querySelector(".button3");
-                button3.style.border = "solid #4a154b 1px";
+                // let button3 =  document.querySelector(".button3");
+                // button3.style.border = "solid #4a154b 1px";
 
 
 
