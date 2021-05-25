@@ -56,7 +56,7 @@ const Chatbox = () => {
                 ))}
                     </div>
                 </div>
-                <ChatInput props={{ sendChat, updateChatInput, chatInput }}/>
+                <ChatInput props={{ sendChat, setChatInput, chatInput }}/>
             </div>
             <div className="profile">
                 {/* TODO: Add UserProfile Component here. BONUS feature, popup sidebar. If not, use MODAL. */}
