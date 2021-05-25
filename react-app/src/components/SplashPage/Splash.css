@@ -71,6 +71,9 @@ body::-webkit-scrollbar {
     padding-bottom: 1000px;
 }
 
+.splash_page_container_left div{
+    z-index: 0;
+}
 /* .splash_title_1 {
     margin-left: 100px;
     width: 80%;

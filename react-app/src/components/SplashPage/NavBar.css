@@ -106,3 +106,35 @@
     width: 89%;
     top: 10px;
 }
+
+/* dropdown */
+.features__dropdown{
+    /* height: 330px; */
+    z-index: 1;
+    height: fit-content;
+    width: 220px;
+    background-color: white;
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.10);
+    font-size: 15px;
+    color:#1d1c1d;
+
+}
+.features__dropdown div{
+    padding: 7px 0px;
+}
+
+.seemore__link{
+    text-align: center ;
+    margin-top: 10px;
+}
+
+.seemore__link:hover{
+    background-color:lightgray ;
+    cursor: pointer;
+}

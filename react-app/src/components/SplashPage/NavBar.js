@@ -13,10 +13,12 @@ import SearchButton from '../../imgs/searchButton.png';
 import "./NavBar.css";
 
 
+
 const NavBar = ({ isLoaded }) => {
   const history = useHistory();
   const { handleLoginModal, showLogin, handleSignUpModal, showSignUp } = useConsumeContext();
   const dispatch = useDispatch();
+  const [showFeatures, setShowFeatures] = useState(false)
 
   const loginDemoUser = async (e) => {
     e.preventDefault();
@@ -39,6 +41,17 @@ const NavBar = ({ isLoaded }) => {
           <button className="header__name">Technologies</button>
           <button className="header__name"> Team</button>
         </div>
+
+      </div>
+      <div className="features__dropdown">
+          <div>Create account | Login </div>
+          <div>Live Chat </div>
+          <div>Create | Join Channels</div>
+          <div>Send Direct Messages</div>
+          <div>Group Messages </div>
+          <div className="seemore__link">
+            <a href="" style={{textDecoration:"none", color:"inherit"}}>See More...</a>
+          </div>
       </div>
       <div className="navbar__right">
         <button className="button1" onClick={handleLoginModal} style={{ cursor: 'pointer' }}>Login</button>
