@@ -1,28 +1,27 @@
-.login__wrapper{
+.login__wrapper {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /* background-color: yellow; */
     border-radius: 10px;
     padding: 70px 30px;
     font-family: Circular -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”,“Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”,sans-serif;
-
 }
 
-.login__header{
+.login__header {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 28px;
     padding: 10px 0px ;
 }
-.login__header img{
+
+.login__header img {
     height: 25px;
     margin-left: 6px;
     margin-right: 6px;
-
 }
-.errors{
+
+.errors {
     display: flex;
     flex-direction: column;
     padding: 10px 40px;
@@ -30,12 +29,14 @@
     font-size: 14px;
     font-style: italic;
 }
+
 .login__input {
     display: flex;
     padding: 10px 30px;
 }
-.login__input input{
-    padding: 11px 12px 13px;
+
+.login__input input {
+    padding: 11px 12px;
     width: 100% ;
     height: 32px;
     outline-width: 0;
@@ -44,12 +45,13 @@
     box-sizing: border-box;
 }
 
-.login__button{
+.login__button {
     display: flex;
     padding: 10px 30px;
 
 }
-.login__button button{
+
+.login__button button {
     width: 100%;
     height: 32px;
     border: none;
@@ -69,11 +71,18 @@
     text-align: right;
 
 }
-.goto__signup h3{
-    color: #1264a3;
-    font-weight: 500;
-}
+
 .goto__signup p {
     color: #616061;
     padding-bottom: 6px;
 }
+
+.goto__signup h3 {
+    color: #1264a3;
+    font-weight: 500;
+}
+
+.goto__signup h3:hover {
+    text-decoration: underline;
+}
+

@@ -41,9 +41,9 @@ const LoginForm = () => {
           <h1> slackX </h1>
         </div>
         <div className="errors">
-          <div>・error1</div>
+          {/* <div>・error1</div>
           <div>・error2</div>
-          <div>・error3</div>
+          <div>・error3</div> */}
 
           {errors.map((error) => (
             <div key={error}>・{error}</div>
@@ -52,10 +52,11 @@ const LoginForm = () => {
         <div className="login__input">
           <input
             name="email"
-            type="text"
+            type="email"
             placeholder="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className="login__input">
@@ -65,10 +66,11 @@ const LoginForm = () => {
             placeholder="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            required
           />
         </div>
         <div className="login__button">
-        <button style={{ cursor: 'pointer' }} type="submit">Login</button>
+          <button style={{ cursor: 'pointer' }} type="submit">Login</button>
         </div>
         <div className="goto__signup">
           <p>New to slackX?</p>
