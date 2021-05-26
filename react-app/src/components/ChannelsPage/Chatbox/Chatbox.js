@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router';
 import { io } from 'socket.io-client';
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdSend as SendButton } from "react-icons/io";
-import {getMessages} from "../../../store/message"
+import { getMessages } from "../../../store/message"
 import "./Chatbox.css";
 import "./ChatInput.css";
 import "./ChatMessage.css";
@@ -18,6 +18,7 @@ const Chatbox = () => {
     const channels = useSelector(state => state.channels)
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
+    const messageRef = useRef();
     const { channelId } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
@@ -37,6 +38,9 @@ const Chatbox = () => {
             // when we recieve a chat, add it into our messages array in state
 
             setMessages(messages => [...messages, chat])
+            //scroll to bottom
+            // let ele = document.querySelector(".message")
+            // ele.scroll({bottom: 0, behavior: "smooth" })
         })
 
         // when component unmounts, disconnect
@@ -46,7 +50,7 @@ const Chatbox = () => {
     }, [channelId])
 
     useEffect(() => {
-        const getData = async() => {
+        const getData = async () => {
             let newMsArr = []
             let chatMessages = null;
             chatMessages = await dispatch(getMessages(channelId))
@@ -61,15 +65,35 @@ const Chatbox = () => {
 
     }, [channels, channelId])
 
-    // useEffect(() => {
-    //     setMessages(newMsArr)
-    // }, [channelId])
+    useEffect(() => {
+        if (messageRef.current) {
+          messageRef.current.scrollIntoView(
+            {
+              behavior: 'smooth',
+              block: 'end',
+              inline: 'nearest'
+            })
+        }
+        console.log("here hello")
+      },
+      [messages])
 
-    // !!!!!!!!!!!!!!!!!!!!! add thunk with channel id
+
+    // useEffect(() => {
+    //     if (messageEl) {
+    //       messageEl.current?.addEventListener('DOMNodeInserted', event => {
+    //         const { currentTarget: target } = event;
+    //         target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+    //       });
+    //     }
+    //   }, [])
+
+
+
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("potato", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString()})
+        socket.emit("potato", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
 
         setChatInput("")
         // console.log("________chatInpt!!", chatInput)
@@ -88,7 +112,7 @@ const Chatbox = () => {
                 <div className="chatbox__content">
                     <div className="chatbox__messages">
                         {messages.map((message, idx) => (
-                            <div key={idx} className="message">
+                            <div key={idx} ref={messageRef} className="message">
                                 <div className="message__avatar">
                                     <img src={users[message?.user_id]?.avatar} alt="" />
                                 </div>
