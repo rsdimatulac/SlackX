@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { io } from 'socket.io-client';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { IoMdSend as SendButton } from "react-icons/io";
+import {getMessages} from "../../../store/message"
 import "./Chatbox.css";
 import "./ChatInput.css";
 import "./ChatMessage.css";
@@ -16,17 +17,15 @@ const Chatbox = () => {
     const user = useSelector(state => state.session.user)
     const channels = useSelector(state => state.channels)
     const users = useSelector(state => state.users)
+    const dispatch = useDispatch()
     const { channelId } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
 
 
 
-    const chatMessages = channels[channelId]?.messages
-    let newMsArr = []
-    for (let key in chatMessages) {
-        newMsArr.push(chatMessages[key])
-    }
+    // const chatMessages = channels[channelId]?.messages
+
 
     useEffect(() => {
 
@@ -34,8 +33,9 @@ const Chatbox = () => {
         socket = io();
 
         // listen for chat events
-        socket.on("potato", (chat) => {
+        socket.on(channelId, (chat) => {
             // when we recieve a chat, add it into our messages array in state
+
             setMessages(messages => [...messages, chat])
         })
 
@@ -43,17 +43,27 @@ const Chatbox = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
-
-    useEffect(() => {
-        setMessages(newMsArr)
-    }, [channels])
-
-    useEffect(() => {
-        setMessages(newMsArr)
     }, [channelId])
 
+    useEffect(() => {
+        let newMsArr = []
+        let chatMessages;
+        const getData = async() => {
+            chatMessages = await dispatch(getMessages(channelId))
+        }
+        getData()
+        
+        for (let key in chatMessages) {
+            newMsArr.push(chatMessages[key])
+        }
+        setMessages(newMsArr)
+    }, [channels, channelId])
 
+    // useEffect(() => {
+    //     setMessages(newMsArr)
+    // }, [channelId])
+
+    // !!!!!!!!!!!!!!!!!!!!! add thunk with channel id
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential

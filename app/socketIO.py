@@ -32,5 +32,14 @@ def handle_chat(data):
     db.session.add(new_message)
     db.session.commit()
 
-    emit("potato", data, broadcast=True)
+    emit(data["channel_id"], data, broadcast=True)
     return None
+
+
+# @socketio.sockets.in()
+# // now, it's easy to send a message to just the clients in a given room
+# room = "abc123";
+# io.sockets.in(room).emit('message', 'what is going on, party people?');
+
+# // this message will NOT go to the client defined above
+# io.sockets.in('foobar').emit('message', 'anyone in this room yet?');
