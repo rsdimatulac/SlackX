@@ -45,7 +45,10 @@ const Chatbox = () => {
     }, [])
 
     useEffect(() => {
-        console.log("help")
+        setMessages(newMsArr)
+    }, [channels])
+
+    useEffect(() => {
         setMessages(newMsArr)
     }, [channelId])
 
