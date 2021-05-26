@@ -15,6 +15,7 @@ let socket;
 const Chatbox = () => {
     const user = useSelector(state => state.session.user)
     const channels = useSelector(state => state.channels)
+    const users = useSelector(state => state.users)
     const { channelId } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
@@ -56,7 +57,7 @@ const Chatbox = () => {
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("potato", { user: user?.firstname, body: chatInput, channel_id: "channel_id from param" });
+        socket.emit("potato", { user_id: user?.id, body: chatInput, channel_id: channelId });
         setChatInput("")
         // console.log("________chatInpt!!", chatInput)
         // thunk: update database with message (fetch to post create message)
@@ -76,10 +77,10 @@ const Chatbox = () => {
                         {messages.map((message, idx) => (
                             <div key={idx} className="message">
                                 <div className="message__avatar">
-                                    <img src={user?.avatar} alt="" />
+                                    <img src={users[message?.user_id]?.avatar} alt="" />
                                 </div>
                                 <div className="message__content">
-                                    <h2>{user?.firstname}<span>Timestamp here</span></h2>
+                                    <h2>{users[message?.user_id]?.firstname}<span>{message?.created_at}</span></h2>
                                     <p>{message?.body}</p>
                                 </div>
                             </div>

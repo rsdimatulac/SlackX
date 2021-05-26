@@ -6,4 +6,9 @@ users_routes = Blueprint('all_users', __name__)
 
 @users_routes.route('/')
 def get_users():
-    return {channel.id: channel.to_dict() for channel in current_user.channels}
+    channel_users = [channel.users for channel in current_user.channels]
+    flat_channel_users = set([item for sublist in channel_users for item in sublist])
+    channel_users_dict = {user.id: user.to_dict() for user in flat_channel_users }
+    # print(set(flat_channel_users))
+    # return flat_channel_users
+    return channel_users_dict
