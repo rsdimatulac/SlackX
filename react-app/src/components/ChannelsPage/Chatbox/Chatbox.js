@@ -57,7 +57,8 @@ const Chatbox = () => {
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("potato", { user_id: user?.id, body: chatInput, channel_id: channelId });
+        socket.emit("potato", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString()})
+
         setChatInput("")
         // console.log("________chatInpt!!", chatInput)
         // thunk: update database with message (fetch to post create message)

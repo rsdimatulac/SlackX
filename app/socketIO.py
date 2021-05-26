@@ -2,6 +2,7 @@ from app.models import channel
 from flask_socketio import SocketIO, emit
 import os
 from .models import db, Message
+import datetime
 
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
@@ -24,7 +25,8 @@ def handle_chat(data):
     new_message = Message(
         user_id=data['user_id'],
         channel_id=data['channel_id'],
-        body=data['body']
+        body=data['body'],
+        created_at=data['created_at']
     )
     print('New Message:', new_message)
     db.session.add(new_message)
