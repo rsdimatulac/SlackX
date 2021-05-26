@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import Channel
 
 
@@ -15,6 +15,5 @@ def channel_name_exists(form, field):
 
 
 class ChannelForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired(), channel_name_exists])
+    name = StringField('name', validators=[DataRequired(), Length(min=1, max=25, message="Name must between 1-25 characters."), channel_name_exists])
     channel_type = StringField('channel_type', ValidationError=[DataRequired()])
-
