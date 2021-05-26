@@ -49,7 +49,7 @@ const NavBar = ({ isLoaded }) => {
         <div>Send Direct Messages</div>
         <div>Group Messages </div>
         <div className="seemore__link">
-          <a href="" style={{ textDecoration: "none", color: "inherit" }}>See More...</a>
+          <a href="/" style={{ textDecoration: "none", color: "inherit" }}>See More...</a>
         </div>
       </div>}
       <div className="navbar__right">

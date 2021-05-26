@@ -8,6 +8,7 @@ import UserProfile from "./components/ChannelsPage/UserProfile";
 import User from "./components/User";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
+import ScrollToTop from "./context/ScrollToTop";
 import { authenticate } from "./store/session";
 import "./index.css";
 import "./reset.css";
@@ -30,6 +31,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Switch>
         <Route path="/" exact>
           <Splash />

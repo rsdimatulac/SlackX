@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './Splash.css';
 import IntroImg from '../../imgs/whatisslackx.png';
 import FeaturesImg from '../../imgs/features.png';
+import MeetTheTeam from "../../imgs/meet_the_team.jpeg";
 import SlackLogoBlack from '../../imgs/slack_logo_black.png';
 import SlackLogoWhite from "../../imgs/slack_logo_white.png";
 import SocketLogo from "../../imgs/socketio_logo.png";
@@ -16,14 +17,16 @@ function SplashPage({isLoaded}) {
             let title2 = document.getElementById("title2");
             let title3 = document.getElementById("title3");
 
+            console.log("OFFFSET -->", window.pageYOffset);
             if (window.pageYOffset <= 650) {
-
+                
                 mainpage.style.backgroundColor = "#4a154b";
                 mainpage.style.backgroundImage = "url('https://slackx.s3.amazonaws.com/slack_background.png')";
+                
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
-
+                
                 let navBarContainer = document.getElementById("navbar");
                 let slackLogo = document.querySelector(".navbar__logo");
                 slackLogo.src = SlackLogoWhite;
@@ -33,7 +36,7 @@ function SplashPage({isLoaded}) {
                 let loginSignup = document.querySelectorAll(".button1");
                 loginSignup.forEach(e => e.style.color = "white");
             }
-
+            
             if (window.pageYOffset > 0) { // This is for the NavBar white
                 let navBarContainer = document.getElementById("navbar");
                 let slackLogo = document.querySelector(".navbar__logo");
@@ -46,45 +49,51 @@ function SplashPage({isLoaded}) {
             }
 
             // First image
-            if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
+            if (window.pageYOffset > 650 && window.pageYOffset <= 1796) {
+            // if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
                 mainpage.style.backgroundColor = "#F4EDE4";
                 mainpage.style.backgroundImage = 'none';
-
+                
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
-
+                
+                title1.style.fontSize = "50px";
                 title1.style.visibility = "visible";
                 title1.className = "fixed_position";
             }
 
-            //
-            if (window.pageYOffset > 1450 && window.pageYOffset <= 2400) {
+            // Second image
+            if (window.pageYOffset > 1796 && window.pageYOffset <= 2897) {
+            // if (window.pageYOffset > 1450 && window.pageYOffset <= 2400) {
 
                 mainpage.style.backgroundColor = "#0b2440";
                 mainpage.style.backgroundImage = 'none';
-
+                
                 title1.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
-
+                
+                title2.style.fontSize = "50px";
                 title2.style.visibility = "visible";
                 title2.className = "fixed_position";
                 title2.style.color = "white";
             }
 
-            if (window.pageYOffset > 2400 && window.pageYOffset <= 2850) {
+            // Third image
+            if (window.pageYOffset > 2897 && window.pageYOffset <= 3990) {
 
-                mainpage.style.backgroundColor = "#0b2440";
+                mainpage.style.backgroundColor = "#795ec7";
                 mainpage.style.backgroundImage = 'none';
 
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
 
+                title3.style.fontSize = "50px";
                 title3.style.visibility = "visible";
                 title3.className = "fixed_position";
                 title3.style.color = "white";
             }
 
-            if (window.pageYOffset > 3050) {
+            if (window.pageYOffset > 3990) {
 
                 mainpage.style.backgroundColor = "#4a154b";
                 mainpage.style.backgroundImage = mainpage.style.backgroundImage = "url('https://slackx.s3.amazonaws.com/slack_background.png')";
@@ -106,9 +115,9 @@ function SplashPage({isLoaded}) {
             <img className="splash_page_top_img" src={IntroImg} alt=""/>
             <div className="splash_page_container">
                 <div className="splash_page_container_left">
-                    <div id="title1" className="splash_title_1">It brings your whole team together with these features</div>
-                    <div id="title2" className="splash_title_2">SlackX is built with these technologies</div>
-                    <div id="title3" className="splash_title_3"> Meet the developers of SlackX </div>
+                     <div id="title1" className="splash_title_1" style={{ fontSize: 0 }}>It brings your whole team together with these features</div>
+                     <div id="title2" className="splash_title_2" style={{ fontSize: 0 }}>SlackX is built with these technologies</div>
+                     <div id="title3" className="splash_title_3" style={{ fontSize: 0 }}> Meet the developers<br /> of SlackX </div>
                 </div>
                 <div className="splash_page_container_right">
                     <img className="splash_page_img_1" src={FeaturesImg} alt=""/>
@@ -134,8 +143,7 @@ function SplashPage({isLoaded}) {
                             <i className="devicon-amazonwebservices-plain-wordmark colored"></i>
                          </div>
                     </div>
-                    {/* <img className="splash_page_img_2" src="https://a.slack-edge.com/e7bc8/marketing/img/homepage/bold-prospect/customer-stories/companies-small/molly-moon/molly-moon-ui@2x.png" alt="" /> */}
-                    <img className="splash_page_img_3" src="https://a.slack-edge.com/e7bc8/marketing/img/homepage/bold-prospect/customer-stories/companies-small/molly-moon/molly-moon-ui@2x.png" alt=""/>
+                    <img className="splash_page_img_3" src={MeetTheTeam} alt=""/>
                 </div>
             </div>
         </div>

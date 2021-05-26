@@ -30,7 +30,7 @@ const SignUpForm = () => {
 
   if (user) {
     // redirect to Channels Page if session user exist
-    return <Redirect to={`/users/${user.id}`} />;
+    return <Redirect to={`/users/${user.id}/1`} />;
   }
 
   return (

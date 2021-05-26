@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import "./Chatbox.css";
+import { useParams } from 'react-router';
 import { io } from 'socket.io-client';
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 import { IoMdSend as SendButton } from "react-icons/io";
+import "./Chatbox.css";
 import "./ChatInput.css";
 import "./ChatMessage.css";
-import { useParams } from 'react-router';
 
 
 // outside of your component, initialize the socket variable
