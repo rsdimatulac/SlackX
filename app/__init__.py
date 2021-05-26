@@ -7,11 +7,11 @@ from flask_login import LoginManager
 from .socketIO import socketio
 
 from .models import db, User
+from .api.message_routes import message_routes
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.channel_routes import channel_routes
 from .api.users_routes import users_routes
-from .api.message_routes import message_routes
 
 from .seeds import seed_commands
 

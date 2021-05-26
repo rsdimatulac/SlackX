@@ -46,17 +46,19 @@ const Chatbox = () => {
     }, [channelId])
 
     useEffect(() => {
-        let newMsArr = []
-        let chatMessages;
         const getData = async() => {
+            let newMsArr = []
+            let chatMessages = null;
             chatMessages = await dispatch(getMessages(channelId))
+
+            for (let key in chatMessages) {
+                newMsArr.push(chatMessages[key])
+            }
+            setMessages(newMsArr)
         }
         getData()
-        
-        for (let key in chatMessages) {
-            newMsArr.push(chatMessages[key])
-        }
-        setMessages(newMsArr)
+
+
     }, [channels, channelId])
 
     // useEffect(() => {

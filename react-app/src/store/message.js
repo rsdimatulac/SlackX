@@ -6,7 +6,7 @@ const setMessages = (messages) => ({
 })
 
 export const getMessages = (channel_id) => async (dispatch) => {
-    const res = await fetch(`/api/messages/${channel_id}/`)
+    const res = await fetch(`/api/messages/${channel_id}`)
 
     try{
         if(!res.ok) throw res
@@ -22,7 +22,7 @@ export const getMessages = (channel_id) => async (dispatch) => {
 export default function messages(state = {}, action) {
     switch(action.type) {
         case GET_MESSAGES:
-            return {...state, ...action.messages}
+            return {...action.messages}
         default:
             return state;
     }
