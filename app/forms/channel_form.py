@@ -16,4 +16,4 @@ def channel_name_exists(form, field):
 
 class ChannelForm(FlaskForm):
     name = StringField('name', validators=[DataRequired(), Length(min=1, max=25, message="Name must between 1-25 characters."), channel_name_exists])
-    channel_type = StringField('channel_type', ValidationError=[DataRequired()])
+    channel_type = StringField('channel_type', validators=[DataRequired()])

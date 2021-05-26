@@ -14,7 +14,7 @@ def get_channels():
     return {channel.id: channel.to_dict() for channel in current_user.channels}
 
 # current_user.channels.messages
-@channel_routes.route('')
+# @channel_routes.route('')
 
 def validation_errors_to_error_messages(validation_errors):
     """

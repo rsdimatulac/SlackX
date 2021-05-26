@@ -19,9 +19,9 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    let data;
+    // let data;
     // if (password === confirmPassword) {
-    data = await dispatch(signUp(firstname, lastname, email, password, confirmPassword));
+    const data = await dispatch(signUp(firstname, lastname, email, password, confirmPassword));
     // } 
     if (data?.errors) {
       setErrors(data?.errors);

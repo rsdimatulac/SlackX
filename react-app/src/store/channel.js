@@ -28,19 +28,22 @@ export const getChannels = () => async (dispatch) => {
 }
 
 export const createChannel = (name, channel_type) => async (dispatch) => {
-    const res = await fetch("/api/channels", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({name, channel_type})
-    })
     try{
+        const res = await fetch("/api/channels/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({name, channel_type})
+        })
         if(!res.ok) throw res
-        const channel = await res.json()
+        const channel = await res.json();
         // console.log(channels)
+        if (channel.errors) {
+            return channel;
+        }
         dispatch(addChannel(channel))
-
+        return {}
     } catch(err) {
         console.log(err)
     }
