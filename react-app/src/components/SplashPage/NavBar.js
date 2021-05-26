@@ -20,7 +20,7 @@ const NavBar = ({ isLoaded }) => {
   const loginDemoUser = async (e) => {
     e.preventDefault();
     await dispatch(login("demouser@slackx.com", "password"));
-    history.push("/users/1");
+    history.push("/users/1/1");
   }
 
   return (
