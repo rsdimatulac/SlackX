@@ -12,7 +12,6 @@ export const getChannels = () => async (dispatch) => {
     try{
         if(!res.ok) throw res
         const channels = await res.json()
-        console.log(channels)
         dispatch(setChannels(channels))
 
     } catch(err) {

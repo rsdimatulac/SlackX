@@ -31,7 +31,7 @@ const Sidebar = ({user}) => {
     //grab channels
     useEffect(() => {
         async function fetchData() {
-           await dispatch(getChannels())
+            await dispatch(getChannels())
         }
         fetchData();
     }, [dispatch])
