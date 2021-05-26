@@ -1,12 +1,12 @@
 body {
-    background-image:url("https://a.slack-edge.com/c2bc65/marketing/img/homepage/bold-prospect/hero/hero-large.png");
+    background-image:url("https://slackx.s3.amazonaws.com/slack_background.png");
     background-color: #4a154b;
     background-position-x: center;
     background-position-y: top;
     background-repeat: repeat-y;
     background-size: 100%;
     min-height: 100vh;
-    transition: background-color 0.5s
+    transition: background-color 0.5s;
 }
 
 body::-webkit-scrollbar {
@@ -16,7 +16,8 @@ body::-webkit-scrollbar {
 .splash_page_container {
     margin-top: 300px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.75fr 1fr;
+    grid-column-gap: 60px;
     grid-template-areas: 'splash-left splash-right';
     min-height: 0;
     min-width: 0;
@@ -24,13 +25,16 @@ body::-webkit-scrollbar {
 
 .opening_title {
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Slack-Larsseit,“Helvetica Neue”,Helvetica,“Segoe UI”,Tahoma,Arial,sans-serif;
     margin: auto;
     width: 80%;
-    font-size: 64px;
+    /* font-size: 64px; */
     text-align: center;
     padding: 64px;
     font-weight: 600;
+    margin-top: 80px;
+    font-size: 3.8rem;
+    line-height: 70px;
 }
 
 .splash_page_top_img {
@@ -38,7 +42,6 @@ body::-webkit-scrollbar {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
 }
 
 .orange {
@@ -48,27 +51,59 @@ body::-webkit-scrollbar {
 .splash_page_container_left {
     grid-area: splash-left;
     overflow: hidden;
+    font-weight: 600;
 }
 
 .splash_page_container_right {
     grid-area: splash-right;
     overflow: hidden;
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .splash_page_img_1 {
-    width: 80%;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .splash_page_img_2 {
     padding-top: 500px;
-    width: 80%;
+    font-size: 100px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
 }
 
-.splash_page_video1 {
+.splash_page_img_2 div {
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+}
+
+.splash_page_img_2 * {
+    padding: 25px;
+}
+
+#socket__logo {
+    height: 90px;
+}
+
+.splash_page_img_3 {
     padding-top: 500px;
     width: 80%;
     padding-bottom: 1000px;
+}
+
+.fixed_position {
+    position: fixed;
+    top: 328px;
+    max-width: 580px;
+    font-family: Verdana;
+    font-size: 50px;
+    margin-left: 80px;
+    line-height: 60px;
+    /* transition: visibility 0.2s; */
 }
 
 /* .splash_title_1 {
@@ -96,12 +131,3 @@ body::-webkit-scrollbar {
     color: white;
 } */
 
-.fixed_position {
-    position: fixed;
-    top: 200px;
-    max-width: 580px;
-    font-family: Verdana;
-    font-size: 50px;
-    margin-left: 100px;
-    /* transition: visibility 0.2s; */
-}

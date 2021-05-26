@@ -5,12 +5,26 @@
     justify-content: space-between;
     margin: 0px 80px;
     height: 80px;
+    width: 89%;
+    position: fixed;
+    border-radius: 999px;
+    top: 10px;
+}
+
+.NavbarContainerWhite {
+    position: fixed;
+    background-color: white;
+    border-radius: 999px;
+    width: 89%;
+    top: 10px;
+    box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.10);
 }
 
 .navbar__left {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 15px;
 }
 
 .navbar__logo {
@@ -27,12 +41,18 @@
     font-size: 15px;
     font-weight: 560;
     padding: 0 15px;
+    cursor: pointer;
+}
+
+.navbar__headers button:hover {
+    text-decoration: underline;
 }
 
 .navbar__right {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 20px;
 }
 
 .button1 {
@@ -43,6 +63,10 @@
     font-size: 15px;
     font-weight: 560;
     padding: 0 15px;
+}
+
+.button1:hover {
+    text-decoration: underline;
 }
 
 .button2 {
@@ -58,11 +82,11 @@
 
 .button2:hover {
     border: 2px solid white;
-    padding: 10px;
+    padding: 11px;
 }
 
 .button3 {
-    border: white;
+    border: #4a154b;
     padding: 12px;
     border-radius: 5px;
     color: #4a154b ;
@@ -73,27 +97,49 @@
 }
 
 .button3:hover {
-    border: 2px solid #4a154bd2;
+    border: 2px solid #4a154b;
     padding: 10px;
 }
 
-
-.searchButton{
-    height: 40px;
-    width: 40px;
+.icon__span {
+    position: relative;
+    padding-right: 10px;
 }
 
+#down__icon, #up__icon {
+    position: absolute;
+    top: 1px;
+    left: 4px;
+}
 
-.NavbarContainerWhite {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    /* justify-content: space-between; */
-    /* margin-left: 40px; */
-    /* margin-right: 50px;
-    margin-top:0px; */
-    border: none;
+/* dropdown */
+.features__dropdown{
+    z-index: 1;
+    height: fit-content;
+    width: 220px;
     background-color: white;
-    border-radius: 25px;
-    width: 93%;
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.10);
+    font-size: 15px;
+    color:#1d1c1d;
+}
+
+.features__dropdown div{
+    padding: 7px 0px;
+}
+
+.seemore__link {
+    text-align: center ;
+    margin-top: 10px;
+    border-top: 1px solid lightgray;
+}
+
+.seemore__link:hover{
+    background-color:lightgray ;
+    cursor: pointer;
 }

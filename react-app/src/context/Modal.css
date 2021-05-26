@@ -19,7 +19,8 @@
 }
 
 #modal-content {
-    height: 500px;
+    /* height: 450px; */
+    height: fit-content;
     width: 440px;
     border-radius: 10px;
     position: absolute;
