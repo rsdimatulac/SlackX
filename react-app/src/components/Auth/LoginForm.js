@@ -28,7 +28,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (user) {
       async function fetchData() {
-       await dispatch(getChannels())
+        await dispatch(getChannels())
       }
       fetchData();
     }
