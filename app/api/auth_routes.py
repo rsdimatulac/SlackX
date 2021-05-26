@@ -14,6 +14,9 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors: # form.errors []
         for error in validation_errors[field]:
+            # if (error.startswith("Field")):
+            #     errorMessages.append(f"{field.capitalize()} {error[5:]}")
+            # else:
             errorMessages.append(f"{error}")
     return errorMessages
 
