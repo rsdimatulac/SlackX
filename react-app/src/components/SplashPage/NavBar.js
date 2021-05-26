@@ -1,14 +1,13 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState }  from 'react';
 import { useDispatch } from "react-redux";
-import { NavLink, Redirect } from 'react-router-dom';
-import { CgChevronDown, CgSearch } from 'react-icons/cg';
+import { NavLink } from 'react-router-dom';
+import { CgChevronDown,  } from 'react-icons/cg';
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import LoginFormModal from "../Auth/LoginFormModal";
 import SignUpFormModal from "../Auth/SignUpFormModal";
 import useConsumeContext from "../../context/FormModalContext.js";
 import SlackXLogo from '../../imgs/SlackX-Logo.png';
-import SearchButton from '../../imgs/searchButton.png';
 import "./NavBar.css";
 
 
@@ -22,7 +21,7 @@ const NavBar = ({ isLoaded }) => {
     e.preventDefault();
     // TODO: UPDATE THE DEMO CREDENTIALS
     await dispatch(login("demouser@slackx.com", "password"));
-    history.push("/users/1");
+    history.push("/users/1/1");
   }
 
 
