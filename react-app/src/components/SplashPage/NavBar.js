@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import { FiChevronDown as DownIcon, FiChevronUp as UpIcon } from "react-icons/fi";
@@ -34,23 +34,23 @@ const NavBar = ({ isLoaded }) => {
         </NavLink>
         <div className="navbar__headers">
           <button className="header__name"
-          onMouseEnter={() => setShowFeatures(prevState => !prevState)}
-          style={{ cursor: 'pointer' }}>
-          Features <span className="icon__span">{showFeatures ? <UpIcon id="up__icon"/> : <DownIcon id="down__icon" />}</span></button>
+            onMouseEnter={() => setShowFeatures(prevState => !prevState)}
+            style={{ cursor: 'pointer' }}>
+            Features <span className="icon__span">{showFeatures ? <UpIcon id="up__icon" /> : <DownIcon id="down__icon" />}</span></button>
           <button className="header__name">Technologies</button>
           <button className="header__name"> Team</button>
         </div>
 
       </div>
       {showFeatures && <div onMouseLeave={() => setShowFeatures(prevState => !prevState)} className="features__dropdown" >
-          <div>Create account | Login </div>
-          <div>Live Chat </div>
-          <div>Create | Join Channels</div>
-          <div>Send Direct Messages</div>
-          <div>Group Messages </div>
-          <div className="seemore__link">
-            <a href="" style={{textDecoration:"none", color:"inherit"}}>See More...</a>
-          </div>
+        <div>Create account | Login </div>
+        <div>Live Chat </div>
+        <div>Create | Join Channels</div>
+        <div>Send Direct Messages</div>
+        <div>Group Messages </div>
+        <div className="seemore__link">
+          <a href="" style={{ textDecoration: "none", color: "inherit" }}>See More...</a>
+        </div>
       </div>}
       <div className="navbar__right">
         <button className="button1" onClick={handleLoginModal} style={{ cursor: 'pointer' }}>Login</button>
