@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ChatMessage from "./ChatMessage";
 import "./Chatbox.css";
 import { io } from 'socket.io-client';
 import { useSelector } from "react-redux"
@@ -25,7 +24,7 @@ const Chatbox = () => {
     const chatMessages = channels[channelId]?.messages
     let newMsArr = []
     for (let key in chatMessages) {
-       newMsArr.push(chatMessages[key])
+        newMsArr.push(chatMessages[key])
     }
 
     useEffect(() => {
@@ -46,12 +45,10 @@ const Chatbox = () => {
     }, [])
 
     useEffect(() => {
-        console.log("channelId", channelId)
+        console.log("help")
+        setMessages(newMsArr)
     }, [channelId])
 
-    useEffect(() => {
-        setMessages(newMsArr)
-    }, [channels])
 
     const sendChat = (e) => {
         e.preventDefault()
@@ -72,18 +69,18 @@ const Chatbox = () => {
                 </div>
                 {/* TODO: Map Messages array here  */}
                 <div className="chatbox__content">
-                   <div className="chatbox__messages">
-                   {messages.map((message, idx) => (
-                     <div key={idx} className="message">
-                        <div className="message__avatar">
-                            <img src={user?.avatar} alt=""/>
-                        </div>
-                        <div className="message__content">
-                            <h2>{user?.firstname}<span>Timestamp here</span></h2>
-                            <p>{message?.body}</p>
-                        </div>
-                    </div>
-                ))}
+                    <div className="chatbox__messages">
+                        {messages.map((message, idx) => (
+                            <div key={idx} className="message">
+                                <div className="message__avatar">
+                                    <img src={user?.avatar} alt="" />
+                                </div>
+                                <div className="message__content">
+                                    <h2>{user?.firstname}<span>Timestamp here</span></h2>
+                                    <p>{message?.body}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="chat__input">

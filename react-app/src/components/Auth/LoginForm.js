@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+// import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import useConsumeContext from "../../context/FormModalContext";
 import { getChannels } from "../../store/channel"
 
 const LoginForm = () => {
-  const history = useHistory()
+  // const history = useHistory()
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const user = useSelector(state => state.session.user);
-  const channels = useSelector(state => state.channels)
+  // const channels = useSelector(state => state.channels)
   const dispatch = useDispatch();
   const {handleSignUpModal} = useConsumeContext();
 
@@ -23,11 +23,6 @@ const LoginForm = () => {
     }
   };
 
-  // const loginDemoUser = async (e) => {
-  //   e.preventDefault();
-  //   return await dispatch(login("demouser@slackx.com", "password"))
-  // }
-
   useEffect(() => {
     if (user) {
       async function fetchData() {
@@ -36,13 +31,13 @@ const LoginForm = () => {
       fetchData();
     }
 
-  }, [dispatch])
+  }, [dispatch, user])
 
   // if (user) {
-  //   console.log("!!!!!!!!!!!!!!!!!!!!", channels["1"].id)
-  //   history.push(`/users/${user.id}/undefined}`)
+  //   // console.log("!!!!!!!!!!!!!!!!!!!!", channels["1"].id)
+  //   // history.push(`/users/${user.id}/undefined}`)
   //   // redirect to Channels Page if session user exist
-  //   // return <Redirect to={`/users/${user.id}/${channels["1"].id}`} />;
+  //   return <Redirect to={`/users/${user.id}/${channels["1"].id}`} />;
   // }
 
   return (
