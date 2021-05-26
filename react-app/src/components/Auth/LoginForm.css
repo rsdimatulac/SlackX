@@ -21,15 +21,6 @@
     margin-right: 6px;
 }
 
-.errors {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 40px;
-    line-height: 18px;
-    font-size: 14px;
-    font-style: italic;
-}
-
 .login__input {
     display: flex;
     padding: 10px 30px;

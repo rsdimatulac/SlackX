@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -20,11 +20,11 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     let data;
-    if (password === confirmPassword) {
-      data = await dispatch(signUp(firstname, lastname, email, password));
-    }
-    if (data.errors) {
-      setErrors(data.errors);
+    // if (password === confirmPassword) {
+    data = await dispatch(signUp(firstname, lastname, email, password, confirmPassword));
+    // } 
+    if (data?.errors) {
+      setErrors(data?.errors);
     }
   };
 
@@ -46,7 +46,7 @@ const SignUpForm = () => {
           <div>・error2</div>
           <div>・error3</div> */}
 
-          {errors.map((error) => (
+          {errors?.map((error) => (
             <div key={error}>・{error}</div>
           ))}
         </div>
