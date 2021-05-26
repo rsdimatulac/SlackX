@@ -69,7 +69,24 @@ body::-webkit-scrollbar {
 
 .splash_page_img_2 {
     padding-top: 500px;
-    width: 80%;
+    font-size: 100px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.splash_page_img_2 div {
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+}
+
+.splash_page_img_2 * {
+    padding: 25px;
+}
+
+#socket__logo {
+    height: 90px;
 }
 
 .splash_page_img_3 {
@@ -80,7 +97,7 @@ body::-webkit-scrollbar {
 
 .fixed_position {
     position: fixed;
-    top: 358px;
+    top: 328px;
     max-width: 580px;
     font-family: Verdana;
     font-size: 50px;

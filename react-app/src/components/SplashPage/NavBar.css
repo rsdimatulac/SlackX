@@ -106,7 +106,7 @@
     padding-right: 10px;
 }
 
-#down__icon {
+#down__icon, #up__icon {
     position: absolute;
     top: 1px;
     left: 4px;

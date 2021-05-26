@@ -1,7 +1,6 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState }  from 'react';
 import { useDispatch } from "react-redux";
-import { NavLink, Redirect } from 'react-router-dom';
-import { CgSearch } from 'react-icons/cg';
+import { NavLink } from 'react-router-dom';
 import { FiChevronDown as DownIcon, FiChevronUp as UpIcon } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
@@ -9,9 +8,7 @@ import LoginFormModal from "../Auth/LoginFormModal";
 import SignUpFormModal from "../Auth/SignUpFormModal";
 import useConsumeContext from "../../context/FormModalContext.js";
 import SlackLogoWhite from "../../imgs/slack_logo_white.png";
-import SearchButton from '../../imgs/searchButton.png';
 import "./NavBar.css";
-
 
 
 const NavBar = ({ isLoaded }) => {
@@ -26,7 +23,6 @@ const NavBar = ({ isLoaded }) => {
     history.push("/users/1");
   }
 
-
   return (
     <nav id="navbar">
       <div className="navbar__left">
@@ -39,9 +35,8 @@ const NavBar = ({ isLoaded }) => {
         <div className="navbar__headers">
           <button className="header__name"
           onMouseEnter={() => setShowFeatures(prevState => !prevState)}
-          // onMouseLeave={() => setShowFeatures(prevState => !prevState)}
           style={{ cursor: 'pointer' }}>
-          Features <span className="icon__span"><DownIcon id="down__icon" /></span></button>
+          Features <span className="icon__span">{showFeatures ? <UpIcon id="up__icon"/> : <DownIcon id="down__icon" />}</span></button>
           <button className="header__name">Technologies</button>
           <button className="header__name"> Team</button>
         </div>
