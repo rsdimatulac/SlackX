@@ -25,7 +25,7 @@ export const getMessages = (channel_id) => async (dispatch) => {
 
 }
 
-export const editMessage = (message_id, body) => async (dispatch) => {
+export const editMessageThunk = (message_id, body) => async (dispatch) => {
     const res = await fetch(`/api/messages/${message_id}`, {
         method: 'PATCH',
         headers: {
@@ -55,7 +55,7 @@ export default function messages(state = {}, action) {
             return {...action.messages}
         case SET_MESSAGE:
             const state_dup = {...state}
-            state_dup[action.message.id] = action.message 
+            state_dup[action.message.id] = action.message
             return state_dup
         default:
             return state;
