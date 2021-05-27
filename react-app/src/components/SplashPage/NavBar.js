@@ -23,6 +23,18 @@ const NavBar = ({ isLoaded }) => {
     history.push("/users/1/1");
   }
 
+  const scrollToFeatures = () => {
+    window.scrollTo(0, 1192);
+  }
+
+  const scrollToTech = () => {
+    window.scrollTo(0, 2347)
+  }
+
+  const scrollToTeam = () => {
+    window.scrollTo(0, 3473)
+  }
+
   return (
     <nav id="navbar">
       <div className="navbar__left">
@@ -33,12 +45,12 @@ const NavBar = ({ isLoaded }) => {
             alt="SlackX Logo" />
         </NavLink>
         <div className="navbar__headers">
-          <button className="header__name"
+          <button id="features__header" className="header__name"
             onMouseEnter={() => setShowFeatures(prevState => !prevState)}
             style={{ cursor: 'pointer' }}>
             Features <span className="icon__span">{showFeatures ? <UpIcon id="up__icon" /> : <DownIcon id="down__icon" />}</span></button>
-          <button className="header__name">Technologies</button>
-          <button className="header__name"> Team</button>
+          <button className="header__name" onClick={scrollToTech}>Technologies</button>
+          <button className="header__name" onClick={scrollToTeam}> Team</button>
         </div>
 
       </div>
@@ -48,8 +60,8 @@ const NavBar = ({ isLoaded }) => {
         <div>Create | Join Channels</div>
         <div>Send Direct Messages</div>
         <div>Group Messages </div>
-        <div className="seemore__link">
-          <a href="/" style={{ textDecoration: "none", color: "inherit" }}>See More...</a>
+        <div className="seemore__link" onClick={scrollToFeatures}>
+          See More...
         </div>
       </div>}
       <div className="navbar__right">

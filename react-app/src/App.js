@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import NavBar from "./components/SplashPage/NavBar";
 import Splash from "./components/SplashPage/Splash";
+import Footer from "./components/SplashPage/Footer";
 import About from "./components/AboutPage/About";
 import Channels from "./components/ChannelsPage/Channels";
 import UserProfile from "./components/ChannelsPage/UserProfile";
@@ -35,9 +37,12 @@ const App = () => {
       <Switch>
         <Route path="/" exact>
           <Splash />
+          <Footer />
         </Route>
         <Route path="/about" exact>
+          <NavBar />
           <About />
+          <Footer />
         </Route>
         <ProtectedRoute path="/users/:userId(\d+)/:channelId(\d+)" exact>
           <Channels user={user} />

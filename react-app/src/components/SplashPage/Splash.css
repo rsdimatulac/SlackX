@@ -1,5 +1,5 @@
-body {
-    background-image:url("https://slackx.s3.amazonaws.com/slack_background.png");
+.body__splash {
+    background-image: url("https://slackx.s3.amazonaws.com/slack_background.png");
     background-color: #4a154b;
     background-position-x: center;
     background-position-y: top;
@@ -25,11 +25,11 @@ body {
     font-family: Slack-Larsseit,“Helvetica Neue”,Helvetica,“Segoe UI”,Tahoma,Arial,sans-serif;
     margin: auto;
     width: 80%;
-    /* font-size: 64px; */
     text-align: center;
     padding: 64px;
     font-weight: 600;
-    margin-top: 80px;
+    padding-top: 130px;
+    padding-bottom: 40px;
     font-size: 3.8rem;
     line-height: 70px;
 }
@@ -61,7 +61,7 @@ body {
 
 .splash_page_img_1 {
     margin-top: 320px;
-    width: 100%;
+    width: 105%;
     border-radius: 5px;
 }
 
@@ -89,17 +89,68 @@ body {
 
 .splash_page_img_3 {
     margin-top: 607px;
-    width: 100%;
+    width: 90%;
     border-radius: 5px;
-    margin-bottom: 1000px;
+    /* margin-bottom: 740px; */
 }
 
+.splash_page_img_4 {
+    margin-top: 607px;
+    width: 80%;
+    border-radius: 5px;
+    margin-bottom: 45px;
+}
+
+/* Splash Titles */
 .fixed_position {
     position: fixed;
-    top: 328px;
+    top: 300px;
     max-width: 580px;
     margin-left: 80px;
     line-height: 60px;
     /* transition: visibility 0.2s; */
 }
 
+.splash_title_3 {
+    position: relative;
+}
+
+.splash__team__button {
+    padding: 12px 25px;
+    border-radius: 999px;
+    background-color: #0b2440;
+    color: white;
+    font-size: 15px;
+    font-weight: 560;
+    position: absolute;
+    bottom: 7px;
+    right: 40px;
+    margin-left: 30px;
+    border: 1px solid white;
+    display: flex;
+}
+
+.splash__team__button:hover {
+    padding: 11px 24px;
+    border: 2px solid white;
+}
+
+#right__icon {
+    padding-left: 10px;
+    padding-top: 1px;
+}
+
+.splash__button__demo {
+    border: #4a154b;
+    padding: 12px;
+    border-radius: 5px;
+    color: #4a154b;
+    background-color: white;
+    font-size: 15px;
+    font-weight: 560;
+}
+
+.splash__button__demo:hover {
+    border: 2px solid #4a154b;
+    padding: 10px;
+}
