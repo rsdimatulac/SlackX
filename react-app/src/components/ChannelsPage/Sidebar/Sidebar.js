@@ -59,6 +59,13 @@ const Sidebar = ({ user }) => {
 
     }, [channels, dm, pp])
 
+    const get_names = (dic_of_names) => {
+        let names = ''
+        for (let name in dic_of_names) {
+            names += `, ${dic_of_names[name].name}`
+        }
+        return names.slice(1, names.length)
+    }
 
     return (
         <div className="sidebar">
@@ -95,7 +102,7 @@ const Sidebar = ({ user }) => {
                             // TODO: channels.map here. ADD route for each DM by id
                             <div> {pp?.map(channel =>
                             (<NavLink key={channel.name} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div"><span className="private__icon"># or <Private /></span>{channel.name}</div>
+                                <div className="channels__div"><span className="private__icon">{channel.channel_type == 'public' ? '#' : <Private />}</span>{channel.name}</div>
                             </NavLink>
                             ))}
                             </div>
@@ -112,8 +119,8 @@ const Sidebar = ({ user }) => {
                         {showDM &&
                             // TODO: dms.map here. ADD route for each DM by id
                             (<div>{dm?.map(channel => (
-                                <NavLink key={channel.name} to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                    <div className="channels__div">{channel.name}</div>
+                                <NavLink key={`dm${channel.id}`} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                                    <div className="channels__div">{get_names(channel.users)}</div>
                                 </NavLink>
                             ))}
                             </div>)}
