@@ -45,7 +45,7 @@ const NavBar = ({ isLoaded }) => {
             alt="SlackX Logo" />
         </NavLink>
         <div className="navbar__headers">
-          <button className="header__name"
+          <button id="features__header" className="header__name"
             onMouseEnter={() => setShowFeatures(prevState => !prevState)}
             style={{ cursor: 'pointer' }}>
             Features <span className="icon__span">{showFeatures ? <UpIcon id="up__icon" /> : <DownIcon id="down__icon" />}</span></button>
@@ -62,7 +62,6 @@ const NavBar = ({ isLoaded }) => {
         <div>Group Messages </div>
         <div className="seemore__link" onClick={scrollToFeatures}>
           See More...
-          {/* <a href="/" style={{ textDecoration: "none", color: "inherit" }}>See More...</a> */}
         </div>
       </div>}
       <div className="navbar__right">

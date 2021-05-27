@@ -20,6 +20,7 @@ function SplashPage({isLoaded}) {
     const loginDemoUser = async (e) => {
         e.preventDefault();
         await dispatch(login("demouser@slackx.com", "password"));
+        // TODO: Change channel to first channel the logged in user is subscribed to
         history.push("/users/1/1");
     }
 
@@ -64,7 +65,6 @@ function SplashPage({isLoaded}) {
 
             // First image
             if (window.pageYOffset > 650 && window.pageYOffset <= 1796) {
-            // if (window.pageYOffset > 650 && window.pageYOffset <= 1450) {
                 mainpage.style.backgroundColor = "#F4EDE4";
                 mainpage.style.backgroundImage = 'none';
                 
@@ -79,8 +79,6 @@ function SplashPage({isLoaded}) {
 
             // Second image
             if (window.pageYOffset > 1796 && window.pageYOffset <= 2897) {
-            // if (window.pageYOffset > 1450 && window.pageYOffset <= 2400) {
-
                 mainpage.style.backgroundColor = "#0b2440";
                 mainpage.style.backgroundImage = 'none';
                 
@@ -128,8 +126,8 @@ function SplashPage({isLoaded}) {
 
         if (window.location.pathname === "/") {
             window.addEventListener('scroll', scrollFunction);
-        }
-        return () => window.removeEventListener('scroll', scrollFunction);
+            return () => window.removeEventListener('scroll', scrollFunction);
+        } 
     }, []);
 
  return(

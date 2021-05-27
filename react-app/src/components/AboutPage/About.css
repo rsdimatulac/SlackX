@@ -1,0 +1,9 @@
+.about {
+    background-color: #0b2440;
+    height: 92vh;
+}
+
+.about > h1 {
+    color: white;
+    font-size: 30px;
+}

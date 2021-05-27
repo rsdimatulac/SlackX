@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import NavBar from "./components/SplashPage/NavBar";
 import Splash from "./components/SplashPage/Splash";
 import Footer from "./components/SplashPage/Footer";
 import About from "./components/AboutPage/About";
@@ -39,6 +40,7 @@ const App = () => {
           <Footer />
         </Route>
         <Route path="/about" exact>
+          <NavBar />
           <About />
           <Footer />
         </Route>
