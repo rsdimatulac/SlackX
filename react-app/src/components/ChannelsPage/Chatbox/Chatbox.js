@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router';
 import { io } from 'socket.io-client';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { IoMdSend as SendButton } from "react-icons/io";
+import { getMessages } from "../../../store/message"
 import "./Chatbox.css";
 import "./ChatInput.css";
 import "./ChatMessage.css";
@@ -15,17 +16,17 @@ let socket;
 const Chatbox = () => {
     const user = useSelector(state => state.session.user)
     const channels = useSelector(state => state.channels)
+    const users = useSelector(state => state.users)
+    const dispatch = useDispatch()
+    const messageRef = useRef();
     const { channelId } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
 
 
 
-    const chatMessages = channels[channelId]?.messages
-    let newMsArr = []
-    for (let key in chatMessages) {
-        newMsArr.push(chatMessages[key])
-    }
+    // const chatMessages = channels[channelId]?.messages
+
 
     useEffect(() => {
 
@@ -33,33 +34,50 @@ const Chatbox = () => {
         socket = io();
 
         // listen for chat events
-        socket.on("potato", (chat) => {
+        socket.on(channelId, (chat) => {
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
         })
-
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
         })
-    }, [])
-
-    useEffect(() => {
-        setMessages(newMsArr)
-    }, [channels])
-
-    useEffect(() => {
-        setMessages(newMsArr)
     }, [channelId])
 
+    useEffect(() => {
+        const getData = async () => {
+            let newMsArr = []
+            let chatMessages = null;
+            chatMessages = await dispatch(getMessages(channelId))
+
+            for (let key in chatMessages) {
+                newMsArr.push(chatMessages[key])
+            }
+            setMessages(newMsArr)
+        }
+        getData()
+
+
+    }, [channels, channelId])
+
+    useEffect(() => {
+        if (messageRef.current) {
+          messageRef.current.scrollIntoView(
+            {
+              behavior: 'smooth',
+              block: 'end',
+              inline: 'nearest'
+            })
+        }
+
+      },[messages])
 
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("potato", { user: user?.firstname, body: chatInput, channel_id: "channel_id from param" });
+        socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
+
         setChatInput("")
-        // console.log("________chatInpt!!", chatInput)
-        // thunk: update database with message (fetch to post create message)
     }
 
     const updateChatInput = (e) => setChatInput(e.target.value)
@@ -74,12 +92,12 @@ const Chatbox = () => {
                 <div className="chatbox__content">
                     <div className="chatbox__messages">
                         {messages.map((message, idx) => (
-                            <div key={idx} className="message">
+                            <div key={idx} ref={messageRef} className="message">
                                 <div className="message__avatar">
-                                    <img src={user?.avatar} alt="" />
+                                    <img src={users[message?.user_id]?.avatar} alt="" />
                                 </div>
                                 <div className="message__content">
-                                    <h2>{user?.firstname}<span>Timestamp here</span></h2>
+                                    <h2>{users[message?.user_id]?.firstname}<span>{message?.created_at}</span></h2>
                                     <p>{message?.body}</p>
                                 </div>
                             </div>

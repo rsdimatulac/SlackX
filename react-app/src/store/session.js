@@ -11,7 +11,7 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const initialState = { user: null };
+
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -80,6 +80,9 @@ export const signUp = (firstname, lastname, email, password) => async (dispatch)
   dispatch(setUser(data))
   return {};
 }
+
+
+const initialState = { user: null };
 
 export default function session(state = initialState, action) {
   switch (action.type) {
