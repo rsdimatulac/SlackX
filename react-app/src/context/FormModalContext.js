@@ -5,15 +5,15 @@ const context = createContext();
 export const FormModalContext = (props) => {
     const [showLogin, setShowLogin] = useState(false);
     const [showSignUp, setShowSignUp] = useState(false);
-    const [showChannel, setShowChannel] = useState(false);
-    const [showDM, setShowDM] = useState(false);
+    const [showChannelForm, setShowChannelForm] = useState(false);
+    const [showDMForm, setShowDMForm] = useState(false);
 
-    const handleChannelModal = () =>{
-        setShowChannel((prevState) => !prevState);
+    const handleChannelFormModal = () =>{
+        setShowChannelForm((prevState) => !prevState);
     }
 
-    const handleDMModal = () =>{
-        setShowDM((prevState) => !prevState);
+    const handleDMFormModal = () =>{
+        setShowDMForm((prevState) => !prevState);
     }
 
     const handleSignUpModal = () => {
@@ -31,10 +31,10 @@ export const FormModalContext = (props) => {
             showLogin, showSignUp,
             setShowLogin, setShowSignUp,
             handleSignUpModal, handleLoginModal,
-            showChannel, setShowChannel,
-            showDM, setShowDM,
-            handleChannelModal,handleDMModal
-            }}>
+            showChannelForm, setShowChannelForm,
+            showDMForm, setShowDMForm,
+            handleChannelFormModal,handleDMFormModal
+        }}>
             {props.children}
         </context.Provider>
     )

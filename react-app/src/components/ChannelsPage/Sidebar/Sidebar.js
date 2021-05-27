@@ -9,17 +9,20 @@ import { MdKeyboardArrowRight as ShowMoreIcon } from "react-icons/md";
 import { MdKeyboardArrowDown as ShowLessIcon } from "react-icons/md";
 import { RiAddFill as AddIcon } from "react-icons/ri";
 import { FiLock as Private } from "react-icons/fi";
-import SidebarOptions from "./SidebarOptions";
-import "./Sidebar.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannels } from '../../../store/channel';
+import ChannelModal from "../ChannelModal/ChannelModal";
+import DMModal from "../ChannelModal/DMModal";
+import useConsumeContext from "../../../context/FormModalContext";
+import SidebarOptions from "./SidebarOptions";
+import "./Sidebar.css";
 
 
 
-
-const Sidebar = ({user}) => {
+const Sidebar = ({ user }) => {
     const channels = useSelector(state => state.channels);
     const [showChannel, setShowChannel] = useState(false);
+    const { showChannelForm, showDMForm, handleChannelFormModal, handleDMFormModal } = useConsumeContext();
     const [showDM, setShowDM] = useState(false);
     const [dm, setDM] = useState([])
     const [pp, setPP] = useState([])
@@ -31,7 +34,7 @@ const Sidebar = ({user}) => {
     //grab channels
     useEffect(() => {
         async function fetchData() {
-           await dispatch(getChannels())
+            await dispatch(getChannels())
         }
         fetchData();
     }, [dispatch])
@@ -57,8 +60,6 @@ const Sidebar = ({user}) => {
     }, [channels, dm, pp])
 
 
-
-
     return (
         <div className="sidebar">
             <div className="sidebar__header">
@@ -71,7 +72,7 @@ const Sidebar = ({user}) => {
                     </div>
                     {/* TODO: Add an onClick for /search modal to create a message and search users */}
                     <div className="sidebar__create">
-                        <CreateIcon id="create__icon"/>
+                        <CreateIcon id="create__icon" />
                     </div>
                 </div>
             </div>
@@ -86,37 +87,38 @@ const Sidebar = ({user}) => {
                     <div className="sidebar__channels">
                         <div className="channels__header">
                             <div onClick={handleClickChannel}>
-                                <SidebarOptions Icon={showChannel ? ShowLessIcon : ShowMoreIcon} title={"Channels"} id={""}/>
+                                <SidebarOptions Icon={showChannel ? ShowLessIcon : ShowMoreIcon} title={"Channels"} id={""} />
                             </div>
-                            <div className="add__icon" ><AddIcon id="add__icon1"/></div>
+                            <div className="add__icon" onClick={handleChannelFormModal}><AddIcon id="add__icon1" /></div>
                         </div>
                         {showChannel &&
-                        // TODO: channels.map here. ADD route for each DM by id
-                        <div> {pp?.map(channel =>
+                            // TODO: channels.map here. ADD route for each DM by id
+                            <div> {pp?.map(channel =>
                             (<NavLink key={channel.name} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                                 <div className="channels__div"><span className="private__icon"># or <Private /></span>{channel.name}</div>
                             </NavLink>
                             ))}
-                        </div>
+                            </div>
                         }
                     </div>
+                    {showChannelForm && <ChannelModal />}
                     <div className="sidebar__dms">
                         <div className="channels__header">
                             <div onClick={handleClickDM}>
                                 <SidebarOptions Icon={showDM ? ShowLessIcon : ShowMoreIcon} title={"Direct Messages"} id={""} />
                             </div>
-                            <div className="add__icon"><AddIcon id="add__icon2"/></div>
+                            <div className="add__icon" onClick={handleDMFormModal}><AddIcon id="add__icon2" /></div>
                         </div>
                         {showDM &&
-                        // TODO: dms.map here. ADD route for each DM by id
-                        (<div>{dm?.map(channel => (
-                            <NavLink key={channel.name} to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div">{channel.name}</div>
-                            </NavLink>
-                        ))}
-
-                        </div>)}
+                            // TODO: dms.map here. ADD route for each DM by id
+                            (<div>{dm?.map(channel => (
+                                <NavLink key={channel.name} to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
+                                    <div className="channels__div">{channel.name}</div>
+                                </NavLink>
+                            ))}
+                            </div>)}
                     </div>
+                    {showDMForm && <DMModal />}
                 </div>
             </div>
         </div>
