@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { io } from 'socket.io-client';
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdSend as SendButton } from "react-icons/io";
-import { getMessages } from "../../../store/message"
+import { editMessage, getMessages } from "../../../store/message"
 import "./Chatbox.css";
 import "./ChatInput.css";
 import "./ChatMessage.css";
@@ -22,6 +22,8 @@ const Chatbox = () => {
     const { channelId } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
+    const [editMessage, setEditMessage] = useState(false);
+    const [messageId, setMessageId] = useState(null);
 
 
 
@@ -80,6 +82,61 @@ const Chatbox = () => {
         setChatInput("")
     }
 
+    const messageToEdit = (e) => {
+        setEditMessage(true)
+        // console.log(e.target.parentNode.parentNode.id)
+        setMessageId(e.target.parentNode.parentNode.id)
+    }
+
+    const inputBox = () => {
+        return (
+            <div className="input__wrap">
+                <form method="post" action="" onSubmit={sendChat}>
+                    <input
+                        className="input__box"
+                        placeholder={"Message #channel-name or user firstname"}
+                        placeholder={`Message #${channelName}`}
+                        value={chatInput}
+                        onChange={updateChatInput}
+                    />
+                    {chatInput ?
+                        <button className="send__button enabled" type="submit"><SendButton /></button>
+                        :
+                        <button className="send__button" disabled={true}><SendButton /></button>
+                    }
+                </form>
+            </div>
+        )
+
+    }
+
+    const editInputBox = (body, i) => {
+        // i++
+        // if (i === 2) {
+        setChatInput(body)
+        // }
+        // console.log(body)
+        return (
+            <div className="input__wrap">
+                <form method="post" action="" onSubmit={sendChat}>
+                    <input
+                        className="input__box"
+                        // placeholder={body}
+                        placeholder={`Message #${channelName}`}
+                        value={chatInput}
+                        onChange={updateChatInput}
+                    />
+                    {/* {chatInput ?
+                        <button className="send__button enabled" type="submit"><SendButton /></button>
+                        :
+                        <button className="send__button" disabled={true}><SendButton /></button>
+                    } */}
+                </form>
+            </div>
+        )
+
+    }
+
     const updateChatInput = (e) => setChatInput(e.target.value)
 
     return (
@@ -92,35 +149,38 @@ const Chatbox = () => {
                 <div className="chatbox__content">
                     <div className="chatbox__messages">
                         {messages.map((message, idx) => (
-                            <div key={idx} ref={messageRef} className="message">
+                            <div key={idx} ref={messageRef} className="message" id={`${message.id}`}>
                                 <div className="message__avatar">
                                     <img src={users[message?.user_id]?.avatar} alt="" />
                                 </div>
                                 <div className="message__content">
                                     <h2>{users[message?.user_id]?.firstname}<span>{message?.created_at}</span></h2>
-                                    <p>{message?.body}</p>
+                                    {editMessage && messageId == message.id ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
+                                </div>
+                                <div>
+                                    {editMessage && messageId == message.id ? 
+                                        <>
+                                            <button
+                                            >Save</button>
+                                            <button
+                                                onClick={() => setEditMessage(false)}
+                                            >Cancel</button>
+                                        </>
+                                    : 
+                                    <>
+                                    <button
+                                        onClick={messageToEdit}
+                                    >Edit</button>
+                                    <button>Delete</button> 
+                                    </>
+                                    }
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className="chat__input">
-                    <div className="input__wrap">
-                        <form method="post" action="" onSubmit={sendChat}>
-                            <input
-                                className="input__box"
-                                placeholder={"Message #channel-name or user firstname"}
-                                // placeholder={`Message #${channelName}`}
-                                value={chatInput}
-                                onChange={updateChatInput}
-                            />
-                            {chatInput ?
-                                <button className="send__button enabled" type="submit"><SendButton /></button>
-                                :
-                                <button className="send__button" disabled={true}><SendButton /></button>
-                            }
-                        </form>
-                    </div>
+                    {inputBox()}
                 </div>
             </div>
             <div className="profile">
