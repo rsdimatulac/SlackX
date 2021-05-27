@@ -12,9 +12,12 @@ def validation_errors_to_error_messages(validation_errors):
     Simple function that turns the WTForms validation errors into a simple list
     """
     errorMessages = []
-    for field in validation_errors:
+    for field in validation_errors: # form.errors []
         for error in validation_errors[field]:
-            errorMessages.append(f"{field} : {error}")
+            # if (error.startswith("Field")):
+            #     errorMessages.append(f"{field.capitalize()} {error[5:]}")
+            # else:
+            errorMessages.append(f"{error}")
     return errorMessages
 
 
@@ -22,7 +25,7 @@ def validation_errors_to_error_messages(validation_errors):
 # def test():
 #     return print("hello")
 
-@auth_routes.route('/')
+@auth_routes.route('/')  # /api/auth/
 def authenticate():
     """
     Authenticates a user.
@@ -32,8 +35,7 @@ def authenticate():
     return {'errors': ['Unauthorized']}
 
 
-
-@auth_routes.route('/login', methods=['POST'])
+@auth_routes.route('/login', methods=['POST'])  # /api/auth/login
 def login():
     """
     Logs a user in
@@ -51,7 +53,7 @@ def login():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/logout')
+@auth_routes.route('/logout') # POST /api/auth/logout
 def logout():
     """
     Logs a user out
@@ -81,7 +83,7 @@ def sign_up():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/unauthorized')
+@auth_routes.route('/unauthorized')  # /api/auth/unauthorized
 def unauthorized():
     """
     Returns unauthorized JSON when flask-login authentication fails

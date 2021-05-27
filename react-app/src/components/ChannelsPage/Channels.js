@@ -3,12 +3,14 @@ import React, { useEffect } from 'react';
 import Header from "./Header";
 import Sidebar from "./Sidebar/Sidebar";
 import Chatbox from "./Chatbox/Chatbox";
+import useConsumeContext from "../../context/FormModalContext";
 import "./Channels.css";
 import { getUsers } from '../../store/users';
 import { useDispatch } from 'react-redux';
 
 
 const Channels = ({ user }) => {
+    const { setShowLogin, setShowSignUp } = useConsumeContext();
 
     const dispatch = useDispatch()
 
@@ -22,6 +24,11 @@ const Channels = ({ user }) => {
     if (window.location.pathname.includes("/users"))  {
         window.document.body.style.overflow = "hidden";
     };    
+
+    useEffect(() => {
+        setShowSignUp(false);
+        setShowLogin(false);
+    }, []);
 
     return (
         <div className="channels">

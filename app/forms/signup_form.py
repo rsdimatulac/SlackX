@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, EqualTo, Length
 from app.models import User
 
 
@@ -9,11 +9,11 @@ def user_exists(form, field):
     email = field.data
     user = User.query.filter(User.email == email).first()
     if user:
-        raise ValidationError("User is already registered.")
-
+        raise ValidationError("Provided email is already registered.")
 
 class SignUpForm(FlaskForm):
-    firstname = StringField('firstname', validators=[DataRequired()])
-    lastname = StringField('lastname', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+    firstname = StringField('firstname', validators=[DataRequired(), Length(min=2, max=50, message="Firstname must between 2-50 characters.")])
+    lastname = StringField('lastname', validators=[DataRequired(), Length(min=2, max=50, message="Lastname must between 2-50 characters.")])
+    email = StringField('email', validators=[DataRequired(), user_exists, Email(), Length(min=5, max=50, message="Email must between 5-50 characters.")])
+    password = StringField('password', validators=[DataRequired(), Length(min=8, max=20, message="Password must between 8-20 characters."), EqualTo('confirm_password', message="Passwords must match.")])
+    confirm_password = StringField('confirm_password')
