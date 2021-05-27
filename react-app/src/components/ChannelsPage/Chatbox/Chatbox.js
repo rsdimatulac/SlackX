@@ -36,13 +36,8 @@ const Chatbox = () => {
         // listen for chat events
         socket.on(channelId, (chat) => {
             // when we recieve a chat, add it into our messages array in state
-
             setMessages(messages => [...messages, chat])
-            //scroll to bottom
-            // let ele = document.querySelector(".message")
-            // ele.scroll({bottom: 0, behavior: "smooth" })
         })
-
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
@@ -74,30 +69,15 @@ const Chatbox = () => {
               inline: 'nearest'
             })
         }
-        console.log("here hello")
-      },
-      [messages])
 
-
-    // useEffect(() => {
-    //     if (messageEl) {
-    //       messageEl.current?.addEventListener('DOMNodeInserted', event => {
-    //         const { currentTarget: target } = event;
-    //         target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
-    //       });
-    //     }
-    //   }, [])
-
-
+      },[messages])
 
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("potato", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
+        socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
 
         setChatInput("")
-        // console.log("________chatInpt!!", chatInput)
-        // thunk: update database with message (fetch to post create message)
     }
 
     const updateChatInput = (e) => setChatInput(e.target.value)
