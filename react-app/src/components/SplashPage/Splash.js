@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { NavLink } from "react-router-dom"
 import './Splash.css';
 import IntroImg from '../../imgs/whatisslackx.png';
 import FeaturesImg from '../../imgs/features.png';
@@ -6,18 +7,18 @@ import MeetTheTeam from "../../imgs/meet_the_team.jpeg";
 import SlackLogoBlack from '../../imgs/slack_logo_black.png';
 import SlackLogoWhite from "../../imgs/slack_logo_white.png";
 import SocketLogo from "../../imgs/socketio_logo.png";
+import { FaArrowRight as RightArrow } from "react-icons/fa";
 import NavBar from "./NavBar"
 
 function SplashPage({isLoaded}) {
 
     useEffect(() => {
         const scrollFunction = function () {
-            let mainpage = document.querySelector("body");
+            let mainpage = document.querySelector(".body__splash");
             let title1 = document.getElementById("title1");
             let title2 = document.getElementById("title2");
             let title3 = document.getElementById("title3");
 
-            console.log("OFFFSET -->", window.pageYOffset);
             if (window.pageYOffset <= 650) {
                 
                 mainpage.style.backgroundColor = "#4a154b";
@@ -103,12 +104,15 @@ function SplashPage({isLoaded}) {
                 title3.style.visibility = "hidden";
             }
         };
-        window.addEventListener('scroll', scrollFunction);
+
+        if (window.location.pathname === "/") {
+            window.addEventListener('scroll', scrollFunction);
+        }
         return () => window.removeEventListener('scroll', scrollFunction);
     }, []);
 
  return(
-    <div>
+    <div className="body__splash">
         <div className="MainBKG">
             <NavBar />
             <div className="opening_title">SlackX makes <span className="orange">downright pleasant</span><br /> to work together</div>
@@ -117,7 +121,14 @@ function SplashPage({isLoaded}) {
                 <div className="splash_page_container_left">
                      <div id="title1" className="splash_title_1" style={{ fontSize: 0 }}>It brings your whole team together with these features</div>
                      <div id="title2" className="splash_title_2" style={{ fontSize: 0 }}>SlackX is built with these technologies</div>
-                     <div id="title3" className="splash_title_3" style={{ fontSize: 0 }}> Meet the developers<br /> of SlackX </div>
+                     <div id="title3" className="splash_title_3" style={{ fontSize: 0 }}> 
+                        Meet the developers<br /> of SlackX
+                        <span>
+                            <NavLink to="/about" style={{ color: "inherit" }}>
+                                 <button className="splash__team__button" style={{ cursor: 'pointer' }}>MEET THE TEAM <span><RightArrow id="right__icon" /></span></button>
+                            </NavLink>
+                        </span>
+                     </div>
                 </div>
                 <div className="splash_page_container_right">
                     <img className="splash_page_img_1" src={FeaturesImg} alt=""/>
