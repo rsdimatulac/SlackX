@@ -112,7 +112,7 @@ const Sidebar = ({ user }) => {
                         {showDM &&
                             // TODO: dms.map here. ADD route for each DM by id
                             (<div>{dm?.map(channel => (
-                                <NavLink key={channel.name} to={`add route here`} style={{ textDecoration: "none", color: "inherit" }}>
+                                <NavLink key={channel.name} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                                     <div className="channels__div">{channel.name}</div>
                                 </NavLink>
                             ))}
