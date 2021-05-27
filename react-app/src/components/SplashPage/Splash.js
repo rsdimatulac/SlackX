@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import { NavLink } from "react-router-dom"
+import { NavLink, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/session";
 import './Splash.css';
 import IntroImg from '../../imgs/whatisslackx.png';
 import FeaturesImg from '../../imgs/features.png';
 import MeetTheTeam from "../../imgs/meet_the_team.jpeg";
+import HumanWay from "../../imgs/slack_bg_4.jpeg";
 import SlackLogoBlack from '../../imgs/slack_logo_black.png';
 import SlackLogoWhite from "../../imgs/slack_logo_white.png";
 import SocketLogo from "../../imgs/socketio_logo.png";
@@ -11,6 +14,14 @@ import { FaArrowRight as RightArrow } from "react-icons/fa";
 import NavBar from "./NavBar"
 
 function SplashPage({isLoaded}) {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const loginDemoUser = async (e) => {
+        e.preventDefault();
+        await dispatch(login("demouser@slackx.com", "password"));
+        history.push("/users/1/1");
+    }
 
     useEffect(() => {
         const scrollFunction = function () {
@@ -18,6 +29,7 @@ function SplashPage({isLoaded}) {
             let title1 = document.getElementById("title1");
             let title2 = document.getElementById("title2");
             let title3 = document.getElementById("title3");
+            let title4 = document.getElementById("title4");
 
             if (window.pageYOffset <= 650) {
                 
@@ -27,6 +39,7 @@ function SplashPage({isLoaded}) {
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
+                title4.style.visibility = "hidden";
                 
                 let navBarContainer = document.getElementById("navbar");
                 let slackLogo = document.querySelector(".navbar__logo");
@@ -57,6 +70,7 @@ function SplashPage({isLoaded}) {
                 
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
+                title4.style.visibility = "hidden";
                 
                 title1.style.fontSize = "50px";
                 title1.style.visibility = "visible";
@@ -72,6 +86,7 @@ function SplashPage({isLoaded}) {
                 
                 title1.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
+                title4.style.visibility = "hidden";
                 
                 title2.style.fontSize = "50px";
                 title2.style.visibility = "visible";
@@ -87,6 +102,7 @@ function SplashPage({isLoaded}) {
 
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
+                title4.style.visibility = "hidden";
 
                 title3.style.fontSize = "50px";
                 title3.style.visibility = "visible";
@@ -102,6 +118,11 @@ function SplashPage({isLoaded}) {
                 title1.style.visibility = "hidden";
                 title2.style.visibility = "hidden";
                 title3.style.visibility = "hidden";
+                title4.style.visibility = "visible";
+
+                title4.className = "fixed_position";
+                title4.style.fontSize = "50px";
+                title4.style.color = "white";
             }
         };
 
@@ -129,6 +150,10 @@ function SplashPage({isLoaded}) {
                             </NavLink>
                         </span>
                      </div>
+                     <div id="title4" className="splash_title_4" style={{ fontSize: 0 }}>
+                         In short: it's a more human way to work
+                        <button onClick={loginDemoUser} className="splash__button__demo" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
+                    </div>
                 </div>
                 <div className="splash_page_container_right">
                     <img className="splash_page_img_1" src={FeaturesImg} alt=""/>
@@ -154,7 +179,8 @@ function SplashPage({isLoaded}) {
                             <i className="devicon-amazonwebservices-plain-wordmark colored"></i>
                          </div>
                     </div>
-                    <img className="splash_page_img_3" src={MeetTheTeam} alt=""/>
+                     <img className="splash_page_img_3" src={MeetTheTeam} alt="" />
+                     <img className="splash_page_img_4" src={HumanWay} alt="" />
                 </div>
             </div>
         </div>
