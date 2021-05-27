@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DMModal = () => {
+const DmModal = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const DMModal = () => {
     )
 }
 
-export default DMModal;
+export default DmModal;

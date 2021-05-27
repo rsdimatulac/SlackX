@@ -12,7 +12,7 @@ import { FiLock as Private } from "react-icons/fi";
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannels } from '../../../store/channel';
 import ChannelModal from "../ChannelModal/ChannelModal";
-import DMModal from "../ChannelModal/DMModal";
+import DmModal from "../ChannelModal/DmModal";
 import useConsumeContext from "../../../context/FormModalContext";
 import SidebarOptions from "./SidebarOptions";
 import "./Sidebar.css";
@@ -118,7 +118,7 @@ const Sidebar = ({ user }) => {
                             ))}
                             </div>)}
                     </div>
-                    {showDMForm && <DMModal />}
+                    {showDMForm && <DmModal />}
                 </div>
             </div>
         </div>
