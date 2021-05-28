@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { format } from "date-fns";
+import { RiDeleteBack2Fill as DeleteIcon } from "react-icons/ri";
+import { AiFillEdit as EditIcon } from "react-icons/ai";
 import { IoMdSend as SendButton } from "react-icons/io";
+import { TiCancel as CancelIcon } from "react-icons/ti";
 import { deleteMessageThunk, editMessageThunk, getMessages } from "../../../store/message"
 import { getChannels } from "../../../store/channel"
 import "./Chatbox.css";
@@ -83,6 +86,7 @@ const Chatbox = () => {
     const messageToEdit = (e) => {
         setEditMessage(true)
         setMessageId(e.target.parentNode.parentNode.id)
+        console.log("NODEEEEE", e.target.parentNode.parentNode.id)
     }
 
     const inputBox = () => {
@@ -135,27 +139,19 @@ const Chatbox = () => {
 
     const loggedUserMsgOptions = (message) => {
         return (
-            <div>
+            <div className="message__options">
                 {/* INTENTIONAL == for type coercion */}
                 {editMessage && Number(messageId) === Number(message.id) ?
                     <>
-                        <button
-                            onClick={() => handleEdit(message.id, editChatInput)}
-                        >Save</button>
-                        <button
-                            onClick={() => setEditMessage(false)}
-                        >Cancel</button>
+                        <button onClick={() => handleEdit(message.id, editChatInput)}><span><SendButton /> Send</span></button>
+                        <button onClick={() => setEditMessage(false)}><span><CancelIcon /> <p>Cancel</p></span></button>
                     </>
                     :
                     <>
-                        <button
-                            onClick={messageToEdit}
-                        >Edit
-                        </button>
-                        <button
-                            onClick={() => deleteMessage(message.id)}
-                        >Delete
-                        </button>
+                        <div id="edit__icon" onClick={messageToEdit}><EditIcon />Edit</div>
+                        {/* <button className="edit__icon" onClick={messageToEdit}><span><EditIcon /> <p>Edit</p></span></button> */}
+                        <div id="delete__icon" onClick={() => deleteMessage(message.id)}><DeleteIcon />Delete</div>
+                        {/* <button id="delete__icon" onClick={() => deleteMessage(message.id)}><span><DeleteIcon /> <p>Delete</p></span></button> */}
                     </>
                 }
             </div>)
