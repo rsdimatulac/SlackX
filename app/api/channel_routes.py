@@ -16,6 +16,7 @@ def channel_errors_to_error_messages(validation_errors):
             errorMessages.append(f"{error}")
     return errorMessages
 
+
 @channel_routes.route('/')  # GET /api/channels/
 def get_channels():
     """
@@ -23,8 +24,6 @@ def get_channels():
     """
     return {channel.id: channel.to_dict() for channel in current_user.channels}
 
-# current_user.channels.messages
-# @channel_routes.route('')
 
 # POST a new Channel
 @channel_routes.route('/', methods=['POST'])  # POST /api/channels/
@@ -47,6 +46,7 @@ def post_channels():
         return channel.to_dict()
     return {'errors': channel_errors_to_error_messages(form.errors)}, 400
 
+
 # POST Direct Messages
 @channel_routes.route('/dm', methods=['POST'])  # POST /api/channels/dm
 def post_dms():
@@ -59,8 +59,6 @@ def post_dms():
 
     user_ids = [str(id) for id in user_ids]
 
-    # Array of User objects
-    print("!!!!!!!!!!!!!!!", users)
     # create the channel first
     dm = Channel(
         name = "-".join(user_ids), # name = 1-2-3-4
@@ -70,26 +68,10 @@ def post_dms():
     db.session.commit()
 
     # query for the channel
-
     dm = Channel.query.filter(Channel.name == "-".join(user_ids)).first()
 
     for user in users:
         user.channels.append(dm)
-        # db.session.add(user)
         db.session.commit()
     
     return dm.to_dict()
-    # return {'errors': channel_errors_to_error_messages(form.errors)}, 400
-
-# @message_routes.route('/<int:message_id>', methods=["PATCH"])
-# def edit_message(message_id):
-
-#     message_id = request.get_json()['message_id']
-#     body = request.get_json()['body']
-
-#     edit_message = Message.query.get(message_id)
-#     edit_message.body = body
-
-#     # db.session.add(edit_message)
-#     db.session.commit()
-#     return edit_message.to_dict()

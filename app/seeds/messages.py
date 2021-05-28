@@ -4,7 +4,6 @@ from app.models import channel, db, Message, User
 fake = Faker()
 
 def seed_messages():
-    
 
     # DM's
     message1 = Message(

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Channel, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -14,16 +14,9 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors: # form.errors []
         for error in validation_errors[field]:
-            # if (error.startswith("Field")):
-            #     errorMessages.append(f"{field.capitalize()} {error[5:]}")
-            # else:
             errorMessages.append(f"{error}")
     return errorMessages
 
-
-# @auth_routes.route('/channels')
-# def test():
-#     return print("hello")
 
 @auth_routes.route('/')  # /api/auth/
 def authenticate():
@@ -62,7 +55,7 @@ def logout():
     return {'message': 'User logged out'}
 
 
-@auth_routes.route('/signup', methods=['POST'])
+@auth_routes.route('/signup', methods=['POST'])  # /api/auth/signup
 def sign_up():
     """
     Creates a new user and logs them in
@@ -76,6 +69,10 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password']
         )
+        # setting Channel 1 as the default
+        default_channel = Channel.query.get(1)
+        user.channels.append(default_channel)
+
         db.session.add(user)
         db.session.commit()
         login_user(user)

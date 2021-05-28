@@ -5,14 +5,14 @@ from flask_login import current_user
 message_routes = Blueprint('messages', __name__)
 
 
-@message_routes.route('/<int:channel_id>')
+@message_routes.route('/<int:channel_id>')  # /api/messages/channel_id
 def get_messages(channel_id):
     messages = Message.query.filter(Message.channel_id == channel_id).all()
 
     return {message.id: message.to_dict() for message in messages}
 
 
-@message_routes.route('/<int:message_id>', methods=["PATCH"])
+@message_routes.route('/<int:message_id>', methods=["PATCH"])  # /api/messages/message_id
 def edit_message(message_id):
 
     message_id = request.get_json()['message_id']
@@ -21,16 +21,16 @@ def edit_message(message_id):
     edit_message = Message.query.get(message_id)
     edit_message.body = body
 
-    # db.session.add(edit_message)
     db.session.commit()
     return edit_message.to_dict()
 
-@message_routes.route('/<int:message_id>', methods=['DELETE'])
+
+@message_routes.route('/<int:message_id>', methods=['DELETE'])  # /api/messages/message_id
 def delete_message(message_id):
 
     message_id = request.get_json()['message_id']
     deleted_msg = Message.query.get(message_id)
-    print("!!!!!!!inside backend delete ------", deleted_msg)
+    
     db.session.delete(deleted_msg)
     db.session.commit()
     return deleted_msg.to_dict()
