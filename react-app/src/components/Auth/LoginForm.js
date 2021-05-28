@@ -25,23 +25,25 @@ const LoginForm = () => {
     }
   };
 
+
   useEffect(() => {
+    let firstChanId;
     if (user) {
       async function fetchData() {
-        await dispatch(getChannels())
+      await dispatch(getChannels())
       }
       fetchData();
+      for (let key in channels) {
+        if (user.id in channels[key].users) {
+          firstChanId = key
+          break;
+        }
+      }
+      history.push(`/users/${user?.id}/${firstChanId}/`)
     }
 
   }, [dispatch, user])
 
-  if (user) {
-    // console.log("!!!!!!!!!!!!!!!!!!!!", channels)
-    // history.push(`/users/${user?.id}/1`)
-    // redirect to Channels Page if session user exist
-    // return <Redirect to={`/users/${user?.id}/${channels["1"]?.id}`} />;
-    return <Redirect to={`/users/${user?.id}/1`} />;
-  }
 
   return (
     <div className="login__wrapper">

@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { io } from 'socket.io-client';
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdSend as SendButton } from "react-icons/io";
-import { editMessageThunk, getMessages } from "../../../store/message"
+import { deleteMessageThunk, editMessageThunk, getMessages } from "../../../store/message"
 import { getChannels } from "../../../store/channel"
 import "./Chatbox.css";
 import "./ChatInput.css";
@@ -78,7 +78,7 @@ const Chatbox = () => {
       },[messages])
 
     useEffect(() => {
-        console.log("in messages rerender useffect")
+
     }, [messageStore])
 
     const sendChat = (e) => {
@@ -148,9 +148,40 @@ const Chatbox = () => {
 
         await dispatch(editMessageThunk(message_id, chatInput))
         setEditMessage(false)
-        setChatInput('')
+        setEditChatInput('')
         await dispatch(getChannels())
     }
+
+    const deleteMessage = async (message_id) => {
+        await dispatch(deleteMessageThunk(message_id))
+        await dispatch(getChannels())
+    }
+
+    const loggedUserMsgOptions = (message) => {
+        return (
+        <div>
+        {editMessage && messageId == message.id ?
+            <>
+                <button
+                    onClick={() => handleEdit(message.id, editChatInput)}
+                >Save</button>
+                <button
+                    onClick={() => setEditMessage(false)}
+                >Cancel</button>
+            </>
+        :
+        <>
+        <button
+            onClick={messageToEdit}
+        >Edit</button>
+        <button
+            onClick={() => deleteMessage(message.id)}
+        >Delete</button>
+        </>
+        }
+        </div>)
+    }
+
 
     const updateChatInput = (e) => setChatInput(e.target.value)
     const updateEditChatInput = (e) => setEditChatInput(e.target.value)
@@ -166,7 +197,7 @@ const Chatbox = () => {
                     <div className="chatbox__messages">
                         {messages.map((message, idx) => (
 
-                            <div key={idx} ref={messageRef} className="message" id={`${message.id}`}>{console.log(messageId, message.id)}
+                            <div key={idx} ref={messageRef} className="message" id={`${message.id}`}>
                                 <div className="message__avatar">
                                     <img src={users[message?.user_id]?.avatar} alt="" />
                                 </div>
@@ -174,25 +205,7 @@ const Chatbox = () => {
                                     <h2>{users[message?.user_id]?.firstname}<span>{message?.created_at}</span></h2>
                                     {editMessage && messageId == message.id ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
                                 </div>
-                                <div>
-                                    {editMessage && messageId == message.id ?
-                                        <>
-                                            <button
-                                                onClick={() => handleEdit(message.id, editChatInput)}
-                                            >Save</button>
-                                            <button
-                                                onClick={() => setEditMessage(false)}
-                                            >Cancel</button>
-                                        </>
-                                    :
-                                    <>
-                                    <button
-                                        onClick={messageToEdit}
-                                    >Edit</button>
-                                    <button>Delete</button>
-                                    </>
-                                    }
-                                </div>
+                                {(user.id === message.user_id) && loggedUserMsgOptions(message)}
                             </div>
                         ))}
                     </div>

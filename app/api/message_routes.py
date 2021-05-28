@@ -24,3 +24,13 @@ def edit_message(message_id):
     # db.session.add(edit_message)
     db.session.commit()
     return edit_message.to_dict()
+
+@message_routes.route('/<int:message_id>', methods=['DELETE'])
+def delete_message(message_id):
+
+    message_id = request.get_json()['message_id']
+    deleted_msg = Message.query.get(message_id)
+    print("!!!!!!!inside backend delete ------", deleted_msg)
+    db.session.delete(deleted_msg)
+    db.session.commit()
+    return deleted_msg.to_dict()
