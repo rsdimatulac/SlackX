@@ -1,0 +1,32 @@
+.ErrorPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #4a154b;
+}
+
+#kimi{
+    justify-self: center;
+    width:800px;
+    height: 800px;
+    margin-left: 320px;
+}
+
+.error_text {
+    margin-top: 200px;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+}
+
+.error_text p {
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.error_img {
+    display: flex;
+    justify-content: center;
+}
