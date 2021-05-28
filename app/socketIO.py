@@ -5,13 +5,13 @@ from .models import db, Message
 import datetime
 
 # configure cors_allowed_origins
-if os.environ.get('FLASK_ENV') == 'production':
-    origins = [
-        'http://theslackx.herokuapp.com/',
-        'https://theslackx.herokuapp.com/'
-    ]
-else:
-    origins = "*"
+# if os.environ.get('FLASK_ENV') == 'production':
+origins = "*"
+#     origins = [
+#         'http://theslackx.herokuapp.com/',
+#         'https://theslackx.herokuapp.com/'
+#     ]
+# else:
 
 # initialize your socket instance
 socketio = SocketIO(cors_allowed_origins=origins)
