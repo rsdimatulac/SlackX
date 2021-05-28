@@ -28,22 +28,28 @@ const LoginForm = () => {
   };
 
   // TODO: Getting undefined error when logging in. Might need refactoring.
+  // useEffect(() => {
+  //   let firstChanId;
+  //   if (user) {
+  //     async function fetchData() {
+  //       await dispatch(getChannels())
+  //     }
+  //     fetchData();
+  //     for (let key in channels) {
+  //       if (user?.id in channels[key]?.users) {
+  //         firstChanId = key;
+  //         break;
+  //       }
+  //     }
+  //     history.push(`/users/${user?.id}/${firstChanId}`)
+  //   }
+  // }, [dispatch, user, channels, history])
+
   useEffect(() => {
-    let firstChanId;
     if (user) {
-      async function fetchData() {
-        await dispatch(getChannels())
-      }
-      fetchData();
-      for (let key in channels) {
-        if (user?.id in channels[key]?.users) {
-          firstChanId = key;
-          break;
-        }
-      }
-      history.push(`/users/${user?.id}/${firstChanId}/`)
+      history.push(`/users/${user.id}/1`);
     }
-  }, [dispatch, user, channels, history])
+  }, [user, history])
 
 
   return (

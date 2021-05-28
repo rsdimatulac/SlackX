@@ -149,7 +149,8 @@ const Chatbox = () => {
     const loggedUserMsgOptions = (message) => {
         return (
             <div>
-                {editMessage && messageId === message.id ?
+                {/* INTENTIONAL == for type coercion */}
+                {editMessage && messageId == message.id ?
                     <>
                         <button
                             onClick={() => handleEdit(message.id, editChatInput)}
@@ -200,9 +201,11 @@ const Chatbox = () => {
                                 </div>
                                 <div className="message__content">
                                     <h2>{users[message?.user_id]?.firstname}<span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span></h2>
-                                    {editMessage && messageId === message.id ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
+                                    {/* INTENTIONAL == for type coercion */}
+                                    {editMessage && messageId == message.id ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
                                 </div>
-                                {(user.id === message.user_id) && loggedUserMsgOptions(message)}
+                                {/* INTENTIONAL == for type coercion */}
+                                {(user.id == message.user_id) && loggedUserMsgOptions(message)}
                             </div>
                         ))}
                     </div>

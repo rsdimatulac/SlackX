@@ -77,7 +77,7 @@
 }
 
 .sidebar__create:hover {
-    cursor: pointer;
+    /* cursor: pointer; */
     opacity: 0.9;
 }
 
