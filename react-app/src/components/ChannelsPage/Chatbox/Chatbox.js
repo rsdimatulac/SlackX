@@ -3,7 +3,8 @@ import { useParams } from 'react-router';
 import { io } from 'socket.io-client';
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdSend as SendButton } from "react-icons/io";
-import { editMessage, getMessages } from "../../../store/message"
+import { deleteMessageThunk, editMessageThunk, getMessages } from "../../../store/message"
+import { getChannels } from "../../../store/channel"
 import "./Chatbox.css";
 import "./ChatInput.css";
 import "./ChatMessage.css";
@@ -16,12 +17,14 @@ let socket;
 const Chatbox = () => {
     const user = useSelector(state => state.session.user)
     const channels = useSelector(state => state.channels)
+    const messageStore = useSelector(state => state.messages)
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
     const messageRef = useRef();
     const { channelId } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
+    const [editChatInput, setEditChatInput] = useState('')
     const [editMessage, setEditMessage] = useState(false);
     const [messageId, setMessageId] = useState(null);
 
@@ -74,6 +77,10 @@ const Chatbox = () => {
 
       },[messages])
 
+    useEffect(() => {
+
+    }, [messageStore])
+
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
@@ -95,7 +102,7 @@ const Chatbox = () => {
                     <input
                         className="input__box"
                         placeholder={"Message #channel-name or user firstname"}
-                        placeholder={`Message #${channelName}`}
+                        // placeholder={`Message #${channelName}`}
                         value={chatInput}
                         onChange={updateChatInput}
                     />
@@ -113,7 +120,7 @@ const Chatbox = () => {
     const editInputBox = (body, i) => {
         // i++
         // if (i === 2) {
-        setChatInput(body)
+        // setChatInput(body)
         // }
         // console.log(body)
         return (
@@ -122,9 +129,9 @@ const Chatbox = () => {
                     <input
                         className="input__box"
                         // placeholder={body}
-                        placeholder={`Message #${channelName}`}
-                        value={chatInput}
-                        onChange={updateChatInput}
+                        // placeholder={`Message #${channelName}`}
+                        value={editChatInput}
+                        onChange={updateEditChatInput}
                     />
                     {/* {chatInput ?
                         <button className="send__button enabled" type="submit"><SendButton /></button>
@@ -137,7 +144,47 @@ const Chatbox = () => {
 
     }
 
+    const handleEdit = async (message_id, chatInput) => {
+
+        await dispatch(editMessageThunk(message_id, chatInput))
+        setEditMessage(false)
+        setEditChatInput('')
+        await dispatch(getChannels())
+    }
+
+    const deleteMessage = async (message_id) => {
+        await dispatch(deleteMessageThunk(message_id))
+        await dispatch(getChannels())
+    }
+
+    const loggedUserMsgOptions = (message) => {
+        return (
+        <div>
+        {editMessage && messageId == message.id ?
+            <>
+                <button
+                    onClick={() => handleEdit(message.id, editChatInput)}
+                >Save</button>
+                <button
+                    onClick={() => setEditMessage(false)}
+                >Cancel</button>
+            </>
+        :
+        <>
+        <button
+            onClick={messageToEdit}
+        >Edit</button>
+        <button
+            onClick={() => deleteMessage(message.id)}
+        >Delete</button>
+        </>
+        }
+        </div>)
+    }
+
+
     const updateChatInput = (e) => setChatInput(e.target.value)
+    const updateEditChatInput = (e) => setEditChatInput(e.target.value)
 
     return (
         <div className="chatbox__profile">
@@ -149,6 +196,7 @@ const Chatbox = () => {
                 <div className="chatbox__content">
                     <div className="chatbox__messages">
                         {messages.map((message, idx) => (
+
                             <div key={idx} ref={messageRef} className="message" id={`${message.id}`}>
                                 <div className="message__avatar">
                                     <img src={users[message?.user_id]?.avatar} alt="" />
@@ -157,24 +205,7 @@ const Chatbox = () => {
                                     <h2>{users[message?.user_id]?.firstname}<span>{message?.created_at}</span></h2>
                                     {editMessage && messageId == message.id ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
                                 </div>
-                                <div>
-                                    {editMessage && messageId == message.id ? 
-                                        <>
-                                            <button
-                                            >Save</button>
-                                            <button
-                                                onClick={() => setEditMessage(false)}
-                                            >Cancel</button>
-                                        </>
-                                    : 
-                                    <>
-                                    <button
-                                        onClick={messageToEdit}
-                                    >Edit</button>
-                                    <button>Delete</button> 
-                                    </>
-                                    }
-                                </div>
+                                {(user.id === message.user_id) && loggedUserMsgOptions(message)}
                             </div>
                         ))}
                     </div>
