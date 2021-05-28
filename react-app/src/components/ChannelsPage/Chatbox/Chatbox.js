@@ -33,7 +33,6 @@ const Chatbox = () => {
     useEffect(() => {
         // create websocket
         socket = io();
-        console.log("LISTENNINGGGGGGG")
         // listen for chat events
         socket.on(channelId, (chat) => {
             // when we recieve a chat, add it into our messages array in state
@@ -41,7 +40,6 @@ const Chatbox = () => {
         })
         // when component unmounts, disconnect
         return (() => {
-            console.log("DISCONNNNECT")
             socket.disconnect()
         })
     }, [channelId])
@@ -109,30 +107,18 @@ const Chatbox = () => {
     }
 
     const editInputBox = (body, i) => {
-        // i++
-        // if (i === 2) {
-        // setChatInput(body)
-        // }
-        // console.log(body)
         return (
             <div className="input__wrap">
                 <form method="post" action="" onSubmit={sendChat}>
                     <input
                         className="input__box"
-                        // placeholder={body}
-                        // placeholder={`Message #${channelName}`}
                         value={editChatInput}
                         onChange={updateEditChatInput}
+                        required
                     />
-                    {/* {chatInput ?
-                        <button className="send__button enabled" type="submit"><SendButton /></button>
-                        :
-                        <button className="send__button" disabled={true}><SendButton /></button>
-                    } */}
                 </form>
             </div>
         )
-
     }
 
     const handleEdit = async (message_id, chatInput) => {
@@ -151,7 +137,7 @@ const Chatbox = () => {
         return (
             <div>
                 {/* INTENTIONAL == for type coercion */}
-                {editMessage && messageId == message.id ?
+                {editMessage && Number(messageId) === Number(message.id) ?
                     <>
                         <button
                             onClick={() => handleEdit(message.id, editChatInput)}
@@ -203,10 +189,10 @@ const Chatbox = () => {
                                 <div className="message__content">
                                     <h2>{users[message?.user_id]?.firstname}<span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span></h2>
                                     {/* INTENTIONAL == for type coercion */}
-                                    {editMessage && messageId == message.id ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
+                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
                                 </div>
                                 {/* INTENTIONAL == for type coercion */}
-                                {(user.id == message.user_id) && loggedUserMsgOptions(message)}
+                                {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
                             </div>
                         ))}
                     </div>

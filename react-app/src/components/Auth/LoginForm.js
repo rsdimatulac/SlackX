@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import useConsumeContext from "../../context/FormModalContext";
 import slackLogo from "../../imgs/colorLogo.png";
-import { getChannels } from "../../store/channel";
+// import { getChannels } from "../../store/channel";
 import "./LoginForm.css";
 
 
@@ -14,7 +14,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const user = useSelector(state => state.session.user);
-  const channels = useSelector(state => state.channels);
+  // const channels = useSelector(state => state.channels);
   const dispatch = useDispatch();
   const history = useHistory();
 

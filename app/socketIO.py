@@ -1,16 +1,14 @@
+import os
+import datetime
 from app.models import channel
 from flask_socketio import SocketIO, emit
-import os
 from .models import db, Message
-import datetime
 
 # configure cors_allowed_origins
 if os.environ.get('FLASK_ENV') == 'production':
     origins = [
-        'http://theslackx.herokuapp.com/',
-        'https://theslackx.herokuapp.com/',
-        'wss://theslackx.herokuapp.com/',
-        'ws://theslackx.herokuapp.com/'
+        'http://theslackx.herokuapp.com',
+        'https://theslackx.herokuapp.com'
     ]
 else:
     origins = "*"
