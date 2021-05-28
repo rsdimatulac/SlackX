@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router';
 import { io } from 'socket.io-client';
+import { format } from "date-fns";
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdSend as SendButton } from "react-icons/io";
 import { deleteMessageThunk, editMessageThunk, getMessages } from "../../../store/message"
@@ -24,14 +25,12 @@ const Chatbox = () => {
     const { channelId } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
+    const currentChannel = channels[channelId];
     const [editChatInput, setEditChatInput] = useState('')
     const [editMessage, setEditMessage] = useState(false);
     const [messageId, setMessageId] = useState(null);
 
-
-
     // const chatMessages = channels[channelId]?.messages
-
 
     useEffect(() => {
 
@@ -186,13 +185,20 @@ const Chatbox = () => {
     const updateChatInput = (e) => setChatInput(e.target.value)
     const updateEditChatInput = (e) => setEditChatInput(e.target.value)
 
+    const getNames = (dic_of_names) => {
+    let names = ''
+    for (let name in dic_of_names) {
+        names += `, ${dic_of_names[name].name}`
+    }
+    return names.slice(1, names.length)
+    }
+
     return (
         <div className="chatbox__profile">
             <div className="chatbox">
                 <div className="chat__header">
-                    <h1>#Channel Name or DM User Name/s</h1>
+                    <h1>{ currentChannel?.channel_type === "dm" ? getNames(currentChannel?.users) : `#${currentChannel?.name}`}</h1>
                 </div>
-                {/* TODO: Map Messages array here  */}
                 <div className="chatbox__content">
                     <div className="chatbox__messages">
                         {messages.map((message, idx) => (
@@ -202,7 +208,8 @@ const Chatbox = () => {
                                     <img src={users[message?.user_id]?.avatar} alt="" />
                                 </div>
                                 <div className="message__content">
-                                    <h2>{users[message?.user_id]?.firstname}<span>{message?.created_at}</span></h2>
+                                    <h2>{users[message?.user_id]?.firstname}<span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span></h2>
+                                    <p>{message?.body}</p>
                                     {editMessage && messageId == message.id ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
                                 </div>
                                 {(user.id === message.user_id) && loggedUserMsgOptions(message)}

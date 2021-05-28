@@ -9,6 +9,7 @@ import { MdKeyboardArrowRight as ShowMoreIcon } from "react-icons/md";
 import { MdKeyboardArrowDown as ShowLessIcon } from "react-icons/md";
 import { RiAddFill as AddIcon } from "react-icons/ri";
 import { FiLock as Private } from "react-icons/fi";
+import { FaHashtag as Hash } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannels } from '../../../store/channel';
 import ChannelModal from "../ChannelModal/ChannelModal";
@@ -99,10 +100,9 @@ const Sidebar = ({ user }) => {
                             <div className="add__icon" onClick={handleChannelFormModal}><AddIcon id="add__icon1" /></div>
                         </div>
                         {showChannel &&
-                            // TODO: channels.map here. ADD route for each DM by id
                             <div> {pp?.map(channel =>
                             (<NavLink key={channel.name} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-                                <div className="channels__div"><span className="private__icon">{channel.channel_type == 'public' ? '#' : <Private />}</span>{channel.name}</div>
+                                <div className="channels__div"><span className="private__icon">{channel.channel_type === 'public' ? <Hash /> : <Private />}</span>{channel.name}</div>
                             </NavLink>
                             ))}
                             </div>
@@ -117,7 +117,6 @@ const Sidebar = ({ user }) => {
                             <div className="add__icon" onClick={handleDMFormModal}><AddIcon id="add__icon2" /></div>
                         </div>
                         {showDM &&
-                            // TODO: dms.map here. ADD route for each DM by id
                             (<div>{dm?.map(channel => (
                                 <NavLink key={`dm${channel.id}`} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                                     <div className="channels__div">{get_names(channel.users)}</div>

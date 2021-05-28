@@ -9,51 +9,72 @@ const setChannels = (channels) => ({
 const addChannel = (channel) => ({
     type: ADD_CHANNEL,
     channel
-
 })
 
 export const getChannels = () => async (dispatch) => {
     const res = await fetch("/api/channels/")
 
-    try{
-        if(!res.ok) throw res
+    try {
+        if (!res.ok) throw res
         const channels = await res.json()
         dispatch(setChannels(channels))
 
-    } catch(err) {
+    } catch (err) {
         console.log(err)
     }
 
 }
 
 export const createChannel = (name, channel_type) => async (dispatch) => {
-    try{
-        const res = await fetch("/api/channels/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({name, channel_type})
-        })
-        if(!res.ok) throw res
+    const res = await fetch(`/api/channels/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, channel_type })
+    })
+    try {
+        if (!res.ok) throw res
         const channel = await res.json();
-        // console.log(channels)
         if (channel.errors) {
             return channel;
         }
         dispatch(addChannel(channel))
-        return {}
-    } catch(err) {
-        console.log(err)
+        return channel;
+    } catch (error) {
+        console.log(error)
     }
 }
 
+export const createDM = (user_ids) => async (dispatch) => {
+    const res = await fetch(`/api/channels/dm`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ user_ids })
+    })
+    console.log("Inside the DM thunk")
+    try {
+        if (!res.ok) throw res
+        const dm = await res.json();
+    
+        dispatch(addChannel(dm))
+        return dm;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 export default function channels(state = {}, action) {
-    switch(action.type) {
+    switch (action.type) {
         case GET_CHANNELS:
-            return {...state, ...action.channels}
+            return { ...state, ...action.channels }
         case ADD_CHANNEL:
-            return {...state, ...action.channel}
+            const newChannel = { ...state }
+            newChannel[action.channel.id] = action.channel
+            return newChannel;
         default:
             return state;
     }

@@ -1,0 +1,165 @@
+.dm__form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 50px 40px;
+    font-family: Circular -apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”,“Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”,sans-serif;
+}
+
+.dm__form__header h1 {
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+
+.errors__dm {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15px 10px;
+    text-align: center;
+    line-height: 18px;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.new__dm__input {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.users__dm__container {
+    height: auto;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid rgba(29, 28, 29, 0.384);
+    /* padding: 5px; */
+}
+
+.users__dm__container input {
+    box-sizing: border-box;
+    /* margin-top: 5px; */
+    padding: 11px 12px;
+    width: 100%;
+    height: 32px;
+    border: none;
+    outline-width: 0;
+    border-radius: 4px;
+}
+
+.dm__form__button button {
+    margin-top: 20px;
+    width: 100%;
+    height: 32px;
+    border: none;
+    color: white;
+    background-color: #4a154b;
+    border-radius: 4px;
+    font-weight: 900;
+}
+
+.dm__form__button button:hover{
+    opacity: 0.9;
+}
+
+/* ADDED USERS ON INPUT FIELD */
+
+.added__users__wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dm__added__users {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    box-sizing: border-box;
+    width: fit-content;
+    border-radius: 3px;
+    align-items: center;
+    padding: 0 4px;
+    border: 1px solid lightgray;
+    margin: 4px;
+}
+
+.dm__added__avatar {
+    height: 24px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5px;
+}
+
+.dm__added__avatar > img {
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.10);
+    height: 24px;
+    width: 24px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.dm__added__name {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.dm__added__name p {
+    margin-right: 3px;
+}
+
+#remove__icon {
+    margin-top: 0px;
+    font-size: 20px;
+    padding: 1px 1px 0px;
+}
+
+#remove__icon:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    border-radius: 3px;
+}
+
+
+/* SEARCH RESULTS BOX */
+
+.dm__search {
+    height: 200px;
+    margin-top: 20px;
+    overflow: auto;
+}
+
+.dm__search__results {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-top: 1px solid lightgray;
+}
+
+.dm__search__results:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.dm__search__avatar {
+    align-self: flex-start;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1rem;
+}
+
+.dm__search__avatar > img {
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.10);
+    height: 36px;
+    width: 36px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.dm__search__name {
+    line-height: 20px;
+}

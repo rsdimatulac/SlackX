@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { createChannel } from "../../../store/channel";
 import useConsumeContext from "../../../context/FormModalContext";
 import { Modal } from "../../../context/Modal";
@@ -7,11 +8,13 @@ import "./ChannelModal.css"
 
 
 const ChannelModal = () => {
-    const { handleChannelFormModal, setChannelForm } = useConsumeContext();
+    const { handleChannelFormModal } = useConsumeContext();
     const [channelName, setChannelName] = useState("");
     const [channelType, setChannelType] = useState("public");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
+    const history = useHistory();
+    const { userId } = useParams();
 
     const toggleChannelType = (e) => {
         if (e.target.checked) { // true
@@ -25,9 +28,11 @@ const ChannelModal = () => {
         e.preventDefault();
         const data = await dispatch(createChannel(channelName, channelType));
         if (data?.errors) {
-            setErrors(data?.errors);
+            setErrors(data.errors);
+        } else {
+            handleChannelFormModal();
+            history.push(`/users/${userId}/${data?.id}`)
         }
-        handleChannelFormModal()
     }
 
     return (
@@ -50,7 +55,7 @@ const ChannelModal = () => {
                                 type="text"
                                 name="channel_name"
                                 placeholder="# e.g.plan-budget"
-                                onChange={e => setChannelName(e.target.value)}
+                                onChange={e => setChannelName(e.target.value.toLowerCase().split(" ").join("-"))}
                                 value={channelName}
                                 required
                             ></input>
