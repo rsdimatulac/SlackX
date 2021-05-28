@@ -12,7 +12,6 @@ const removeUser = () => ({
 })
 
 
-
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
     headers: {
@@ -28,24 +27,30 @@ export const authenticate = () => async (dispatch) => {
 }
 
 export const login = (email, password) => async (dispatch) => {
-  const response = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      email,
-      password
-    })
-  });
-  const data = await response.json();
-  if (data.errors) {
-    return data;
-  }
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    });
 
-  dispatch(setUser(data))
-  return {};
-}
+    const data = await response.json();
+
+    if (data.errors) {
+      return data;
+    };
+
+    dispatch(setUser(data))
+    return {};
+  } catch (error) {
+    console.log(error);
+  };
+};
 
 export const logout = () => async (dispatch) => {
   const response = await fetch("/api/auth/logout", {
@@ -60,28 +65,33 @@ export const logout = () => async (dispatch) => {
 
 
 export const signUp = (firstname, lastname, email, password, confirmPassword) => async (dispatch) => {
-  const response = await fetch("/api/auth/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      firstname,
-      lastname,
-      email,
-      password,
-      confirmPassword
-    }),
-  });
-  const data = await response.json();
-  if (data.errors) {
-    return data;
-  }
+  try {
+    const response = await fetch("/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstname,
+        lastname,
+        email,
+        password,
+        confirmPassword
+      }),
+    });
 
-  dispatch(setUser(data))
-  return {};
-}
+    const data = await response.json();
+    if (data.errors) {
+      return data;
+    };
 
+    dispatch(setUser(data))
+    return {};
+
+  } catch (error) {
+    console.log(error)
+  };
+};
 
 const initialState = { user: null };
 

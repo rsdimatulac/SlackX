@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import useConsumeContext from "../../context/FormModalContext";
 import slackLogo from "../../imgs/colorLogo.png";
-import "./LoginForm.css"
 import { getChannels } from "../../store/channel";
+import "./LoginForm.css";
+
 
 const LoginForm = () => {
-  const history = useHistory()
+  const { handleSignUpModal } = useConsumeContext();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const user = useSelector(state => state.session.user);
   const channels = useSelector(state => state.channels);
   const dispatch = useDispatch();
-  const { handleSignUpModal } = useConsumeContext();
+  const history = useHistory();
+
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -25,24 +27,23 @@ const LoginForm = () => {
     }
   };
 
-
+  // TODO: Getting undefined error when logging in. Might need refactoring.
   useEffect(() => {
     let firstChanId;
     if (user) {
       async function fetchData() {
-      await dispatch(getChannels())
+        await dispatch(getChannels())
       }
       fetchData();
       for (let key in channels) {
-        if (user.id in channels[key].users) {
-          firstChanId = key
+        if (user?.id in channels[key]?.users) {
+          firstChanId = key;
           break;
         }
       }
       history.push(`/users/${user?.id}/${firstChanId}/`)
     }
-
-  }, [dispatch, user])
+  }, [dispatch, user, channels, history])
 
 
   return (
@@ -54,10 +55,6 @@ const LoginForm = () => {
           <h1> slackX </h1>
         </div>
         <div className="errors">
-          {/* <div>・error1</div>
-          <div>・error2</div>
-          <div>・error3</div> */}
-
           {errors.map((error) => (
             <div key={error}>・{error}</div>
           ))}
@@ -89,7 +86,6 @@ const LoginForm = () => {
           <p>New to slackX?</p>
           <h3 onClick={handleSignUpModal} style={{ cursor: 'pointer' }}>Create an account</h3>
         </div>
-        {/* <button className="button3" onClick={loginDemoUser} type="submit" style={{ cursor: 'pointer' }}>TRY FOR FREE</button> */}
       </form>
     </div>
   );

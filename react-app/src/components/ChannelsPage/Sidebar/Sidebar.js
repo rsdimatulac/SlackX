@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import { BsPencilSquare as CreateIcon } from "react-icons/bs";
 import { BiMessageRoundedDetail as ThreadIcon } from "react-icons/bi";
@@ -10,14 +11,12 @@ import { MdKeyboardArrowDown as ShowLessIcon } from "react-icons/md";
 import { RiAddFill as AddIcon } from "react-icons/ri";
 import { FiLock as Private } from "react-icons/fi";
 import { FaHashtag as Hash } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux';
 import { getChannels } from '../../../store/channel';
 import ChannelModal from "../ChannelModal/ChannelModal";
 import DmModal from "../ChannelModal/DmModal";
 import useConsumeContext from "../../../context/FormModalContext";
 import SidebarOptions from "./SidebarOptions";
 import "./Sidebar.css";
-
 
 
 const Sidebar = ({ user }) => {

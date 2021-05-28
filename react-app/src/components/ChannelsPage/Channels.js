@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
-// import User from "../User";
+import { useDispatch } from 'react-redux';
+import { getUsers } from '../../store/users';
 import Header from "./Header";
 import Sidebar from "./Sidebar/Sidebar";
 import Chatbox from "./Chatbox/Chatbox";
 import useConsumeContext from "../../context/FormModalContext";
 import "./Channels.css";
-import { getUsers } from '../../store/users';
-import { useDispatch } from 'react-redux';
 
 
 const Channels = ({ user }) => {
     const { setShowLogin, setShowSignUp } = useConsumeContext();
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -19,7 +17,7 @@ const Channels = ({ user }) => {
            await dispatch(getUsers())
         }
         fetchData()
-    })
+    }, [dispatch])
 
     if (window.location.pathname.includes("/users"))  {
         window.document.body.style.overflow = "hidden";
@@ -28,7 +26,7 @@ const Channels = ({ user }) => {
     useEffect(() => {
         setShowSignUp(false);
         setShowLogin(false);
-    }, []);
+    }, [setShowLogin, setShowSignUp]);
 
     return (
         <div className="channels">
@@ -37,7 +35,6 @@ const Channels = ({ user }) => {
                 <Sidebar user={user} />
                 <Chatbox />
            </div>
-           {/* <User /> */}
         </div>
     )
 }

@@ -1,7 +1,5 @@
 import React from "react";
 import { FaGithub } from "react-icons/fa";
-// import { FaLinkedinIn } from "react-icons/fa";
-// import { MdLanguage as LanguageIcon } from "react-icons/md";
 import "./Footer.css";
 
 const Footer = () => {

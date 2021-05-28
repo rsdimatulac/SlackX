@@ -12,7 +12,6 @@ const DmModal = () => {
     const { handleDMFormModal } = useConsumeContext();
     const [dmSearchInput, setDMSearchInput] = useState("");
     const [dmSearchResult, setDMSearchResult] = useState([]);
-    const [showSearchResults, setShowSearchResults] = useState(false);
     const [usersToDM, setUsersToDM] = useState([]);
     const dispatch = useDispatch();
     const { userId } = useParams();
@@ -59,7 +58,6 @@ const DmModal = () => {
 
         const userIDS = usersToDM.map(user => user.id); // [1, 2, 3 ...]
         const data = await dispatch(createDM(userIDS));
-        // redirect to the new DM channels
         handleDMFormModal();
         history.push(`/users/${userId}/${data?.id}`)
     }

@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { FiChevronDown as DownIcon, FiChevronUp as UpIcon } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
-import { login } from "../../store/session";
 import LoginFormModal from "../Auth/LoginFormModal";
 import SignUpFormModal from "../Auth/SignUpFormModal";
 import useConsumeContext from "../../context/FormModalContext.js";
 import SlackLogoWhite from "../../imgs/slack_logo_white.png";
+import { login } from "../../store/session";
 import "./NavBar.css";
 
 
-const NavBar = ({ isLoaded }) => {
+const NavBar = () => {
   const history = useHistory();
   const { handleLoginModal, showLogin, handleSignUpModal, showSignUp } = useConsumeContext();
   const dispatch = useDispatch();
@@ -24,15 +23,15 @@ const NavBar = ({ isLoaded }) => {
   }
 
   const scrollToFeatures = () => {
-    window.scrollTo(0, 1192);
+    window.scrollTo(0, 1162);
   }
 
   const scrollToTech = () => {
-    window.scrollTo(0, 2347)
+    window.scrollTo(0, 2284)
   }
 
   const scrollToTeam = () => {
-    window.scrollTo(0, 3473)
+    window.scrollTo(0, 3465)
   }
 
   return (

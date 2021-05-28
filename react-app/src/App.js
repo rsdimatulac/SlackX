@@ -6,10 +6,7 @@ import Splash from "./components/SplashPage/Splash";
 import Footer from "./components/SplashPage/Footer";
 import About from "./components/AboutPage/About";
 import Channels from "./components/ChannelsPage/Channels";
-import UserProfile from "./components/ChannelsPage/UserProfile";
-import User from "./components/User";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
 import ScrollToTop from "./context/ScrollToTop";
 import { authenticate } from "./store/session";
 import "./index.css";
@@ -29,7 +26,7 @@ const App = () => {
 
   if (!loaded) {
     return null;
-  }
+  };
 
   return (
     <BrowserRouter>
@@ -46,16 +43,6 @@ const App = () => {
         </Route>
         <ProtectedRoute path="/users/:userId(\d+)/:channelId(\d+)" exact>
           <Channels user={user} />
-        </ProtectedRoute>
-        {/* TODO: Route might not be needed.. Either implement a popup sidebar or MODAL */}
-        <ProtectedRoute path="/users/:userId(\d+)/(\d+)/profile" exact>
-          <UserProfile />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users" exact>
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} >
-          <User />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

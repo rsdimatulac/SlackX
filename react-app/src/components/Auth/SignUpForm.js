@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import slackLogo from "../../imgs/colorLogo.png";
 import useConsumeContext from '../../context/FormModalContext';
 import "./SignUpForm.css";
 
+
 const SignUpForm = () => {
+  const { handleLoginModal } = useConsumeContext();
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -15,37 +17,39 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const { handleLoginModal } = useConsumeContext();
+  const history = useHistory();
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    const data = await dispatch(signUp(firstname, lastname, email, password, confirmPassword));
-    if (data?.errors) {
-      setErrors(data?.errors);
+
+    if (password === confirmPassword) {
+      const data = await dispatch(signUp(firstname, lastname, email, password, confirmPassword));
+      if (data?.errors) {
+        setErrors(data?.errors);
+      }
+    } else {
+      const valErrors = [...errors, "Passwords must match."]
+      setErrors(valErrors);
     }
   };
 
   useEffect(() => {
     if (user) {
-        // redirect to Channels Page if session user exist
-        return <Redirect to={`/users/${user.id}/1`} />;
-      }
-  }, user)
+      history.push(`/users/${user.id}/1`);
+    }
+  }, [user, history])
 
 
   return (
     <div className="signup__wrapper">
       <form onSubmit={onSignUp}>
         <div className="signup__header">
-          <h1>Sign up to </h1>
+          <h1>Sign up to</h1>
           <img src={slackLogo} alt=""></img>
-          <h1> slackX </h1>
+          <h1>slackX</h1>
         </div>
         <div className="errors">
-          {/* <div>・error1</div>
-          <div>・error2</div>
-          <div>・error3</div> */}
-
           {errors?.map((error) => (
             <div key={error}>・{error}</div>
           ))}
@@ -109,7 +113,6 @@ const SignUpForm = () => {
         </div>
       </form>
     </div>
-
   );
 };
 

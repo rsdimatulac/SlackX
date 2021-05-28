@@ -59,11 +59,9 @@ const Header = ({ user }) => {
                     <div className="menu__options">
                         <div id="menu__status" onClick={() => setIsActive(prevState => !prevState)}>Set yourself as <strong>{isActive ? "active" : "away"}</strong></div>
                         <hr />
-                        <div>Edit profile</div>
-                        {/* TODO: Add the Channel ID */}
-                        <NavLink to={`/users/${user?.id}/:channelId/profile`} style={{ textDecoration: "none", color: "inherit" }}>
-                            <div>View profile</div>
-                        </NavLink>
+                        {/* <div>Edit profile</div> */}
+                        {/* TODO: Add ONCLICK for Modal*/}
+                        <div>View profile</div>
                         <hr />
                         <div>
                             <a href="https://github.com/rsdimatulac/SlackX" style={{ textDecoration: "none", color: "inherit" }}>
@@ -71,7 +69,7 @@ const Header = ({ user }) => {
                             </a>
                         </div>
                         <NavLink to="/about" style={{ textDecoration: "none", color: "inherit" }}>
-                            <div>About us</div>
+                            <div>Meet the team</div>
                         </NavLink>
                         <hr />
                         <div onClick={onLogout}>Sign out of SlackX</div>

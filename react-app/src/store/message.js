@@ -28,7 +28,6 @@ export const getMessages = (channel_id) => async (dispatch) => {
     } catch(err) {
         console.log(err)
     }
-
 }
 
 export const editMessageThunk = (message_id, body) => async (dispatch) => {
@@ -45,7 +44,6 @@ export const editMessageThunk = (message_id, body) => async (dispatch) => {
 
     try {
         if (!res.ok) throw res
-        // {message_id: id, body: body}
         const message = await res.json()
         dispatch(setMessage(message))
         return message
@@ -67,7 +65,6 @@ export const deleteMessageThunk = (message_id) => async (dispatch) => {
     })
     try {
         if (!res.ok) throw res
-        // {message_id: id, body: body}
         const message = await res.json()
         dispatch(deleteMessage(message))
         return message

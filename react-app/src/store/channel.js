@@ -22,7 +22,6 @@ export const getChannels = () => async (dispatch) => {
     } catch (err) {
         console.log(err)
     }
-
 }
 
 export const createChannel = (name, channel_type) => async (dispatch) => {

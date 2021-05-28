@@ -32,6 +32,10 @@ function SplashPage({isLoaded}) {
             let title3 = document.getElementById("title3");
             let title4 = document.getElementById("title4");
 
+            if (!(mainpage && title1 && title2 && title3 && title4)) {
+                return;
+            };
+
             if (window.pageYOffset <= 650) {
                 
                 mainpage.style.backgroundColor = "#4a154b";
