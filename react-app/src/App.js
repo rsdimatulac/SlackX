@@ -9,6 +9,7 @@ import Channels from "./components/ChannelsPage/Channels";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ScrollToTop from "./context/ScrollToTop";
 import { authenticate } from "./store/session";
+import ErrorPage from "./components/404page/ErrorPage";
 import "./index.css";
 import "./reset.css";
 
@@ -44,6 +45,11 @@ const App = () => {
         <ProtectedRoute path="/users/:userId(\d+)/:channelId(\d+)" exact>
           <Channels user={user} />
         </ProtectedRoute>
+        <Route path="*">
+          <NavBar />
+          <ErrorPage />
+          <Footer />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
