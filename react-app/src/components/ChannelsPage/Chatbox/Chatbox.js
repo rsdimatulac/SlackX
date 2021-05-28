@@ -87,13 +87,13 @@ const Chatbox = () => {
     }
 
     const messageToEdit = (message) => (e) => {
-        console.log("hello", message)
-
         setEditChatInput(message.body)
         setEditMessage(true)
         setMessageId(e.target.classList[0])
-        // setMessageId(e.target.parentNode.parentNode.id)
     }
+
+    const updateChatInput = (e) => setChatInput(e.target.value)
+    const updateEditChatInput = (e) => setEditChatInput(e.target.value)
 
     const inputBox = () => {
         return (
@@ -103,7 +103,6 @@ const Chatbox = () => {
                         className="input__box"
                         placeholder={currentChannel?.channel_type === "dm" ? `Message${getNames(currentChannel?.users)}` : `Message #${currentChannel?.name}`}
                         value={chatInput}
-
                         onChange={updateChatInput}
                     />
                     {chatInput ?
@@ -117,10 +116,19 @@ const Chatbox = () => {
 
     }
 
-    const editInputBox = () => {
+    const handleEdit = (message_id, chatInput) => async (e) => {
+        e.preventDefault()
+        await dispatch(editMessageThunk(message_id, chatInput))
+        setEditMessage(false)
+        setEditChatInput('')
+        await dispatch(getChannels())
+    }
+
+    const editInputBox = (message) => {
+        console.log(message)
         return (
             <div className="input__wrap">
-                <form method="post" action="" onSubmit={sendChat}>
+                <form method="post" action="" onSubmit={handleEdit(message.id, editChatInput)}>
                     <input
                         className="input__box"
                         value={editChatInput}
@@ -132,12 +140,7 @@ const Chatbox = () => {
         )
     }
 
-    const handleEdit = async (message_id, chatInput) => {
-        await dispatch(editMessageThunk(message_id, chatInput))
-        setEditMessage(false)
-        setEditChatInput('')
-        await dispatch(getChannels())
-    }
+
 
     const deleteMessage = async (message_id) => {
         await dispatch(deleteMessageThunk(message_id))
@@ -150,7 +153,7 @@ const Chatbox = () => {
             <div className="message__options">
                 {editMessage && Number(messageId) === Number(message.id) ?
                     <>
-                        <div id="save__icon" onClick={() => handleEdit(message.id, editChatInput)}><SaveIcon />Save</div>
+                        <div id="save__icon" onClick={handleEdit(message.id, editChatInput)}><SaveIcon />Save</div>
                         <div id="cancel__icon" onClick={() => setEditMessage(false)}><CancelIcon />Cancel</div>
                     </>
                     :
@@ -163,8 +166,7 @@ const Chatbox = () => {
     }
 
 
-    const updateChatInput = (e) => setChatInput(e.target.value)
-    const updateEditChatInput = (e) => setEditChatInput(e.target.value)
+
 
     const getNames = (dic_of_names) => {
         let names = ''
@@ -193,7 +195,7 @@ const Chatbox = () => {
                                         <span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span>
                                         {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
                                     </h2>
-                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox()) : (<p>{message?.body}</p>)}
+                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message)) : (<p>{message?.body}</p>)}
                                 </div>
                             </div>
                         ))}
