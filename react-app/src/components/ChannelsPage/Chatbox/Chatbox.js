@@ -79,16 +79,21 @@ const Chatbox = () => {
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
+        if (chatInput.length > 0) {
+            socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
+        }
 
         setChatInput("")
     }
 
-    const messageToEdit = (e) => {
+    const messageToEdit = (message) => (e) => {
+        setEditChatInput(message.body)
         setEditMessage(true)
         setMessageId(e.target.classList[0])
-        // setMessageId(e.target.parentNode.parentNode.id)
     }
+
+    const updateChatInput = (e) => setChatInput(e.target.value)
+    const updateEditChatInput = (e) => setEditChatInput(e.target.value)
 
     const inputBox = () => {
         return (
@@ -111,13 +116,22 @@ const Chatbox = () => {
 
     }
 
-    const editInputBox = (body, i) => {
+    const handleEdit = (message_id, chatInput) => async (e) => {
+        e.preventDefault()
+        await dispatch(editMessageThunk(message_id, chatInput))
+        setEditMessage(false)
+        setEditChatInput('')
+        await dispatch(getChannels())
+    }
+
+    const editInputBox = (message) => {
+        console.log(message)
         return (
             <div className="input__wrap">
-                <form method="post" action="" onSubmit={sendChat}>
+                <form method="post" action="" onSubmit={handleEdit(message.id, editChatInput)}>
                     <input
                         className="input__box"
-                        value={body ? body : editChatInput}
+                        value={editChatInput}
                         onChange={updateEditChatInput}
                         required
                     />
@@ -126,29 +140,25 @@ const Chatbox = () => {
         )
     }
 
-    const handleEdit = async (message_id, chatInput) => {
-        await dispatch(editMessageThunk(message_id, chatInput))
-        setEditMessage(false)
-        setEditChatInput('')
-        await dispatch(getChannels())
-    }
+
 
     const deleteMessage = async (message_id) => {
         await dispatch(deleteMessageThunk(message_id))
         await dispatch(getChannels())
     }
 
+
     const loggedUserMsgOptions = (message) => {
         return (
             <div className="message__options">
                 {editMessage && Number(messageId) === Number(message.id) ?
                     <>
-                        <div id="save__icon" onClick={() => handleEdit(message.id, editChatInput)}><SaveIcon />Save</div>
+                        <div id="save__icon" onClick={handleEdit(message.id, editChatInput)}><SaveIcon />Save</div>
                         <div id="cancel__icon" onClick={() => setEditMessage(false)}><CancelIcon />Cancel</div>
                     </>
                     :
                     <>
-                        <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit}><EditIcon />Edit</div>
+                        <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit(message)}><EditIcon />Edit</div>
                         <div id="delete__icon" onClick={() => deleteMessage(message.id)}><DeleteIcon />Delete</div>
                     </>
                 }
@@ -156,8 +166,7 @@ const Chatbox = () => {
     }
 
 
-    const updateChatInput = (e) => setChatInput(e.target.value)
-    const updateEditChatInput = (e) => setEditChatInput(e.target.value)
+
 
     const getNames = (dic_of_names) => {
         let names = ''
@@ -186,7 +195,7 @@ const Chatbox = () => {
                                         <span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span>
                                         {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
                                     </h2>
-                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
+                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message)) : (<p>{message?.body}</p>)}
                                 </div>
                             </div>
                         ))}
