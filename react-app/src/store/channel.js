@@ -9,7 +9,6 @@ const setChannels = (channels) => ({
 const addChannel = (channel) => ({
     type: ADD_CHANNEL,
     channel
-
 })
 
 export const getChannels = () => async (dispatch) => {
@@ -34,14 +33,39 @@ export const createChannel = (name, channel_type) => async (dispatch) => {
         },
         body: JSON.stringify({ name, channel_type })
     })
-    const channel = await res.json();
-    if (channel.errors) {
+    try {
+        if (!res.ok) throw res
+        const channel = await res.json();
+        if (channel.errors) {
+            return channel;
+        }
+        dispatch(addChannel(channel))
         return channel;
+    } catch (error) {
+        console.log(error)
     }
-    dispatch(addChannel(channel))
-    return channel;
-
 }
+
+export const createDM = (user_ids) => async (dispatch) => {
+    const res = await fetch(`/api/channels/dm`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ user_ids })
+    })
+    console.log("Inside the DM thunk")
+    try {
+        if (!res.ok) throw res
+        const dm = await res.json();
+    
+        dispatch(addChannel(dm))
+        return dm;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 export default function channels(state = {}, action) {
     switch (action.type) {
