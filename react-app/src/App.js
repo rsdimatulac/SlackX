@@ -48,6 +48,7 @@ const App = () => {
         <Route path="*">
           <NavBar />
           <ErrorPage />
+          <Footer />
         </Route>
       </Switch>
     </BrowserRouter>
