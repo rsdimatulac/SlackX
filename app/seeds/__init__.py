@@ -2,8 +2,6 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .messages import seed_messages, undo_messages
 from .channels import seed_channels, undo_channels
-# from .subscriptions import seed_subscriptions, undo_subscriptions
-
 
 
 # Creates a seed group to hold our commands

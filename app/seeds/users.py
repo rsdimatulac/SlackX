@@ -81,9 +81,6 @@ def seed_users():
         db.session.add(new_user)
         db.session.commit()
 
-
-
-
     # for _i in range(16):
     #     new_user = User(
     #     firstname=fake.first_name(), 
