@@ -33,7 +33,7 @@ const Chatbox = () => {
     useEffect(() => {
         // create websocket
         socket = io();
-
+        console.log("LISTENNINGGGGGGG")
         // listen for chat events
         socket.on(channelId, (chat) => {
             // when we recieve a chat, add it into our messages array in state
@@ -41,6 +41,7 @@ const Chatbox = () => {
         })
         // when component unmounts, disconnect
         return (() => {
+            console.log("DISCONNNNECT")
             socket.disconnect()
         })
     }, [channelId])

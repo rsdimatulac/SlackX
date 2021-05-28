@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "caf6cb71f155a8c4d482db7c1e5aa76a7ffaa9dac6f36bdd7b62badc6c7608a9"
+            "sha256": "af61ee360ebc0369cfc104a2d7c9872ab2322bb2b2027ec73b42a4748d0056c1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -66,11 +66,11 @@
         },
         "faker": {
             "hashes": [
-                "sha256:7397915ce793ac1e162eb89450a268c4404121389ca46264648a2a8c56d88624",
-                "sha256:765cb52df0ca2dc5af0393048c1f60b2fec736095b379954c42c5c552f65838a"
+                "sha256:5b1c0781c0c2f6b177adf4018feec265bbcd0118b301dbec64a1908c29124ed6",
+                "sha256:c94240c40073400b269c50b14da765fd4d3b4dda8ae25c2753afc809c72f1062"
             ],
             "index": "pypi",
-            "version": "==8.2.1"
+            "version": "==8.4.0"
         },
         "flask": {
             "hashes": [
@@ -113,11 +113,11 @@
         },
         "flask-socketio": {
             "hashes": [
-                "sha256:4fb968c43bc384f184cd1a25c1842297c2e3d6efc2f755a61be6d4406858220f",
-                "sha256:5ae1affe38f1d6a7392712819c4c5a7d3bcd4e8226d17a67861588fc226ad0a5"
+                "sha256:68ae373a41d906819f5129d4d28ad062fcf0085dd06424753a79ca47de509ab5",
+                "sha256:b41b9f6fb0d7f3fcadd54c44653307a9b96e985c7da73f92779480248b5b6874"
             ],
             "index": "pypi",
-            "version": "==5.0.3"
+            "version": "==5.1.0"
         },
         "flask-sqlalchemy": {
             "hashes": [
@@ -325,10 +325,11 @@
         },
         "python-engineio": {
             "hashes": [
-                "sha256:4e97c1189c23923858f5bb6dc47cfcd915005383c3c039ff01c89f2c00d62077",
-                "sha256:c6c119c2039fcb6f64d260211ca92c0c61b2b888a28678732a961f2aaebcc848"
+                "sha256:21e1bcc62f5573a4bb1c805e69915c5a4c5aa953005dde6c2f707c24554c1020",
+                "sha256:c0216b0f9584d6dd632dfd4e2b624d2cf5e97a55443a467f52b928b7e3e08998"
             ],
-            "version": "==4.2.0"
+            "index": "pypi",
+            "version": "==4.1.0"
         },
         "python-socketio": {
             "hashes": [

@@ -35,7 +35,7 @@ def handle_chat(data):
     ourMsg = messages[len(messages) - 1]
     data['id'] = ourMsg.id
     emit(data["channel_id"], data, broadcast=True)
-    return None
+    # return None
 
 
 # @socketio.sockets.in()
