@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import Channel, db
+from app.models import Channel, User, db
 from app.forms import ChannelForm
 from flask_login import current_user, login_user
 
@@ -46,3 +46,50 @@ def post_channels():
         db.session.commit()
         return channel.to_dict()
     return {'errors': channel_errors_to_error_messages(form.errors)}, 400
+
+# POST Direct Messages
+@channel_routes.route('/dm', methods=['POST'])  # POST /api/channels/dm
+def post_dms():
+    """ 
+    Creates Direct messages
+    """
+    user_ids = request.get_json()['user_ids']
+    user_ids.append(current_user.id)
+    users = [User.query.get(id) for id in user_ids]
+
+    user_ids = [str(id) for id in user_ids]
+
+    # Array of User objects
+    print("!!!!!!!!!!!!!!!", users)
+    # create the channel first
+    dm = Channel(
+        name = "-".join(user_ids), # name = 1-2-3-4
+        channel_type = "dm"
+    )
+    db.session.add(dm)
+    db.session.commit()
+
+    # query for the channel
+
+    dm = Channel.query.filter(Channel.name == "-".join(user_ids)).first()
+
+    for user in users:
+        user.channels.append(dm)
+        # db.session.add(user)
+        db.session.commit()
+    
+    return dm.to_dict()
+    # return {'errors': channel_errors_to_error_messages(form.errors)}, 400
+
+# @message_routes.route('/<int:message_id>', methods=["PATCH"])
+# def edit_message(message_id):
+
+#     message_id = request.get_json()['message_id']
+#     body = request.get_json()['body']
+
+#     edit_message = Message.query.get(message_id)
+#     edit_message.body = body
+
+#     # db.session.add(edit_message)
+#     db.session.commit()
+#     return edit_message.to_dict()
