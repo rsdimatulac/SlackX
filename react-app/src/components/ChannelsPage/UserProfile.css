@@ -4,7 +4,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 60px;
+    padding: 50px 60px;
+}
+
+.profile h1 {
+    padding-bottom: 30px;
+    align-self: flex-start;
+    font-size: 30px;
 }
 
 .profile__avatar {

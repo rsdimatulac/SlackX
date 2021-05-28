@@ -9,8 +9,8 @@ const UserProfile = ({ user }) => {
     return (
         <>
         <Modal onClose={handleProfileModal}>
-            <h1>Profile</h1>
             <div className="profile">
+                <h1>Profile</h1>
                 <div className="profile__avatar">
                     <img src={user?.avatar} alt=""/>
                 </div>
