@@ -86,7 +86,10 @@ const Chatbox = () => {
         setChatInput("")
     }
 
-    const messageToEdit = (e) => {
+    const messageToEdit = (message) => (e) => {
+        console.log("hello", message)
+
+        setEditChatInput(message.body)
         setEditMessage(true)
         setMessageId(e.target.classList[0])
         // setMessageId(e.target.parentNode.parentNode.id)
@@ -114,13 +117,13 @@ const Chatbox = () => {
 
     }
 
-    const editInputBox = (body) => {
+    const editInputBox = () => {
         return (
             <div className="input__wrap">
-                <form method="post" action="" onSubmit={() => {}}>
+                <form method="post" action="" onSubmit={sendChat}>
                     <input
                         className="input__box"
-                        value={body ? body : editChatInput}
+                        value={editChatInput}
                         onChange={updateEditChatInput}
                         required
                     />
@@ -128,12 +131,6 @@ const Chatbox = () => {
             </div>
         )
     }
-    // const onKeyPressEdit = async(e) => {
-    //     e.preventDefault()
-    //     if (editChatInput.length > 0 && e.key === 'Enter') {
-    //         handleEdit()
-    //     }
-    // }
 
     const handleEdit = async (message_id, chatInput) => {
         await dispatch(editMessageThunk(message_id, chatInput))
@@ -158,7 +155,7 @@ const Chatbox = () => {
                     </>
                     :
                     <>
-                        <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit}><EditIcon />Edit</div>
+                        <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit(message)}><EditIcon />Edit</div>
                         <div id="delete__icon" onClick={() => deleteMessage(message.id)}><DeleteIcon />Delete</div>
                     </>
                 }
@@ -196,7 +193,7 @@ const Chatbox = () => {
                                         <span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span>
                                         {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
                                     </h2>
-                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
+                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox()) : (<p>{message?.body}</p>)}
                                 </div>
                             </div>
                         ))}
