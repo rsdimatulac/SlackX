@@ -8,6 +8,7 @@
     font-size: 15px;
     color: #1D1C1D;
     display: flex;
+    position: relative;
 }
 
 .message:hover {
@@ -42,10 +43,16 @@
 }
 
 .message__content > h2 > span {
-    padding-left: 10px;
+    padding: 0 10px;
     color: #616061;
     font-size: 12px;
     font-weight: normal;
+    margin-top: 1px;
+}
+
+.message__content > h2 {
+    display: flex;
+    align-items: center;
 }
 
 .message__content p {
@@ -53,22 +60,25 @@
 }
 
 .message__options {
-    align-self: flex-start;
-    margin-left: 10px;
-    margin-top: 1px;
     display: flex;
+    align-items: center;
 }
 
-.message__options div {
+#edit__icon,
+#delete__icon,
+#save__icon,
+#cancel__icon {
+    padding: 1px 5px;
+    font-size: 13px;
+    font-weight: 500;
     border: none;
     background-color: inherit;
-    font-size: 15px;
     border-radius: 999px;
     margin: 0 4px;
-    padding: 2px 5px;
     cursor: pointer;
-    color: #616061c1;
+    color: #61606195;
     display: flex;
+    align-items: center;
 }
 
 .message__options div:hover {
@@ -81,21 +91,14 @@
     color: white;
 }
 
-#delete__icon:hover {
+#save__icon:hover {
+    background-color: #007A5A;
+    color: white;
+}
+
+#delete__icon:hover,
+#cancel__icon:hover {
     background-color: #ff4040;
     color: white;
 }
 
-#edit__icon,
-#delete__icon {
-    padding: 1px 3px;
-    font-size: 13px;
-    font-weight: 500;
-}
-
-/* .edit__icon span p, */
-/* #delete__icon span p {
-    padding-left: 3px;
-    font-size: 13px;
-    font-weight: 500;
-} */

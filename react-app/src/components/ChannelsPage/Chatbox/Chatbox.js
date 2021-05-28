@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { RiDeleteBack2Fill as DeleteIcon } from "react-icons/ri";
 import { AiFillEdit as EditIcon } from "react-icons/ai";
 import { IoMdSend as SendButton } from "react-icons/io";
+import { AiOutlineEnter as SaveIcon } from "react-icons/ai";
 import { TiCancel as CancelIcon } from "react-icons/ti";
 import { deleteMessageThunk, editMessageThunk, getMessages } from "../../../store/message"
 import { getChannels } from "../../../store/channel"
@@ -85,8 +86,8 @@ const Chatbox = () => {
 
     const messageToEdit = (e) => {
         setEditMessage(true)
-        setMessageId(e.target.parentNode.parentNode.id)
-        console.log("NODEEEEE", e.target.parentNode.parentNode.id)
+        setMessageId(e.target.classList[0])
+        // setMessageId(e.target.parentNode.parentNode.id)
     }
 
     const inputBox = () => {
@@ -116,7 +117,7 @@ const Chatbox = () => {
                 <form method="post" action="" onSubmit={sendChat}>
                     <input
                         className="input__box"
-                        value={editChatInput}
+                        value={body ? body : editChatInput}
                         onChange={updateEditChatInput}
                         required
                     />
@@ -140,18 +141,15 @@ const Chatbox = () => {
     const loggedUserMsgOptions = (message) => {
         return (
             <div className="message__options">
-                {/* INTENTIONAL == for type coercion */}
                 {editMessage && Number(messageId) === Number(message.id) ?
                     <>
-                        <button onClick={() => handleEdit(message.id, editChatInput)}><span><SendButton /> Send</span></button>
-                        <button onClick={() => setEditMessage(false)}><span><CancelIcon /> <p>Cancel</p></span></button>
+                        <div id="save__icon" onClick={() => handleEdit(message.id, editChatInput)}><SaveIcon />Save</div>
+                        <div id="cancel__icon" onClick={() => setEditMessage(false)}><CancelIcon />Cancel</div>
                     </>
                     :
                     <>
-                        <div id="edit__icon" onClick={messageToEdit}><EditIcon />Edit</div>
-                        {/* <button className="edit__icon" onClick={messageToEdit}><span><EditIcon /> <p>Edit</p></span></button> */}
+                        <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit}><EditIcon />Edit</div>
                         <div id="delete__icon" onClick={() => deleteMessage(message.id)}><DeleteIcon />Delete</div>
-                        {/* <button id="delete__icon" onClick={() => deleteMessage(message.id)}><span><DeleteIcon /> <p>Delete</p></span></button> */}
                     </>
                 }
             </div>)
@@ -183,12 +181,13 @@ const Chatbox = () => {
                                     <img src={users[message?.user_id]?.avatar} alt="" />
                                 </div>
                                 <div className="message__content">
-                                    <h2>{users[message?.user_id]?.firstname}<span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span></h2>
-                                    {/* INTENTIONAL == for type coercion */}
+                                    <h2>
+                                        {users[message?.user_id]?.firstname}
+                                        <span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span>
+                                        {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
+                                    </h2>
                                     {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message.body)) : (<p>{message?.body}</p>)}
                                 </div>
-                                {/* INTENTIONAL == for type coercion */}
-                                {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
                             </div>
                         ))}
                     </div>
@@ -196,9 +195,6 @@ const Chatbox = () => {
                 <div className="chat__input">
                     {inputBox()}
                 </div>
-            </div>
-            <div className="profile">
-                {/* TODO: Add UserProfile Component here. BONUS feature, popup sidebar. If not, use MODAL. */}
             </div>
         </div>
     )
