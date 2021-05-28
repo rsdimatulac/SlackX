@@ -7,15 +7,23 @@ import { FaSearch as SearchIcon } from "react-icons/fa";
 import { MdHelpOutline as HelpIcon } from "react-icons/md";
 import { BiTime as TimeIcon } from "react-icons/bi";
 import { MdFiberManualRecord as StatusIcon } from "react-icons/md";
+import useConsumeContext from "../../context/FormModalContext";
+import UserProfile from "./UserProfile";
 import "./Header.css";
 
 const Header = ({ user }) => {
-    const [showDropdown, setShowDropdown] = useState(false);
+    const { showProfile, handleProfileModal, showDropdownMenu, handleDropdownMenu } = useConsumeContext();  
     const [isActive, setIsActive] = useState(true);
     const dispatch = useDispatch();
+
+    const handleProfileDropdown = () => {
+        handleProfileModal()
+        handleDropdownMenu()
+    }
     
     const onLogout = async (e) => {
         dispatch(logout());
+        handleDropdownMenu()
     };
 
     return (
@@ -35,13 +43,13 @@ const Header = ({ user }) => {
                 <div id="help__icon">
                     <HelpIcon />
                 </div>
-                <div className="header__avatar" onClick={() => setShowDropdown(prevState => !prevState)}>
+                <div className="header__avatar" onClick={handleDropdownMenu}>
                     {user ? <img className="avatar__image" src={user?.avatar} alt=""/> : <Avatar id="avatar__icon"/>}
                 </div>
                 <div className="avatar__status">
                     <StatusIcon className={isActive ? "status__icon" : "status__icon away"} />
                 </div>
-                {showDropdown && 
+                {showDropdownMenu && 
                 <div className="dropdown__menu">
                     <div className="menu__header">
                         <div className="menu__avatar">
@@ -60,8 +68,7 @@ const Header = ({ user }) => {
                         <div id="menu__status" onClick={() => setIsActive(prevState => !prevState)}>Set yourself as <strong>{isActive ? "active" : "away"}</strong></div>
                         <hr />
                         {/* <div>Edit profile</div> */}
-                        {/* TODO: Add ONCLICK for Modal*/}
-                        <div>View profile</div>
+                        <div onClick={handleProfileDropdown}>View profile</div>
                         <hr />
                         <div>
                             <a href="https://github.com/rsdimatulac/SlackX" style={{ textDecoration: "none", color: "inherit" }}>
@@ -75,6 +82,7 @@ const Header = ({ user }) => {
                         <div onClick={onLogout}>Sign out of SlackX</div>
                     </div>
                 </div>}
+                {showProfile && <UserProfile user={user}/>}
             </div>
         </div>
     )

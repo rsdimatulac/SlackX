@@ -46,5 +46,6 @@ class User(db.Model, UserMixin):
       "lastname": self.lastname,
       "bio": self.bio,
       "avatar": self.avatar,
-      "email": self.email
+      "email": self.email,
+      "created_at": self.created_at
     }

@@ -1,40 +1,66 @@
 .ErrorPage {
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: #4a154b;
-    height:710px;
+    height: 680px;
     overflow: hidden;
-
-}
-
-.error_img{
-
+    box-sizing: border-box;
+    padding-top: 80px;
 }
 
 #kimi {
-    height: 500px;
-    margin-top: 230px;
-
+    height: 520px;
+    margin-top: 90px;
+    margin-left: 70px;
 }
 
 .error_text {
-    margin-top: 200px;
     text-align: center;
     color: white;
+    margin: 0 50px;
 }
 
-.error_text h1{
+.error_text h1 {
     font-size: 145px
 }
 
-.error_text h2{
+.error_text h2 { 
     font-size: 50px
-
 }
 
 .error_text p {
-    margin-left: 50px;
-    margin-right: 50px;
+    text-align: left;
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
+    line-height: 20px;
+    font-size: 17px;
+}
+
+.error_text h6 {
+    text-align: left;
+    padding-bottom: 18px;
+}
+
+.links__container {
+    text-align: left;
+    line-height: 20px;
+}
+
+.links__container > li {
+    color: white;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+
+.links__list {
+    color: #58d0ee;
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 27px;
+    font-weight: 500;
+}
+
+.links__list:hover {
+    text-decoration: underline;
 }
