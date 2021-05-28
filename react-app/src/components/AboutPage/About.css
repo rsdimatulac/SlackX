@@ -1,9 +1,96 @@
 .about {
+    /* background-color: #0b2440; */
+    /* height: 200vh; */
+    display: flex;
+    flex-direction: column;
+}
+.upper__section{
+    height: 590px;
     background-color: #0b2440;
-    height: 92vh;
+
 }
 
-.about > h1 {
+.upper__section > h1 {
     color: white;
-    font-size: 30px;
+    font-size: 100px;
+    display: flex;
+    margin-top: 180px;
+    margin-left: 230px;
+
+}
+
+.intro {
+    color: white;
+    margin-top: 30px;
+    margin-left: 230px;
+    line-height: 20px;
+    letter-spacing: 2.4px;
+    display: flex;
+    width: 600px;
+
+}
+.down__section {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #f1f2f2;
+
+}
+.middle__text{
+    margin-top: 50px;
+    text-align: center;
+}
+.middle__text h2{
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+.middle__text p{
+    line-height: 30px;
+    color: rgba(0, 0, 0, 0.733);
+    font-weight: 450;
+}
+
+.badges{
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    margin: 50px 100px;
+
+}
+.test_card{
+    height:600px;
+    width: 240px;
+    /* background-color: red; */
+}
+.test_card img{
+    height: 240px;
+    width: 240px;
+    object-fit: cover;
+}
+.test_card p{
+    word-break: normal;
+    margin-top: 30px;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.733);
+}
+.test_card h1 {
+    margin-top: 20px;
+    font-size: 20px;
+}
+.test_card h4{
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 2;
+    color: rgba(0, 0, 0, 0.514);
+
+}
+.socialmedia{
+    margin-top: 13px;
+    display: flex;
+    justify-items: normal;
+    margin-right: 20px;
+}
+.socialmedia a{
+    margin-right: 10px;
+    color: black;
 }

@@ -28,10 +28,12 @@ def handle_chat(data):
         body=data['body'],
         created_at=data['created_at']
     )
-    print('New Message:', new_message)
+
     db.session.add(new_message)
     db.session.commit()
-
+    messages = Message.query.filter(Message.user_id == data['user_id'], Message.body == data['body']).all()
+    ourMsg = messages[len(messages) - 1]
+    data['id'] = ourMsg.id
     emit(data["channel_id"], data, broadcast=True)
     return None
 
