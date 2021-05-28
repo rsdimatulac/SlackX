@@ -79,7 +79,9 @@ const Chatbox = () => {
     const sendChat = (e) => {
         e.preventDefault()
         // check for user credential
-        socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
+        if (chatInput.length > 0) {
+            socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
+        }
 
         setChatInput("")
     }
@@ -98,6 +100,7 @@ const Chatbox = () => {
                         className="input__box"
                         placeholder={currentChannel?.channel_type === "dm" ? `Message${getNames(currentChannel?.users)}` : `Message #${currentChannel?.name}`}
                         value={chatInput}
+
                         onChange={updateChatInput}
                     />
                     {chatInput ?
@@ -111,10 +114,10 @@ const Chatbox = () => {
 
     }
 
-    const editInputBox = (body, i) => {
+    const editInputBox = (body) => {
         return (
             <div className="input__wrap">
-                <form method="post" action="" onSubmit={sendChat}>
+                <form method="post" action="" onSubmit={() => {}}>
                     <input
                         className="input__box"
                         value={body ? body : editChatInput}
@@ -125,6 +128,12 @@ const Chatbox = () => {
             </div>
         )
     }
+    // const onKeyPressEdit = async(e) => {
+    //     e.preventDefault()
+    //     if (editChatInput.length > 0 && e.key === 'Enter') {
+    //         handleEdit()
+    //     }
+    // }
 
     const handleEdit = async (message_id, chatInput) => {
         await dispatch(editMessageThunk(message_id, chatInput))
@@ -137,6 +146,7 @@ const Chatbox = () => {
         await dispatch(deleteMessageThunk(message_id))
         await dispatch(getChannels())
     }
+
 
     const loggedUserMsgOptions = (message) => {
         return (
