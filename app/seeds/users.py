@@ -6,26 +6,18 @@ fake = Faker()
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    channels = Channel.query.all()
-    public_channel = channels[0]
-    private_channel = channels[1]
-    dm_channel = channels[2]
-
     demo = User(
         firstname="Demo", 
         lastname="User", 
         email='demouser@slackx.com',
         password='password',
         bio='I am Iron Man',
+        avatar='https://slackx.s3.amazonaws.com/kimi.png'
     )
-    demo.channels.append(public_channel)
-    demo.channels.append(private_channel)
-    demo.channels.append(dm_channel)
-    
-
     db.session.add(demo)
     db.session.commit()
 
+    
     users = [
         {
             "firstname": "Ren", 
@@ -33,7 +25,8 @@ def seed_users():
             "email": 'ren@minion.com',
             "password": 'password',
             "bio": "I'm secretly the smartest person in class, and I'm the unofficial group leader",
-            "channels": ['public', 'dm']
+            "channels": ['public', 'dm'],
+            "avatar": "https://slackx.s3.amazonaws.com/renerose.jpg"
         },
         {
             "firstname": "Earl", 
@@ -41,7 +34,8 @@ def seed_users():
             "email": 'wheremy@mfood.com',
             "password": 'password',
             "bio": "I'm 75% here, and I'm hungary",
-            "channels": ['public', 'private']
+            "channels": ['public', 'private'],
+            "avatar": "https://slackx.s3.amazonaws.com/earl.jpg"
         },
         {
             "firstname": "Vivian", 
@@ -49,7 +43,9 @@ def seed_users():
             "email": 'cutedog@kimi.com',
             "password": 'password',
             'bio': 'I have a cute dog, and CSS-MASTER!!!!',
-            "channels": ['public']
+            "channels": ['public'],
+            "avatar": "https://slackx.s3.amazonaws.com/vivian.png"
+
         },
         {
             "firstname": "Nathaniel", 
@@ -57,7 +53,8 @@ def seed_users():
             "email": 'hotdogs@7up.com',
             "password": 'password',
             'bio': 'I love white shirts, and building games.',
-            "channels": ['public']
+            "channels": ['public'],
+            "avatar": "https://slackx.s3.amazonaws.com/nathaniel.jpg"
         },
     ]
 
@@ -67,30 +64,24 @@ def seed_users():
             lastname=user['lastname'],
             email=user['email'],
             password=user['password'],
-            bio=user['bio']
+            bio=user['bio'],
+            avatar=user['avatar']
         )
-        user_channels = user['channels']
-        for user_channel in user_channels:
-            if user_channel == 'public':
-                new_user.channels.append(public_channel)
-            elif user_channel == 'private':
-                new_user.channels.append(private_channel)
-            elif user_channel == 'dm':
-                new_user.channels.append(dm_channel)
 
         db.session.add(new_user)
         db.session.commit()
 
-    # for _i in range(16):
-    #     new_user = User(
-    #     firstname=fake.first_name(), 
-    #     lastname=fake.last_name(), 
-    #     email=fake.free_email(),
-    #     password='password',
-    #     bio=fake.paragraph(nb_sentences=randint(1,3)),
-    #     )
-    #     db.session.add(new_user)
-    #     db.session.commit()
+    for _i in range(15):
+        new_user = User(
+        firstname=fake.first_name(), 
+        lastname=fake.last_name(), 
+        email=fake.free_email(),
+        password='password',
+        bio=fake.paragraph(nb_sentences=randint(1,3)),
+        avatar=fake.image_url()
+        )
+        db.session.add(new_user)
+        db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
