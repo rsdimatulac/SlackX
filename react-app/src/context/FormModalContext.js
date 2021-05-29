@@ -9,6 +9,7 @@ export const FormModalContext = (props) => {
     const [showDMForm, setShowDMForm] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
     const [showDropdownMenu, setShowDropdownMenu] = useState(false);
+    const [isActive, setIsActive] = useState(true);
 
     const handleDropdownMenu = () => {
         setShowDropdownMenu(prevState => !prevState);
@@ -45,7 +46,8 @@ export const FormModalContext = (props) => {
             showDMForm, setShowDMForm,
             handleChannelFormModal, handleDMFormModal, 
             handleProfileModal, showProfile,
-            handleDropdownMenu, showDropdownMenu
+            handleDropdownMenu, showDropdownMenu,
+            isActive, setIsActive
         }}>
             {props.children}
         </context.Provider>

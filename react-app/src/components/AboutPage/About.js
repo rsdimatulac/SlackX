@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { BiWorld as Website } from "react-icons/bi";
 import SlackLogoBlack from '../../imgs/slack_logo_black.png';
 import SlackLogoWhite from "../../imgs/slack_logo_white.png";
 import "./About.css";
@@ -39,7 +40,7 @@ const About = () => {
         <div className="about">
             <div className="upper__section">
                 <h1>Hello</h1>
-                <p className="intro">We're a group of problem-solvers, creators, <br /> coders, storytellers, and developers at App Academy. <br />We use innovative design and modern technologies <br />to empower humans and simplify life.</p>
+                <p className="intro">We're a group of problem-solvers, creators, <br /> coders, storytellers, and developers at App Academy. <br />We use modern design and innovative technologies <br />to empower humans and simplify life.</p>
             </div>
             <div className="down__section">
                 <div className="middle__text">
@@ -58,8 +59,11 @@ const About = () => {
                             <a href="https://www.linkedin.com/in/nathaniel-cooke-NRD">
                                 <FaLinkedinIn color='#0072b1' size={30} id="linkedinIn" />
                             </a>
+                            <a className="website" href="https://nathanieldcooke.github.io/">
+                                <Website id="website_n"/>
+                            </a>
                         </div>
-                        <p>Based in Las Vegas, Nevada. I have strong Full-Stack Web-Development experience. Having built few websites and games, I continue to grow as a developer everyday. While on this journey, I hope we can build some awesome applications together!</p>
+                        <p>Based in Las Vegas, Nevada. I have strong full-stack web development experience. Having built few websites and games, I continue to grow as a developer everyday. While on this journey, I hope we can build some awesome applications together!</p>
                     </div>
                     <div className="test_card">
                         <img src="https://slackx.s3.amazonaws.com/earl.jpg" alt=""></img>
@@ -85,6 +89,9 @@ const About = () => {
                             </a>
                             <a href="https://www.linkedin.com/in/renerosedimatulac/">
                                 <FaLinkedinIn color='#0072b1' size={30} id="linkedinIn" />
+                            </a>
+                            <a href="https://rsdimatulac.github.io/">
+                                <Website id="website_r"/>
                             </a>
                         </div>
                         <p>I’m a Software Engineer with a bachelor's degree in Electronics Engineering. I am many things in this lifetime— a licensed pilot, a licensed engineer, but most prevalent and importantly, is a student. My goal is to use the knowledge I have, and continuously hone my skills to find innovative solutions in solving real world problems.</p>
