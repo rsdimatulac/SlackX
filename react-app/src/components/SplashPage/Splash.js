@@ -138,11 +138,11 @@ function SplashPage({isLoaded}) {
     <div className="body__splash">
         <div className="MainBKG">
             <NavBar />
-            <div className="opening_title">SlackX makes <span className="orange">downright pleasant</span><br /> to work together</div>
+            <div className="opening_title">SlackX makes it <span className="orange">downright pleasant</span><br /> to work together</div>
             <img className="splash_page_top_img" src={IntroImg} alt=""/>
             <div className="splash_page_container">
                 <div className="splash_page_container_left">
-                     <div id="title1" className="splash_title_1" style={{ fontSize: 0 }}>It brings your whole team together with these features</div>
+                     <div id="title1" className="splash_title_1" style={{ fontSize: 0 }}>SlackX brings your whole team together with these features</div>
                      <div id="title2" className="splash_title_2" style={{ fontSize: 0 }}>SlackX is built with these technologies</div>
                      <div id="title3" className="splash_title_3" style={{ fontSize: 0 }}> 
                         Meet the developers<br /> of SlackX
