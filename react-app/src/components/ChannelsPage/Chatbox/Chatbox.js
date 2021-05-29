@@ -80,7 +80,12 @@ const Chatbox = () => {
         e.preventDefault()
         // check for user credential
         if (chatInput.length > 0) {
-            socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString(), updated_at: new Date().toGMTString() })
+            socket.emit("chat", {
+                user_id: user?.id,
+                body: chatInput,
+                channel_id: channelId,
+                created_at: new Date().toGMTString(),
+                updated_at: new Date().toGMTString() })
         }
 
         setChatInput("")
