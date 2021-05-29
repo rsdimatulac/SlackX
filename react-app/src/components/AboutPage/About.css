@@ -98,5 +98,17 @@
 }
 
 #linkedinIn:hover {
-    opacity: 0.9;
+    opacity: 0.8;
+}
+
+#website_n,
+#website_r {
+    color: gray;
+    font-size: 30px; 
+}
+
+#website_n:hover,
+#website_r:hover {
+    color: rgb(199, 59, 59);
+    /* color: rgb(121, 37, 37); */
 }

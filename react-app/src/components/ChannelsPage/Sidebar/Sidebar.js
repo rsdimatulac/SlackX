@@ -11,6 +11,7 @@ import { MdKeyboardArrowDown as ShowLessIcon } from "react-icons/md";
 import { RiAddFill as AddIcon } from "react-icons/ri";
 import { FiLock as Private } from "react-icons/fi";
 import { FaHashtag as Hash } from "react-icons/fa";
+import { MdFiberManualRecord as StatusIcon } from "react-icons/md";
 import { getChannels } from '../../../store/channel';
 import ChannelModal from "../ChannelModal/ChannelModal";
 import DmModal from "../ChannelModal/DmModal";
@@ -22,7 +23,7 @@ import "./Sidebar.css";
 const Sidebar = ({ user }) => {
     const channels = useSelector(state => state.channels);
     const [showChannel, setShowChannel] = useState(false);
-    const { showChannelForm, showDMForm, handleChannelFormModal, handleDMFormModal } = useConsumeContext();
+    const { showChannelForm, showDMForm, handleChannelFormModal, handleDMFormModal, isActive } = useConsumeContext();
     const [showDM, setShowDM] = useState(false);
     const [dm, setDM] = useState([])
     const [pp, setPP] = useState([])
@@ -79,6 +80,7 @@ const Sidebar = ({ user }) => {
                     <div className="sidebar__name">
                         <h2>SlackX</h2>
                         <h3>
+                            <StatusIcon className={isActive ? "status__icon" : "status__icon away"} />
                             <p>{`Welcome, ${user?.firstname} ${user?.lastname}!`}</p>
                         </h3>
                     </div>

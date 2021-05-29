@@ -3,17 +3,17 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import { BsPersonSquare as Avatar } from "react-icons/bs";
-import { FaSearch as SearchIcon } from "react-icons/fa";
-import { MdHelpOutline as HelpIcon } from "react-icons/md";
-import { BiTime as TimeIcon } from "react-icons/bi";
+// import { FaSearch as SearchIcon } from "react-icons/fa";
+// import { MdHelpOutline as HelpIcon } from "react-icons/md";
+// import { BiTime as TimeIcon } from "react-icons/bi";
 import { MdFiberManualRecord as StatusIcon } from "react-icons/md";
 import useConsumeContext from "../../context/FormModalContext";
 import UserProfile from "./UserProfile";
 import "./Header.css";
 
 const Header = ({ user }) => {
-    const { showProfile, handleProfileModal, showDropdownMenu, handleDropdownMenu } = useConsumeContext();  
-    const [isActive, setIsActive] = useState(true);
+    const { showProfile, handleProfileModal, showDropdownMenu, handleDropdownMenu, isActive, setIsActive } = useConsumeContext();
+    // const [isActive, setIsActive] = useState(true);
     const dispatch = useDispatch();
 
     const handleProfileDropdown = () => {
@@ -75,7 +75,7 @@ const Header = ({ user }) => {
                             </a>
                         </div>
                         <NavLink to="/about" style={{ textDecoration: "none", color: "inherit" }}>
-                            <div>Meet the team</div>
+                            <div onClick={handleDropdownMenu}>Meet the team</div>
                         </NavLink>
                         <hr />
                         <div onClick={onLogout}>Sign out of SlackX</div>
