@@ -110,12 +110,17 @@
 }
 
 #remove__icon {
-    margin-top: 0px;
-    font-size: 20px;
-    padding: 1px 1px 0px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-end;
 }
 
-#remove__icon:hover {
+#remove__icon > div {
+    padding: 2px 3px;
+}
+
+#remove__icon > div:hover {
     cursor: pointer;
     background-color: lightgray;
     border-radius: 3px;

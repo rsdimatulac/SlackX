@@ -48,8 +48,12 @@ const DmModal = () => {
         setDMSearchInput("");
     }
 
-    const removeUserToDM = () => {
+    const removeUserToDM = (e) => {
+        const userId = Number(e.target.className);
 
+        // only return the users that does not match the userID clicked, that userId must be removed
+        const usersToDMDup = usersToDM.filter(user => user.id !== userId);
+        setUsersToDM(usersToDMDup);
     }
 
     const handleSubmit = async(e) => {
@@ -75,13 +79,15 @@ const DmModal = () => {
                                 {/* ADDED USERS  */}
                                 <div className="added__users__wrap">
                                     {usersToDM.length > 0 && usersToDM.map(user => 
-                                        (<div key={user['id']} className="dm__added__users">
+                                        (<div key={user['id']} className={`${user['id']} dm__added__users`}>
                                             <div className={`dm__added__avatar`}>
                                                 <img src={user['avatar']} alt="" />
                                             </div>
-                                            <div className={`dm__added__name `}>
+                                        <div className={`dm__added__name`}>
                                                 <p>{user['firstname']} {user['lastname']}</p>
-                                                <span id="remove__icon"><RemoveIcon onClick={removeUserToDM}/></span>
+                                            <span id="remove__icon" ><div className={`${user['id']}`} onClick={removeUserToDM}>X</div></span>
+                                            {/* <span id="remove__icon" onClick={removeUserToDM}><div className={`${user['id']}`}>x</div></span> */}
+                                            {/* <span id="remove__icon" onClick={removeUserToDM}><div className={`${user['id']}`} ><RemoveIcon /></div></span> */}
                                             </div>
                                         </div>)    
                                     )}
