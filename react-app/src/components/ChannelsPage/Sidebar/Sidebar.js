@@ -67,9 +67,6 @@ const Sidebar = ({ user }) => {
             names += `, ${namesArray[i].name}`
         }
 
-        // for (let name in dic_of_names) {
-        //     names += `, ${dic_of_names[name].name}`
-        // }
         return namesArray.length === 2 ? `${names.slice(1, names.length)}` : `${names.slice(1, 26)}...`
     }
 
@@ -84,7 +81,6 @@ const Sidebar = ({ user }) => {
                             <p>{`Welcome, ${user?.firstname} ${user?.lastname}!`}</p>
                         </h3>
                     </div>
-                    {/* TODO: Add an onClick for /search modal to create a message and search users */}
                     <div className="sidebar__create">
                         <CreateIcon id="create__icon" />
                     </div>
