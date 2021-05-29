@@ -80,7 +80,7 @@ const Chatbox = () => {
         e.preventDefault()
         // check for user credential
         if (chatInput.length > 0) {
-            socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString() })
+            socket.emit("chat", { user_id: user?.id, body: chatInput, channel_id: channelId, created_at: new Date().toGMTString(), updated_at: new Date().toGMTString() })
         }
 
         setChatInput("")
@@ -104,6 +104,7 @@ const Chatbox = () => {
                         placeholder={currentChannel?.channel_type === "dm" ? `Message${getNames(currentChannel?.users)}` : `Message #${currentChannel?.name}`}
                         value={chatInput}
                         onChange={updateChatInput}
+                        required
                     />
                     {chatInput ?
                         <button className="send__button enabled" type="submit"><SendButton /></button>
@@ -118,7 +119,8 @@ const Chatbox = () => {
 
     const handleEdit = (message_id, chatInput) => async (e) => {
         e.preventDefault()
-        await dispatch(editMessageThunk(message_id, chatInput))
+        const updated_at = new Date().toGMTString()
+        await dispatch(editMessageThunk(message_id, chatInput, updated_at))
         setEditMessage(false)
         setEditChatInput('')
         await dispatch(getChannels())
@@ -133,7 +135,6 @@ const Chatbox = () => {
                         className="input__box"
                         value={editChatInput}
                         onChange={updateEditChatInput}
-                        required
                     />
                 </form>
             </div>
@@ -195,7 +196,9 @@ const Chatbox = () => {
                                         <span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span>
                                         {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
                                     </h2>
-                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message)) : (<p>{message?.body}<span>Test</span></p>)}
+                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message)) : (<p>{message?.body}
+                                        <span className="content__edited-tag">{(message.created_at !== message.updated_at) && " (edited)"}</span>
+                                    </p>)}
                                 </div>
                             </div>
                         ))}

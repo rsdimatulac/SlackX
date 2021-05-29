@@ -102,3 +102,7 @@
     color: white;
 }
 
+.content__edited-tag {
+    font-size: .75em;
+    opacity: .4;
+}
