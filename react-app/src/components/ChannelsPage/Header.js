@@ -29,19 +29,18 @@ const Header = ({ user }) => {
     return (
         <div className="header">
             <div className="header__left">
-                <TimeIcon id="time__icon"/>
+                {/* <TimeIcon id="time__icon"/> */}
             </div>
-            {/* TODO: ADD onClick here to open Search Modal */}
             <div className="header__search">
-                <div id="search__icon">
+                {/* <div id="search__icon">
                     <SearchIcon />
                 </div>
-                <p>Search SlackX</p>
+                <p>Search SlackX</p> */}
             </div>
 
             <div className="header__right">
                 <div id="help__icon">
-                    <HelpIcon />
+                    {/* <HelpIcon /> */}
                 </div>
                 <div className="header__avatar" onClick={handleDropdownMenu}>
                     {user ? <img className="avatar__image" src={user?.avatar} alt=""/> : <Avatar id="avatar__icon"/>}

@@ -33,7 +33,7 @@ const ErrorPage = () =>{
                 </ul>
             </div>
             <div className="error_img">
-                <img id="kimi" src={kimi404}></img>
+                <img id="kimi" src={kimi404} alt=""/>
             </div>
         </div>
     )

@@ -38,9 +38,15 @@
     font-weight: 400;
 }
 
-.header__search:hover {
+/* .header__search:hover {
     cursor: pointer;
     border-color: rgb(219, 218, 218);
+} */
+
+/* HIDING the SEARCH, REMOVE THIS WHEN IMPLEMENTED */
+.header__search {
+    background-color: inherit;
+    border: none;
 }
 
 #search__icon {
@@ -183,3 +189,5 @@
     border-width: thin;
     border-color: rgba(211, 211, 211, 0.336);
 }
+
+
