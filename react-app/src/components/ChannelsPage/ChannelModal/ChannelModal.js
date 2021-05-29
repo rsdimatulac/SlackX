@@ -58,6 +58,7 @@ const ChannelModal = () => {
                                 onChange={e => setChannelName(e.target.value.toLowerCase().split(" ").join("-"))}
                                 value={channelName}
                                 required
+                                autoComplete="off"
                             ></input>
                         </div>
                         <div className="channel__private__info">
