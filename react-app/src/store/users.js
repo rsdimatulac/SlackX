@@ -12,8 +12,8 @@ export const getUsers = () => async (dispatch) => {
         if (!res.ok) throw res
         const users = await res.json()
         dispatch(setUsers(users))
-    } catch(err) {
-        console.log(err)
+    } catch(error) {
+        console.log(error)
     }
 }
 

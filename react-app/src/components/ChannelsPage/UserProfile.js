@@ -6,7 +6,7 @@ import useConsumeContext from "../../context/FormModalContext";
 import "./UserProfile.css";
 
 const UserProfile = ({ user }) => {
-    const { handleProfileModal, isActive, setIsActive } = useConsumeContext();
+    const { handleProfileModal, isActive } = useConsumeContext();
 
     return (
         <>

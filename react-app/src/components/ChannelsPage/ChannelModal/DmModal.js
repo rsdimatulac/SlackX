@@ -25,7 +25,6 @@ const DmModal = () => {
         }
 
         if (e.target.value.length > 0) {
-            console.log("letters", e.target.value)
             let filteredResults = users.filter(user => 
                 user['firstname']?.toLowerCase().includes(e.target.value.toLowerCase()) 
                 || user['lastname']?.toLowerCase().includes(e.target.value.toLowerCase())
