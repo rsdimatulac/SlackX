@@ -30,7 +30,7 @@ export const getMessages = (channel_id) => async (dispatch) => {
     }
 }
 
-export const editMessageThunk = (message_id, body) => async (dispatch) => {
+export const editMessageThunk = (message_id, body, updated_at) => async (dispatch) => {
     const res = await fetch(`/api/messages/${message_id}`, {
         method: 'PATCH',
         headers: {
@@ -38,7 +38,8 @@ export const editMessageThunk = (message_id, body) => async (dispatch) => {
         },
         body: JSON.stringify({
             message_id,
-            body
+            body,
+            updated_at
         })
     })
 

@@ -26,7 +26,8 @@ def handle_chat(data):
         user_id=data['user_id'],
         channel_id=data['channel_id'],
         body=data['body'],
-        created_at=data['created_at']
+        created_at=data['created_at'],
+        updated_at=data['updated_at']
     )
 
     db.session.add(new_message)
