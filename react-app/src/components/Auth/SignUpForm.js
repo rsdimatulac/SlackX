@@ -62,6 +62,7 @@ const SignUpForm = () => {
             onChange={e => setFirstname(e.target.value)}
             value={firstname}
             required
+            autoComplete="off"
           ></input>
         </div>
         <div className="signup__input">
@@ -72,6 +73,7 @@ const SignUpForm = () => {
             onChange={e => setLastname(e.target.value)}
             value={lastname}
             required
+            autoComplete="off"
           ></input>
         </div>
         <div className="signup__input">
@@ -82,6 +84,7 @@ const SignUpForm = () => {
             onChange={e => setEmail(e.target.value)}
             value={email}
             required
+            autoComplete="off"
           ></input>
         </div>
         <div className="signup__input">
@@ -92,6 +95,7 @@ const SignUpForm = () => {
             onChange={e => setPassword(e.target.value)}
             value={password}
             required
+            autoComplete="off"
           ></input>
         </div>
         <div className="signup__input">
@@ -102,6 +106,7 @@ const SignUpForm = () => {
             onChange={e => setConfirmPassword(e.target.value)}
             value={confirmPassword}
             required
+            autoComplete="off"
           ></input>
         </div>
         <div className="signup__button">

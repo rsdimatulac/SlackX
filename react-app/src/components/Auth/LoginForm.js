@@ -73,6 +73,7 @@ const LoginForm = () => {
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
+            autoComplete="off"
           />
         </div>
         <div className="login__input">
@@ -83,6 +84,7 @@ const LoginForm = () => {
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
+            autoComplete="off"
           />
         </div>
         <div className="login__button">
