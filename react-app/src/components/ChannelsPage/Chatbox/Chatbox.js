@@ -127,7 +127,6 @@ const Chatbox = () => {
     }
 
     const editInputBox = (message) => {
-        console.log(message)
         return (
             <div className="input__edit__wrap">
                 <form method="post" action="" onSubmit={handleEdit(message.id, editChatInput)}>
@@ -166,13 +165,12 @@ const Chatbox = () => {
             </div>)
     }
 
-
-
-
     const getNames = (dic_of_names) => {
-        let names = ''
-        for (let name in dic_of_names) {
-            names += `, ${dic_of_names[name].name}`
+        const namesArray = Object.values(dic_of_names);
+        let names = '';
+
+        for (let i = 1; i < namesArray.length; i++) {
+            names += `, ${namesArray[i].name}`
         }
         return names.slice(1, names.length)
     }

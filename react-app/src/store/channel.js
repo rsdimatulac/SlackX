@@ -19,8 +19,8 @@ export const getChannels = () => async (dispatch) => {
         const channels = await res.json()
         dispatch(setChannels(channels))
 
-    } catch (err) {
-        console.log(err)
+    } catch (error) {
+        console.log(error)
     }
 }
 
@@ -53,7 +53,6 @@ export const createDM = (user_ids) => async (dispatch) => {
         },
         body: JSON.stringify({ user_ids })
     })
-    console.log("Inside the DM thunk")
     try {
         if (!res.ok) throw res
         const dm = await res.json();
