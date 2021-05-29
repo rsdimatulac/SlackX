@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
   lastname = db.Column(db.String(50), nullable=False)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  avatar = db.Column(db.String(360), default='https://slackx.s3.amazonaws.com/user-1.jpg')
+  avatar = db.Column(db.String(360), nullable=False, default='https://slackx.s3.amazonaws.com/user-1.jpg')
   bio = db.Column(db.Text)
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now())
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now())
@@ -46,5 +46,6 @@ class User(db.Model, UserMixin):
       "lastname": self.lastname,
       "bio": self.bio,
       "avatar": self.avatar,
-      "email": self.email
+      "email": self.email,
+      "created_at": self.created_at
     }
