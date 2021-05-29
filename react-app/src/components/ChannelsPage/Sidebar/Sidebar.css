@@ -95,6 +95,38 @@
     background-color: #350D36;
 }
 
+
+.dm__list__avatar {
+    height: 27px;
+    width: 27px;
+    border-radius: 5px;
+    margin-right: 6px;
+    display: flex;
+    position: relative;
+}
+
+.dm__list__avatar img {
+    height: 23px;
+    width: 23px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.dm__list__count {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #3F0E40;
+    padding: 1.5px 3px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.dm__list__names {
+    display: flex;
+}
+
 .private__icon {
     padding-right: 10px;
     font-size: 15px;

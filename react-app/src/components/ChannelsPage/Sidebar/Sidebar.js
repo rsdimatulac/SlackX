@@ -43,7 +43,6 @@ const Sidebar = ({ user }) => {
         let dmArr = []
         let ppArr = []
         for (let channel in channels) {
-
             if (channels[channel].channel_type === "dm") {
                 dmArr.push(channels[channel])
             } else {
@@ -60,11 +59,17 @@ const Sidebar = ({ user }) => {
     }, [channels, dm, pp])
 
     const get_names = (dic_of_names) => {
-        let names = ''
-        for (let name in dic_of_names) {
-            names += `, ${dic_of_names[name].name}`
+        const namesArray = Object.values(dic_of_names);
+        let names = '';
+
+        for (let i = 1; i < namesArray.length; i++) {
+            names += `, ${namesArray[i].name}`
         }
-        return names.slice(1, names.length)
+
+        // for (let name in dic_of_names) {
+        //     names += `, ${dic_of_names[name].name}`
+        // }
+        return namesArray.length === 2 ? `${names.slice(1, names.length)}` : `${names.slice(1, 26)}...`
     }
 
     return (
@@ -118,7 +123,13 @@ const Sidebar = ({ user }) => {
                         {showDM &&
                             (<div>{dm?.map(channel => (
                                 <NavLink key={`dm${channel.id}`} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-                                    <div className="channels__div">{get_names(channel.users)}</div>
+                                    <div className="channels__div">
+                                        <div className="dm__list__avatar">
+                                            <img src={Object.values(channel.users).length === 2 ? Object.values(channel.users)[1].avatar : "https://slackx.s3.amazonaws.com/avatar.png"} alt="" />
+                                            <span className="dm__list__count">{Object.keys(channel.users).length !== 2 ? `${Object.keys(channel.users).length}` : null }</span>
+                                        </div>
+                                        <div className="dm__list__names">{get_names(channel.users)}</div>
+                                    </div>
                                 </NavLink>
                             ))}
                             </div>)}

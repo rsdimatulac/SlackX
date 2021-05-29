@@ -1,5 +1,4 @@
 .chatbox {
-    /* grid-area: 1 / 1 / 2 / 3; */
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -16,6 +15,7 @@
     position: fixed;
     width: 100%;
     border-bottom: 2px lightgray solid;
+    overflow: hidden;
 }
 
 .chatbox__content {
