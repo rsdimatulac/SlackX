@@ -129,10 +129,10 @@ const Chatbox = () => {
     const editInputBox = (message) => {
         console.log(message)
         return (
-            <div className="input__wrap">
+            <div className="input__edit__wrap">
                 <form method="post" action="" onSubmit={handleEdit(message.id, editChatInput)}>
                     <input
-                        className="input__box"
+                        className="input__edit__box"
                         value={editChatInput}
                         onChange={updateEditChatInput}
                     />

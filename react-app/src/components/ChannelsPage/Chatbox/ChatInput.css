@@ -36,6 +36,19 @@
     border-radius: 3px;
 }
 
+.input__edit__box {
+    width: calc(100vw - 343px);
+    height: 28px;
+    outline-width: 0;
+    font-size: 15px;
+    padding-left: 8px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 3px;
+    background-color: inherit;
+}
+
 .send__button {
     position: absolute;
     top: 4px;
