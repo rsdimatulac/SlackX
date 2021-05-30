@@ -117,6 +117,33 @@ for sub in subs:
         db.session.commit() 
 ```
 
+* When a user activates the search bar, the search bar will turn into an input search box. Based on the search input value, the `handleChannelSearch()` function is invoked when an `onChange()` event occurs. It uses `.filter()` to iterate through the channels and returns and dynamically displays what matches the search input value. When a user clicks on the result, they will be redirected to the channel or direct message chatbox.
+
+`react-app/src/components/ChannelsPage/Header.js`
+```js
+const handleChannelSearch = (e) => {
+    if (e.target.value.length > 0) {
+        let filteredResults = userChannels.filter(channel => {
+            if (channel.channel_type === "dm") {
+                let usernames = Object.values(channel.users).map(u => u.name.toLowerCase());
+                usernames = usernames.filter(name => name !== `${user.firstname.toLowerCase()} ${user.lastname.toLowerCase()}`);
+
+                for (let username of usernames) {
+                    if (username.includes(e.target.value.toLowerCase())) {
+                        return true;
+                    }
+                }
+                return false;
+            } else {
+                return channel['name']?.toLowerCase().includes(e.target.value.toLowerCase())
+            }
+        });
+        setChannelSearchInput(e.target.value);
+        setChannels(filteredResults);
+    }
+}
+```
+
 #### Challenges
 * One of the team's biggest challenges was implementing `socket.io` in our application for the Live Chat feature. Having zero knowledge of the concept motivated us to find useful documentation and use resources at our disposal. After researching and seeking guidance from our advisors, we succesfully implemented a websocket that listens to a `chat` event which then broadcasts the messages to the channel it was sent to. This resulted to a fully functioning Live Chat which is the main feature of SlackX.
 
