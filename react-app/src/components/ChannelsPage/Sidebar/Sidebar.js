@@ -75,10 +75,21 @@ const Sidebar = ({ user }) => {
         let names = '';
 
         for (let i = 1; i < namesArray.length; i++) {
+            if (`${user.firstname} ${user.lastname}` === namesArray[i].name) continue;
+
             names += `, ${namesArray[i].name}`
         }
 
-        return namesArray.length === 2 ? `${names.slice(1, names.length)}` : `${names.slice(1, 26)}...`
+        const newNamesArray = namesArray.filter(eachUser => `${user.firstname} ${user.lastname}` !== eachUser.name).map(user => user.name)
+
+        return newNamesArray.length === 1 ? newNamesArray[0] : newNamesArray.join(", ").slice(0, 23) + "..."
+    }
+
+    const getAvatar = (dic_of_names) => {
+        const namesArray = Object.values(dic_of_names);
+        const newNamesArray = namesArray.filter(eachUser => eachUser.id !== user.id);
+
+        return newNamesArray.length === 1 ? newNamesArray[0].avatar : "https://slackx.s3.amazonaws.com/avatar.png";
     }
 
     return (
@@ -150,7 +161,8 @@ const Sidebar = ({ user }) => {
                                 <NavLink key={`dm${channel.id}`} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                                     <div className="channels__div">
                                         <div className="dm__list__avatar">
-                                            <img src={Object.values(channel.users).length === 2 ? Object.values(channel.users)[1].avatar : "https://slackx.s3.amazonaws.com/avatar.png"} alt="" />
+                                            {/* {console.log("USERSSSSSSavatar", channel.users)} */}
+                                            <img src={getAvatar(channel.users)} alt="" />
                                             <span className="dm__list__count">{Object.keys(channel.users).length !== 2 ? `${Object.keys(channel.users).length}` : null }</span>
                                         </div>
                                         <div className="dm__list__names">{get_names(channel.users)}</div>
