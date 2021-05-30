@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
@@ -7,23 +7,34 @@ import { BsPersonSquare as Avatar } from "react-icons/bs";
 // import { MdHelpOutline as HelpIcon } from "react-icons/md";
 // import { BiTime as TimeIcon } from "react-icons/bi";
 import { MdFiberManualRecord as StatusIcon } from "react-icons/md";
+// import Search from "./Search";
 import useConsumeContext from "../../context/FormModalContext";
 import UserProfile from "./UserProfile";
 import "./Header.css";
 
 const Header = ({ user }) => {
-    const { showProfile, handleProfileModal, showDropdownMenu, handleDropdownMenu, isActive, setIsActive } = useConsumeContext();
-    // const [isActive, setIsActive] = useState(true);
+    const { showProfile, handleProfileModal, 
+        showDropdownMenu, handleDropdownMenu, 
+        isActive, setIsActive, setShowChannelForm,
+        setShowDMForm, setShowProfile,
+        setShowDropdownMenu, setShowCreateModal
+    } = useConsumeContext();
+    
     const dispatch = useDispatch();
 
     const handleProfileDropdown = () => {
-        handleProfileModal()
-        handleDropdownMenu()
+        handleProfileModal();
+        handleDropdownMenu();
     }
     
-    const onLogout = async (e) => {
+    const onLogout = async (e) => { // close all the modals
         dispatch(logout());
-        handleDropdownMenu()
+        handleDropdownMenu();
+        setShowChannelForm(false);
+        setShowDMForm(false);
+        setShowProfile(false);
+        setShowDropdownMenu(false);
+        setShowCreateModal(false);
     };
 
     return (
@@ -37,7 +48,7 @@ const Header = ({ user }) => {
                 </div>
                 <p>Search SlackX</p> */}
             </div>
-
+            {/* {showSearch && <Search /> } */}
             <div className="header__right">
                 <div id="help__icon">
                     {/* <HelpIcon /> */}

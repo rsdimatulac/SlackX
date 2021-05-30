@@ -77,8 +77,63 @@
 }
 
 .sidebar__create:hover {
-    /* cursor: pointer; */
+    cursor: pointer;
     opacity: 0.9;
+}
+
+.sidebar__create__modal {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    padding: 50px 40px;
+}
+
+.sidebar__create__modal h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.sidebar__create__modal p {
+    margin-bottom: 15px;
+    color: #808080;
+}
+
+.create__modal__div {
+    padding: 10px 0px;
+    font-weight: 500;
+}
+
+.create__modal__div:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+
+.create__modal__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    line-height: 28px;
+    margin-top: 15px;
+}
+
+.create__modal__img{
+    height: 220px;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #3f0e40;
+    box-shadow: 0px 0px 6px 6px rgba(0, 0, 0, 0.10);
+}
+
+.create__modal__img img {
+    height: 180px;
+    width: 180px;
 }
 
 .sidebar__options, 
