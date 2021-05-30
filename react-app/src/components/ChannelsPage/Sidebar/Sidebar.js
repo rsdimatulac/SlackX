@@ -161,7 +161,6 @@ const Sidebar = ({ user }) => {
                                 <NavLink key={`dm${channel.id}`} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                                     <div className="channels__div">
                                         <div className="dm__list__avatar">
-                                            {/* {console.log("USERSSSSSSavatar", channel.users)} */}
                                             <img src={getAvatar(channel.users)} alt="" />
                                             <span className="dm__list__count">{Object.keys(channel.users).length !== 2 ? `${Object.keys(channel.users).length}` : null }</span>
                                         </div>
