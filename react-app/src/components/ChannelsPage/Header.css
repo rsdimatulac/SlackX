@@ -38,16 +38,16 @@
     font-weight: 400;
 }
 
-/* .header__search:hover {
+.header__search:hover {
     cursor: pointer;
     border-color: rgb(219, 218, 218);
-} */
+}
 
 /* HIDING the SEARCH, REMOVE THIS WHEN IMPLEMENTED */
-.header__search {
+/* .header__search {
     background-color: inherit;
     border: none;
-}
+} */
 
 #search__icon {
     padding-right: 0.8rem;
@@ -75,13 +75,13 @@
     padding-right: 1rem;
 }
 
-.header__avatar:hover, 
+.header__avatar:hover,
 #avatar__image:hover {
     cursor: pointer;
     opacity: 0.9;
 }
 
-#avatar__icon { 
+#avatar__icon {
     height: 28px;
     width: 28px;
 }
@@ -189,5 +189,3 @@
     border-width: thin;
     border-color: rgba(211, 211, 211, 0.336);
 }
-
-

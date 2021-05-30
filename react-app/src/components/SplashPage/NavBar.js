@@ -51,8 +51,8 @@ const NavBar = () => {
           <button className="header__name" onClick={scrollToTech}>Technologies</button>
           <button className="header__name" onClick={scrollToTeam}> Team</button>
         </div>
-
       </div>
+
       {showFeatures && <div onMouseLeave={() => setShowFeatures(prevState => !prevState)} className="features__dropdown" >
         <div>Create account | Login </div>
         <div>Live Chat </div>
@@ -63,6 +63,7 @@ const NavBar = () => {
           See More...
         </div>
       </div>}
+
       <div className="navbar__right">
         <button className="button1" onClick={handleLoginModal} style={{ cursor: 'pointer' }}>Login</button>
         {showLogin && <LoginFormModal />}

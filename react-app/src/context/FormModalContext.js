@@ -16,6 +16,7 @@ export const FormModalContext = (props) => {
     const handleCreateModal = () => {
         setShowCreateModal(prevState => !prevState);
     };
+    const [showSearch, setShowSearch] = useState(false);
 
     const handleDropdownMenu = () => {
         setShowDropdownMenu(prevState => !prevState);
@@ -43,6 +44,10 @@ export const FormModalContext = (props) => {
         setShowSignUp(false);
     };
 
+    const handleSearchModal = () => {
+        setShowSearch((prevState) => !prevState);
+    };
+
     return (
         <context.Provider value={{
             showLogin, showSignUp,
@@ -55,6 +60,8 @@ export const FormModalContext = (props) => {
             handleDropdownMenu, showDropdownMenu, setShowDropdownMenu,
             isActive, setIsActive,
             handleCreateModal, showCreateModal, setShowCreateModal
+            , handleSearchModal,
+            showSearch, setShowSearch,
         }}>
             {props.children}
         </context.Provider>
