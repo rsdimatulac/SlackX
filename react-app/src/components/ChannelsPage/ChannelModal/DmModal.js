@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { GrFormClose as RemoveIcon } from "react-icons/gr";
 import { createDM } from "../../../store/channel";
 import useConsumeContext from "../../../context/FormModalContext";
 import { Modal } from "../../../context/Modal";
@@ -86,8 +85,6 @@ const DmModal = () => {
                                         <div className={`dm__added__name`}>
                                                 <p>{user['firstname']} {user['lastname']}</p>
                                             <span id="remove__icon" ><div className={`${user['id']}`} onClick={removeUserToDM}>X</div></span>
-                                            {/* <span id="remove__icon" onClick={removeUserToDM}><div className={`${user['id']}`}>x</div></span> */}
-                                            {/* <span id="remove__icon" onClick={removeUserToDM}><div className={`${user['id']}`} ><RemoveIcon /></div></span> */}
                                             </div>
                                         </div>)    
                                     )}
@@ -99,7 +96,6 @@ const DmModal = () => {
                                     placeholder="Start a conversation"
                                     onChange={handleDMSearch}
                                     value={dmSearchInput}
-                                    // required
                                 ></input>
 
                             </div>

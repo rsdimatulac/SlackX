@@ -36,6 +36,12 @@
     height: 24px;
     font-size: 0.8rem;
     font-weight: 400;
+    outline-width: 0;
+}
+
+.header__search::placeholder {
+    color: white;
+    text-align: center;
 }
 
 .header__search:hover {

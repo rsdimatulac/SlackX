@@ -7,11 +7,11 @@ import { FaSearch as SearchIcon } from "react-icons/fa";
 import { MdHelpOutline as HelpIcon } from "react-icons/md";
 import { BiTime as TimeIcon } from "react-icons/bi";
 import { MdFiberManualRecord as StatusIcon } from "react-icons/md";
-// import Search from "./Search";
 import useConsumeContext from "../../context/FormModalContext";
 import UserProfile from "./UserProfile";
 import SearchModal from "./SearchModal/SearchModal";
 import "./Header.css";
+
 
 const Header = ({ user }) => {
     const { showProfile, handleProfileModal,
@@ -19,11 +19,11 @@ const Header = ({ user }) => {
         isActive, setIsActive, setShowChannelForm,
         setShowDMForm, setShowProfile,
         setShowDropdownMenu, setShowCreateModal,
-        showSearch, handleSearchModal
+        showSearch, handleSearchModal, setShowSearch
     } = useConsumeContext();
 
-    // const [isActive, setIsActive] = useState(true);
     const [channels, setChannels] = useState([]);
+    const [channelSearchInput, setChannelSearchInput] = useState("");
     const dispatch = useDispatch();
     const userChannels = useSelector(state => Object.values(state.channels));
 
@@ -40,11 +40,13 @@ const Header = ({ user }) => {
         setShowProfile(false);
         setShowDropdownMenu(false);
         setShowCreateModal(false);
+        setShowSearch(false);
     };
 
     const handleChannelSearch = (e) => {
         if (e.target.value === "") {
             setChannels([]);
+            setChannelSearchInput("");
         }
 
         if (e.target.value.length > 0) {
@@ -65,7 +67,7 @@ const Header = ({ user }) => {
                     return channel['name']?.toLowerCase().includes(e.target.value.toLowerCase())
                 }
             });
-
+            setChannelSearchInput(e.target.value);
             setChannels(filteredResults);
         }
 
@@ -76,8 +78,6 @@ const Header = ({ user }) => {
             <div className="header__left">
                 <TimeIcon id="time__icon"/>
             </div>
-
-
             {!showSearch &&
                 <div className="header__search" onClick={handleSearchModal}>
                     <div id="search__icon">
@@ -86,12 +86,10 @@ const Header = ({ user }) => {
                     <p>Search SlackX</p>
                 </div>
             }
-
             {showSearch &&
-                <input className="header__search" placeholder="search channels or users" onChange={handleChannelSearch}/>
+                <input className="header__search" placeholder="Search for channels or users" value={channelSearchInput} onChange={handleChannelSearch}/>
             }
-            {showSearch && <SearchModal channels={channels}/> }
-
+            {showSearch && <SearchModal channels={channels} setChannelSearchInput={setChannelSearchInput} setChannels={setChannels}/>}
             <div className="header__right">
                 <div id="help__icon">
                     <HelpIcon />
@@ -103,7 +101,7 @@ const Header = ({ user }) => {
                     <StatusIcon className={isActive ? "status__icon" : "status__icon away"} />
                 </div>
                 {showDropdownMenu &&
-                <div className="dropdown__menu">
+                <div className="dropdown__menu" onMouseLeave={handleDropdownMenu}>
                     <div className="menu__header">
                         <div className="menu__avatar">
                             <img className="menu__image" src={user?.avatar} alt=""></img>

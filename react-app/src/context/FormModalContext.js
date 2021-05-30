@@ -10,28 +10,32 @@ export const FormModalContext = (props) => {
     const [showProfile, setShowProfile] = useState(false);
     const [showDropdownMenu, setShowDropdownMenu] = useState(false);
     const [isActive, setIsActive] = useState(true);
-    // const [showSearch, setShowSearch] = useState(false);
     const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
 
     const handleCreateModal = () => {
         setShowCreateModal(prevState => !prevState);
+        setShowSearch(false);
     };
-    const [showSearch, setShowSearch] = useState(false);
 
     const handleDropdownMenu = () => {
         setShowDropdownMenu(prevState => !prevState);
+        setShowSearch(false);
     };
 
     const handleProfileModal = () => {
         setShowProfile(prevState => !prevState);
+        setShowSearch(false);
     }
 
     const handleChannelFormModal = () =>{
         setShowChannelForm((prevState) => !prevState);
+        setShowSearch(false);
     }
 
     const handleDMFormModal = () =>{
         setShowDMForm((prevState) => !prevState);
+        setShowSearch(false);
     }
 
     const handleSignUpModal = () => {
@@ -46,6 +50,10 @@ export const FormModalContext = (props) => {
 
     const handleSearchModal = () => {
         setShowSearch((prevState) => !prevState);
+        setShowCreateModal(false);
+        setShowDMForm(false);
+        setShowChannelForm(false);
+        setShowProfile(false);
     };
 
     return (
@@ -59,9 +67,8 @@ export const FormModalContext = (props) => {
             handleProfileModal, showProfile, setShowProfile,
             handleDropdownMenu, showDropdownMenu, setShowDropdownMenu,
             isActive, setIsActive,
-            handleCreateModal, showCreateModal, setShowCreateModal
-            , handleSearchModal,
-            showSearch, setShowSearch,
+            handleCreateModal, showCreateModal, setShowCreateModal,
+            handleSearchModal, showSearch, setShowSearch,
         }}>
             {props.children}
         </context.Provider>
