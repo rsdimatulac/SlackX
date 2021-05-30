@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { GrFormClose as RemoveIcon } from "react-icons/gr";
 import { createDM } from "../../../store/channel";
 import useConsumeContext from "../../../context/FormModalContext";
 import { Modal } from "../../../context/Modal";
@@ -36,13 +35,14 @@ const DmModal = () => {
 
     const handleAddDM = (e) => {
         const userId = Number(e.target.className[0]);
-       
+        console.log("ADDED USERS TO DM", usersToDM)
         if (usersToDM.some((user) => user['id'] === userId)) {
             return; // the userId already exist
         }
 
         const user = users.find(user => user['id'] === userId);
         const usersToDMDup = usersToDM.map(user => user);
+        console.log("ADDED USERS TO DM DUP", usersToDMDup)
         usersToDMDup.push(user);
         setUsersToDM(usersToDMDup);
         setDMSearchInput("");
@@ -86,8 +86,6 @@ const DmModal = () => {
                                         <div className={`dm__added__name`}>
                                                 <p>{user['firstname']} {user['lastname']}</p>
                                             <span id="remove__icon" ><div className={`${user['id']}`} onClick={removeUserToDM}>X</div></span>
-                                            {/* <span id="remove__icon" onClick={removeUserToDM}><div className={`${user['id']}`}>x</div></span> */}
-                                            {/* <span id="remove__icon" onClick={removeUserToDM}><div className={`${user['id']}`} ><RemoveIcon /></div></span> */}
                                             </div>
                                         </div>)    
                                     )}
@@ -99,7 +97,6 @@ const DmModal = () => {
                                     placeholder="Start a conversation"
                                     onChange={handleDMSearch}
                                     value={dmSearchInput}
-                                    // required
                                 ></input>
 
                             </div>

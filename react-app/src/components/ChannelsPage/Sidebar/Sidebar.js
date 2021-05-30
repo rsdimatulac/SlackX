@@ -13,6 +13,7 @@ import { FiLock as Private } from "react-icons/fi";
 import { FaHashtag as Hash } from "react-icons/fa";
 import { MdFiberManualRecord as StatusIcon } from "react-icons/md";
 import { getChannels } from '../../../store/channel';
+import { Modal } from "../../../context/Modal";
 import ChannelModal from "../ChannelModal/ChannelModal";
 import DmModal from "../ChannelModal/DmModal";
 import useConsumeContext from "../../../context/FormModalContext";
@@ -23,7 +24,7 @@ import "./Sidebar.css";
 const Sidebar = ({ user }) => {
     const channels = useSelector(state => state.channels);
     const [showChannel, setShowChannel] = useState(false);
-    const { showChannelForm, showDMForm, handleChannelFormModal, handleDMFormModal, isActive } = useConsumeContext();
+    const { showChannelForm, showDMForm, handleChannelFormModal, handleDMFormModal, isActive, handleCreateModal, showCreateModal } = useConsumeContext();
     const [showDM, setShowDM] = useState(false);
     const [dm, setDM] = useState([])
     const [pp, setPP] = useState([])
@@ -31,6 +32,16 @@ const Sidebar = ({ user }) => {
 
     const handleClickChannel = () => setShowChannel(prevState => !prevState);
     const handleClickDM = () => setShowDM(prevState => !prevState);
+
+    const handleCreateAndChannel = () => {
+        handleChannelFormModal();
+        handleCreateModal();
+    };
+
+    const handleCreateAndDM = () => {
+        handleDMFormModal();
+        handleCreateModal();
+    };
 
     //grab channels
     useEffect(() => {
@@ -64,10 +75,21 @@ const Sidebar = ({ user }) => {
         let names = '';
 
         for (let i = 1; i < namesArray.length; i++) {
+            if (`${user.firstname} ${user.lastname}` === namesArray[i].name) continue;
+
             names += `, ${namesArray[i].name}`
         }
 
-        return namesArray.length === 2 ? `${names.slice(1, names.length)}` : `${names.slice(1, 26)}...`
+        const newNamesArray = namesArray.filter(eachUser => `${user.firstname} ${user.lastname}` !== eachUser.name).map(user => user.name)
+
+        return newNamesArray.length === 1 ? newNamesArray[0] : newNamesArray.join(", ").slice(0, 23) + "..."
+    }
+
+    const getAvatar = (dic_of_names) => {
+        const namesArray = Object.values(dic_of_names);
+        const newNamesArray = namesArray.filter(eachUser => eachUser.id !== user.id);
+
+        return newNamesArray.length === 1 ? newNamesArray[0].avatar : "https://slackx.s3.amazonaws.com/avatar.png";
     }
 
     return (
@@ -81,11 +103,27 @@ const Sidebar = ({ user }) => {
                             <p>{`Welcome, ${user?.firstname} ${user?.lastname}!`}</p>
                         </h3>
                     </div>
-                    <div className="sidebar__create">
+                    <div className="sidebar__create" onClick={handleCreateModal}>
                         <CreateIcon id="create__icon" />
                     </div>
                 </div>
             </div>
+            {showCreateModal && (
+                <Modal onClose={handleCreateModal}>
+                    <div className="sidebar__create__modal">
+                        <h1>It's time to connect!</h1>
+                        <p>Which one would you like to create?</p>
+                        <div className="create__modal__div" onClick={handleCreateAndChannel}>Channel</div>
+                        <div className="create__modal__div" onClick={handleCreateAndDM}>Direct message</div>
+                        <div className="create__modal__bottom">
+                            <h3>Hello, <br />I'm Kimi!</h3>
+                            <div className="create__modal__img">
+                                <img src="https://slackx.s3.amazonaws.com/kimi-2.png" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
+            )}
             <div className="sidebar__content__wrap">
                 <div className="sidebar__content">
                     <div className="sidebar__options">
@@ -123,7 +161,8 @@ const Sidebar = ({ user }) => {
                                 <NavLink key={`dm${channel.id}`} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
                                     <div className="channels__div">
                                         <div className="dm__list__avatar">
-                                            <img src={Object.values(channel.users).length === 2 ? Object.values(channel.users)[1].avatar : "https://slackx.s3.amazonaws.com/avatar.png"} alt="" />
+                                            {/* {console.log("USERSSSSSSavatar", channel.users)} */}
+                                            <img src={getAvatar(channel.users)} alt="" />
                                             <span className="dm__list__count">{Object.keys(channel.users).length !== 2 ? `${Object.keys(channel.users).length}` : null }</span>
                                         </div>
                                         <div className="dm__list__names">{get_names(channel.users)}</div>

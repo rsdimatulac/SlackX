@@ -56,7 +56,7 @@ export const createDM = (user_ids) => async (dispatch) => {
     try {
         if (!res.ok) throw res
         const dm = await res.json();
-    
+        console.log("THUNK STORE", dm)
         dispatch(addChannel(dm))
         return dm;
     } catch (error) {

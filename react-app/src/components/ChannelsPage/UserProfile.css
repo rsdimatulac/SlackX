@@ -67,6 +67,7 @@
 .profile__about {
     align-self: flex-start;
     line-height: 24px;
+    width: 100%;
 }
 
 .profile__about h4 {
@@ -80,3 +81,13 @@
     color: #1D1C1D;
 }
 
+.profile__about div {
+    font-size: 15px;
+    color: #1D1C1D;
+}
+
+.profile__about div:hover {
+    background-color: #1264A3;
+    color: white;
+    cursor: pointer;
+}

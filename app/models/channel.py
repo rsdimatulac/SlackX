@@ -28,5 +28,5 @@ class Channel(db.Model):
             "name": self.name,
             "channel_type": self.channel_type,
             "messages": {message.id: message.to_dict() for message in self.messages},
-            "users": {user.id: { "name": f"{user.firstname} {user.lastname}", "avatar": user.avatar } for user in self.users}
+            "users": {user.id: { "name": f"{user.firstname} {user.lastname}", "avatar": user.avatar, "id": user.id } for user in self.users}
         }

@@ -10,21 +10,32 @@ export const FormModalContext = (props) => {
     const [showProfile, setShowProfile] = useState(false);
     const [showDropdownMenu, setShowDropdownMenu] = useState(false);
     const [isActive, setIsActive] = useState(true);
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
+
+    const handleCreateModal = () => {
+        setShowCreateModal(prevState => !prevState);
+        setShowSearch(false);
+    };
 
     const handleDropdownMenu = () => {
         setShowDropdownMenu(prevState => !prevState);
+        setShowSearch(false);
     };
 
     const handleProfileModal = () => {
         setShowProfile(prevState => !prevState);
+        setShowSearch(false);
     }
 
     const handleChannelFormModal = () =>{
         setShowChannelForm((prevState) => !prevState);
+        setShowSearch(false);
     }
 
     const handleDMFormModal = () =>{
         setShowDMForm((prevState) => !prevState);
+        setShowSearch(false);
     }
 
     const handleSignUpModal = () => {
@@ -37,6 +48,14 @@ export const FormModalContext = (props) => {
         setShowSignUp(false);
     };
 
+    const handleSearchModal = () => {
+        setShowSearch((prevState) => !prevState);
+        setShowCreateModal(false);
+        setShowDMForm(false);
+        setShowChannelForm(false);
+        setShowProfile(false);
+    };
+
     return (
         <context.Provider value={{
             showLogin, showSignUp,
@@ -44,10 +63,12 @@ export const FormModalContext = (props) => {
             handleSignUpModal, handleLoginModal,
             showChannelForm, setShowChannelForm,
             showDMForm, setShowDMForm,
-            handleChannelFormModal, handleDMFormModal, 
-            handleProfileModal, showProfile,
-            handleDropdownMenu, showDropdownMenu,
-            isActive, setIsActive
+            handleChannelFormModal, handleDMFormModal,
+            handleProfileModal, showProfile, setShowProfile,
+            handleDropdownMenu, showDropdownMenu, setShowDropdownMenu,
+            isActive, setIsActive,
+            handleCreateModal, showCreateModal, setShowCreateModal,
+            handleSearchModal, showSearch, setShowSearch,
         }}>
             {props.children}
         </context.Provider>

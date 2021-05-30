@@ -6,7 +6,7 @@ import useConsumeContext from "../../context/FormModalContext";
 import "./UserProfile.css";
 
 const UserProfile = ({ user }) => {
-    const { handleProfileModal, isActive } = useConsumeContext();
+    const { handleProfileModal, isActive, setIsActive } = useConsumeContext();
 
     return (
         <>
@@ -22,6 +22,7 @@ const UserProfile = ({ user }) => {
                 </div>
                 <hr/>
                 <div className="profile__about">
+                    <div onClick={() => setIsActive(prevState => !prevState)}>Set yourself as <strong>{isActive ? "active" : "away"}</strong></div>
                     <h4>Display name</h4>
                     <p>{user?.firstname}</p>
                     <h4>Joined since</h4>
