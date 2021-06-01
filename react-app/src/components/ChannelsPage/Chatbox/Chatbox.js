@@ -167,24 +167,10 @@ const Chatbox = () => {
 
     const getNames = (dic_of_names) => {
         const namesArray = Object.values(dic_of_names);
-        let names = '';
-
-        for (let i = 1; i < namesArray.length; i++) {
-            if (`${user.firstname} ${user.lastname}` === namesArray[i].name) continue;
-
-            names += `, ${namesArray[i].name}`
-        }
 
         const newNamesArray = namesArray.filter(eachUser => `${user.firstname} ${user.lastname}` !== eachUser.name).map(user => user.name)
 
         return newNamesArray.length === 1 ? newNamesArray[0] : newNamesArray.join(", ")
-        // const namesArray = Object.values(dic_of_names);
-        // let names = '';
-
-        // for (let i = 1; i < namesArray.length; i++) {
-        //     names += `, ${namesArray[i].name}`
-        // }
-        // return names.slice(1, names.length)
     }
 
     return (

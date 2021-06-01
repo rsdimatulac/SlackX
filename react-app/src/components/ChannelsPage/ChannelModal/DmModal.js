@@ -7,7 +7,7 @@ import { Modal } from "../../../context/Modal";
 import "./DmModal.css";
 
 
-const DmModal = () => {
+const DmModal = ({ dm }) => {
     const { handleDMFormModal } = useConsumeContext();
     const [dmSearchInput, setDMSearchInput] = useState("");
     const [dmSearchResult, setDMSearchResult] = useState([]);
@@ -34,7 +34,8 @@ const DmModal = () => {
     }
 
     const handleAddDM = (e) => {
-        const userId = Number(e.target.className[0]);
+        const userId = Number(e.target.classList[0]);
+       
         if (usersToDM.some((user) => user['id'] === userId)) {
             return; // the userId already exist
         }
@@ -48,19 +49,36 @@ const DmModal = () => {
 
     const removeUserToDM = (e) => {
         const userId = Number(e.target.className);
-
         // only return the users that does not match the userID clicked, that userId must be removed
         const usersToDMDup = usersToDM.filter(user => user.id !== userId);
         setUsersToDM(usersToDMDup);
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async(e) => { // [{},{}]
         e.preventDefault();
 
+        const dmUserIDs = dm.map(subDM => [Object.keys(subDM.users).sort((a, b) => a - b).join(""), subDM.id]); // [["1", "2"], ["6"]]
         const userIDS = usersToDM.map(user => user.id); // [1, 2, 3 ...]
-        const data = await dispatch(createDM(userIDS));
-        handleDMFormModal();
-        history.push(`/users/${userId}/${data?.id}`)
+        const userIDSDup = userIDS.slice();
+        userIDSDup.push(userId)
+        const userIDStr = userIDSDup.sort((a, b) => a - b).join("");
+
+        let existingDM;
+        if (dmUserIDs.some(eachDM => {
+            if (eachDM[0] === userIDStr) {
+                existingDM = eachDM[1]
+                return true;
+            }
+            return false;
+        })) {
+            history.push(`/users/${userId}/${existingDM}`);
+            handleDMFormModal();
+        } else {
+            const data = await dispatch(createDM(userIDS));
+            handleDMFormModal();
+            history.push(`/users/${userId}/${data?.id}`)
+        }
+        
     }
 
     return (

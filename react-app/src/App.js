@@ -34,7 +34,7 @@ const App = () => {
       <ScrollToTop />
       <Switch>
         <Route path="/" exact>
-          <Splash />
+          <Splash user={user}/>
           <Footer />
         </Route>
         <Route path="/about" exact>
