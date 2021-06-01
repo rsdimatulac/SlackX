@@ -13,9 +13,13 @@ import SocketLogo from "../../imgs/socketio_logo.png";
 import { FaArrowRight as RightArrow } from "react-icons/fa";
 import NavBar from "./NavBar"
 
-function SplashPage({isLoaded}) {
+function SplashPage({ user }) {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    if (user) {
+        history.push(`/users/${user.id}/1`);
+    }
 
     const loginDemoUser = async (e) => {
         e.preventDefault();

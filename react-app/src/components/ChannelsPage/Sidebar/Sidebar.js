@@ -72,13 +72,6 @@ const Sidebar = ({ user }) => {
 
     const get_names = (dic_of_names) => {
         const namesArray = Object.values(dic_of_names);
-        let names = '';
-
-        for (let i = 1; i < namesArray.length; i++) {
-            if (`${user.firstname} ${user.lastname}` === namesArray[i].name) continue;
-
-            names += `, ${namesArray[i].name}`
-        }
 
         const newNamesArray = namesArray.filter(eachUser => `${user.firstname} ${user.lastname}` !== eachUser.name).map(user => user.name)
 
@@ -170,7 +163,7 @@ const Sidebar = ({ user }) => {
                             ))}
                             </div>)}
                     </div>
-                    {showDMForm && <DmModal />}
+                    {showDMForm && <DmModal dm={dm}/>}
                 </div>
             </div>
         </div>
