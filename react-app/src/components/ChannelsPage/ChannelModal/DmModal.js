@@ -35,14 +35,12 @@ const DmModal = () => {
 
     const handleAddDM = (e) => {
         const userId = Number(e.target.className[0]);
-        console.log("ADDED USERS TO DM", usersToDM)
         if (usersToDM.some((user) => user['id'] === userId)) {
             return; // the userId already exist
         }
 
         const user = users.find(user => user['id'] === userId);
         const usersToDMDup = usersToDM.map(user => user);
-        console.log("ADDED USERS TO DM DUP", usersToDMDup)
         usersToDMDup.push(user);
         setUsersToDM(usersToDMDup);
         setDMSearchInput("");

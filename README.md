@@ -7,7 +7,8 @@ _SlackX_, a pixel perfect [Slack](https://slack.com/) clone, is a single page co
 ### Home and About View
 ![Home and Search View](react-app/public/home_about.gif)
 
-<!-- ADD CHANNELS VIEW HERE -->
+### Channels View
+![Channels View](react-app/public/channels.gif)
 
 ## Prerequisites
 
@@ -117,7 +118,7 @@ for sub in subs:
         db.session.commit() 
 ```
 
-* When a user activates the search bar, the search bar will turn into an input search box. Based on the search input value, the `handleChannelSearch()` function is invoked when an `onChange()` event occurs. It uses `.filter()` to iterate through the channels and returns and dynamically displays what matches the search input value. When a user clicks on the result, they will be redirected to the channel or direct message chatbox.
+* When a user activates the search bar, the search bar will turn into an input search box. Based on the search input value, the `handleChannelSearch()` function is invoked when an `onChange()` event occurs. It uses `.filter()` to iterate through the channels and dynamically displays what matches the search input value. When a user clicks on the result, they will be redirected to the channel or direct message chatbox.
 
 `react-app/src/components/ChannelsPage/Header.js`
 ```js
