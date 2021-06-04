@@ -22,7 +22,7 @@ const UserProfile = ({ user }) => {
                 </div>
                 <hr/>
                 <div className="profile__about">
-                    <div onClick={() => setIsActive(prevState => !prevState)}>Set yourself as <strong>{isActive ? "active" : "away"}</strong></div>
+                    <div onClick={() => setIsActive(prevState => !prevState)}>Set yourself as <strong>{isActive ? "away" : "active"}</strong></div>
                     <h4>Display name</h4>
                     <p>{user?.firstname}</p>
                     <h4>Joined since</h4>
