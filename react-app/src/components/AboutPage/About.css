@@ -102,13 +102,25 @@
 }
 
 #website_n,
-#website_r {
+#website_r,
+#website_e,
+#website_v {
     color: gray;
     font-size: 30px; 
 }
 
-#website_n:hover,
+#website_n:hover {
+    color: #36C5F0;
+}
+
 #website_r:hover {
-    color: rgb(199, 59, 59);
-    /* color: rgb(121, 37, 37); */
+    color: #E01E5A;
+}
+
+#website_e:hover {
+    color: #2EB67D;
+}
+
+#website_v:hover {
+    color: #ECB22E;
 }
