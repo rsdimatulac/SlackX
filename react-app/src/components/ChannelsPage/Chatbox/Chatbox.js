@@ -192,7 +192,9 @@ const Chatbox = () => {
                                         <span>{format(new Date(message?.created_at), "MMM dd, hh:mm a")}</span>
                                         {(Number(user.id) === Number(message.user_id)) && loggedUserMsgOptions(message)}
                                     </h2>
-                                    {editMessage && Number(messageId) === Number(message.id) ? (editInputBox(message)) : (<p>{message?.body}
+                                    {editMessage && Number(messageId) === Number(message.id) 
+                                    ? (editInputBox(message)) 
+                                    : (<p>{message?.body}
                                         <span className="content__edited-tag">{(message.created_at !== message.updated_at) && " (edited)"}</span>
                                     </p>)}
                                 </div>
