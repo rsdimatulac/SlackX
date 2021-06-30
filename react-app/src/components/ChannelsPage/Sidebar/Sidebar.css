@@ -96,14 +96,21 @@
     margin-bottom: 20px;
 }
 
-.sidebar__create__modal p {
+.sidebar__create__modal > p {
     margin-bottom: 15px;
     color: #808080;
 }
 
 .create__modal__div {
-    padding: 10px 0px;
-    font-weight: 500;
+    padding: 10px 5px;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.plus__icon {
+    padding-right: 5px;
 }
 
 .create__modal__div:hover {

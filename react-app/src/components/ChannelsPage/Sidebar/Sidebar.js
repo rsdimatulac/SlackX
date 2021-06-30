@@ -11,6 +11,7 @@ import { MdKeyboardArrowDown as ShowLessIcon } from "react-icons/md";
 import { RiAddFill as AddIcon } from "react-icons/ri";
 import { FiLock as Private } from "react-icons/fi";
 import { FaHashtag as Hash } from "react-icons/fa";
+import { FcPlus as PlusIcon } from "react-icons/fc";
 import { MdFiberManualRecord as StatusIcon } from "react-icons/md";
 import { getChannels } from '../../../store/channel';
 import { Modal } from "../../../context/Modal";
@@ -107,8 +108,14 @@ const Sidebar = ({ user }) => {
                     <div className="sidebar__create__modal">
                         <h1>It's time to connect!</h1>
                         <p>Which one would you like to create?</p>
-                        <div className="create__modal__div" onClick={handleCreateAndChannel}>Channel</div>
-                        <div className="create__modal__div" onClick={handleCreateAndDM}>Direct message</div>
+                        <div className="create__modal__div" onClick={handleCreateAndChannel}>
+                            <PlusIcon className="plus__icon"/>
+                            <p>Channel</p>
+                        </div>
+                        <div className="create__modal__div" onClick={handleCreateAndDM}>
+                            <PlusIcon className="plus__icon" />
+                            <p>Direct message</p>
+                        </div>
                         <div className="create__modal__bottom">
                             <h3>Hello, <br />I'm Kimi!</h3>
                             <div className="create__modal__img">
