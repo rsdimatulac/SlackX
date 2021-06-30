@@ -68,7 +68,7 @@
 #delete__icon,
 #save__icon,
 #cancel__icon {
-    padding: 1px 4px 0 4px;
+    padding: 0px 5px 1px 3px;
     font-size: 13px;
     font-weight: 500;
     border: none;
