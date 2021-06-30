@@ -76,7 +76,7 @@ const Header = ({ user }) => {
     return (
         <div className="header">
             <div className="header__left">
-                <TimeIcon id="time__icon"/>
+                {/* <TimeIcon id="time__icon"/> */}
             </div>
             {!showSearch &&
                 <div className="header__search" onClick={handleSearchModal}>
@@ -92,7 +92,7 @@ const Header = ({ user }) => {
             {showSearch && <SearchModal channels={channels} setChannelSearchInput={setChannelSearchInput} setChannels={setChannels}/>}
             <div className="header__right">
                 <div id="help__icon">
-                    <HelpIcon />
+                    {/* <HelpIcon /> */}
                 </div>
                 <div className="header__avatar" onClick={handleDropdownMenu}>
                     {user ? <img className="avatar__image" src={user?.avatar} alt=""/> : <Avatar id="avatar__icon"/>}
