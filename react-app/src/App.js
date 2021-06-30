@@ -38,15 +38,15 @@ const App = () => {
           <Footer />
         </Route>
         <Route path="/about" exact>
-          <NavBar />
-          <About />
+          <NavBar user={user}/>
+          <About user={user}/>
           <Footer />
         </Route>
         <ProtectedRoute path="/users/:userId(\d+)/:channelId(\d+)" exact>
           <Channels user={user} />
         </ProtectedRoute>
         <Route path="*">
-          <NavBar />
+          <NavBar user={user}/>
           <ErrorPage />
           <Footer />
         </Route>

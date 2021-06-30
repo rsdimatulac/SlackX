@@ -5,13 +5,13 @@ import SlackLogoBlack from '../../imgs/slack_logo_black.png';
 import SlackLogoWhite from "../../imgs/slack_logo_white.png";
 import "./About.css";
 
-const About = () => {
+const About = ({user}) => {
 
     useEffect(() => {
-        if (window.location.pathname === "/about") {
-            const meatTeam = document.querySelector(".button2");
+        if (window.location.pathname === "/about") { // This hides the meet the team button
+            const meetTeam = document.querySelector(".button2");
             const navbarHeaders = document.querySelectorAll(".header__name");
-            meatTeam.style.display = "none";
+            meetTeam.style.display = "none";
             navbarHeaders.forEach(header => {
                 header.style.display = "none";
             })

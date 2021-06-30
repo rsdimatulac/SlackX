@@ -10,7 +10,7 @@ import { login } from "../../store/session";
 import "./NavBar.css";
 
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   const history = useHistory();
   const { handleLoginModal, showLogin, handleSignUpModal, showSignUp } = useConsumeContext();
   const dispatch = useDispatch();
@@ -65,14 +65,21 @@ const NavBar = () => {
       </div>}
 
       <div className="navbar__right">
-        <button className="button1" onClick={handleLoginModal} style={{ cursor: 'pointer' }}>Login</button>
-        {showLogin && <LoginFormModal />}
-        <button className="button1" onClick={handleSignUpModal} style={{ cursor: 'pointer' }}>Sign Up</button>
-        {showSignUp && <SignUpFormModal />}
+        {user ? ""
+        : <>
+            <button className="button1" onClick={handleLoginModal} style={{ cursor: 'pointer' }}>Login</button>
+            {showLogin && <LoginFormModal />}
+            <button className="button1" onClick={handleSignUpModal} style={{ cursor: 'pointer' }}>Sign Up</button>
+            {showSignUp && <SignUpFormModal />}
+          </>
+        }
         <NavLink to="/about" style={{ color: "inherit" }}>
           <button className="button2" style={{ cursor: 'pointer' }}>MEET THE TEAM</button>
         </NavLink>
-        <button onClick={loginDemoUser} className="button3" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
+        {user 
+        ? <button onClick={() => history.push(`/users/${user.id}/1`)} className="button3" style={{ cursor: 'pointer' }}>GO BACK</button> 
+        : <button onClick={loginDemoUser} className="button3" style={{ cursor: 'pointer' }}>TRY FOR FREE</button>
+        }
       </div>
     </nav>
   );
