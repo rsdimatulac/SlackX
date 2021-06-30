@@ -153,13 +153,13 @@ const Chatbox = () => {
             <div className="message__options">
                 {editMessage && Number(messageId) === Number(message.id) ?
                     <>
-                        <div id="save__icon" onClick={handleEdit(message.id, editChatInput)}><SaveIcon />Save</div>
-                        <div id="cancel__icon" onClick={() => setEditMessage(false)}><CancelIcon />Cancel</div>
+                        <div id="save__icon" onClick={handleEdit(message.id, editChatInput)}><SaveIcon className="all__the__icons" />Save</div>
+                        <div id="cancel__icon" onClick={() => setEditMessage(false)}><CancelIcon className="all__the__icons" />Cancel</div>
                     </>
                     :
                     <>
-                        <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit(message)}><EditIcon />Edit</div>
-                        <div id="delete__icon" onClick={() => deleteMessage(message.id)}><DeleteIcon />Delete</div>
+                        <div id="edit__icon" className={`${message?.id} edit__icon`} onClick={messageToEdit(message)}><EditIcon className="all__the__icons" />Edit</div>
+                        <div id="delete__icon" onClick={() => deleteMessage(message.id)}><DeleteIcon className="all__the__icons" />Delete</div>
                     </>
                 }
             </div>)

@@ -68,7 +68,7 @@
 #delete__icon,
 #save__icon,
 #cancel__icon {
-    padding: 1px 3px;
+    padding: 1px 4px 0 4px;
     font-size: 13px;
     font-weight: 500;
     border: none;
@@ -79,6 +79,10 @@
     color: #61606195;
     display: flex;
     align-items: center;
+}
+
+.all__the__icons {
+    padding-right: 3px;
 }
 
 .message__options div:hover {
