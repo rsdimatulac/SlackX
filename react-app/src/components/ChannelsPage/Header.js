@@ -116,7 +116,7 @@ const Header = ({ user }) => {
                     </div>
                     <br />
                     <div className="menu__options">
-                        <div id="menu__status" onClick={() => setIsActive(prevState => !prevState)}>Set yourself as <strong>{isActive ? "active" : "away"}</strong></div>
+                        <div id="menu__status" onClick={() => setIsActive(prevState => !prevState)}>Set yourself as <strong>{isActive ? "away" : "active" }</strong></div>
                         <hr />
                         {/* <div>Edit profile</div> */}
                         <div onClick={handleProfileDropdown}>View profile</div>

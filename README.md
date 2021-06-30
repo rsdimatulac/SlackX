@@ -154,7 +154,6 @@ const handleChannelSearch = (e) => {
 - Notifications
 - Starred channels
 - Users can edit their profile.
-- Search functionality by users, messages, and channels
 - User feature where they can mention and react to a message.
 
 ## SlackX Developers

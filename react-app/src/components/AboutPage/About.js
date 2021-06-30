@@ -76,6 +76,9 @@ const About = () => {
                             <a href="https://www.linkedin.com/in/earl-woo-12737a208/">
                                 <FaLinkedinIn color='#0072b1' size={30} id="linkedinIn" />
                             </a>
+                            <a className="website" href="https://earlwoo.github.io/">
+                                <Website id="website_e" />
+                            </a>
                         </div>
                         <p>Thank you for visiting our site SlackX. I am currently a developer based in Philadelphia, PA. After thirteen years in the hospitality industry, I decided to pursue another career as a full-stack developer in order to make positive and useful contributions through my work.</p>
                     </div>
@@ -104,8 +107,11 @@ const About = () => {
                             <a href="https://github.com/QCHEN0407">
                                 <FaGithub size={30} id="github" />
                             </a>
-                            <a href="https://www.linkedin.com/in/qingweichen/">
+                            <a href="https://www.linkedin.com/in/qingwei-vivian-c-265093215/">
                                 <FaLinkedinIn color='#0072b1' size={30} id="linkedinIn" />
+                            </a>
+                            <a href="https://qchen0407.github.io/">
+                                <Website id="website_v" />
                             </a>
                         </div>
                         <p>As a software engineer, I am driven by my curiosity and my desire to create. Before my career in web development, I was a multimedia journalist based in Wall Street. I believe new technologies are bringing revolution to media platforms and that’s why I am here.</p>
