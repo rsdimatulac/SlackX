@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { BsPencilSquare as CreateIcon } from "react-icons/bs";
 import { BiMessageRoundedDetail as ThreadIcon } from "react-icons/bi";
+import { BsFillPeopleFill as TeamIcon } from "react-icons/bs";
+import { BsPersonSquare as AvatarIcon } from "react-icons/bs";
 import { AiOutlineComment as DMIcon } from "react-icons/ai";
-import { GoMention as MentionIcon } from "react-icons/go";
-import { BsBookmark as SavedIcon } from "react-icons/bs";
 import { MdKeyboardArrowRight as ShowMoreIcon } from "react-icons/md";
 import { MdKeyboardArrowDown as ShowLessIcon } from "react-icons/md";
 import { RiAddFill as AddIcon } from "react-icons/ri";
@@ -24,11 +24,12 @@ import "./Sidebar.css";
 const Sidebar = ({ user }) => {
     const channels = useSelector(state => state.channels);
     const [showChannel, setShowChannel] = useState(false);
-    const { showChannelForm, showDMForm, handleChannelFormModal, handleDMFormModal, isActive, handleCreateModal, showCreateModal } = useConsumeContext();
+    const { setShowProfile, showChannelForm, showDMForm, handleChannelFormModal, handleDMFormModal, isActive, handleCreateModal, showCreateModal } = useConsumeContext();
     const [showDM, setShowDM] = useState(false);
-    const [dm, setDM] = useState([])
-    const [pp, setPP] = useState([])
-    const dispatch = useDispatch()
+    const [dm, setDM] = useState([]);
+    const [pp, setPP] = useState([]);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleClickChannel = () => setShowChannel(prevState => !prevState);
     const handleClickDM = () => setShowDM(prevState => !prevState);
@@ -120,10 +121,10 @@ const Sidebar = ({ user }) => {
             <div className="sidebar__content__wrap">
                 <div className="sidebar__content">
                     <div className="sidebar__options">
-                        <SidebarOptions Icon={ThreadIcon} title={"Threads"} id={""} />
-                        <SidebarOptions Icon={DMIcon} title={"All DMs"} id={""} />
-                        <SidebarOptions Icon={MentionIcon} title={"Mentions & reactions"} id={""} />
-                        <SidebarOptions Icon={SavedIcon} title={"Saved items"} id={""} />
+                        <SidebarOptions Icon={ThreadIcon} title={"All Channels"} id={""} onClick={handleClickChannel}/>
+                        <SidebarOptions Icon={DMIcon} title={"All DMs"} id={""} onClick={handleClickDM}/>
+                        <SidebarOptions Icon={AvatarIcon} title={"View Profile"} id={""} onClick={() => setShowProfile(true)}/>
+                        <SidebarOptions Icon={TeamIcon} title={"Meet the Team"} id={""} onClick={() => history.push("/about")} />
                     </div>
                     <div className="sidebar__channels">
                         <div className="channels__header">
