@@ -142,7 +142,7 @@ const Sidebar = ({ user }) => {
                         </div>
                         {showChannel &&
                             <div> {pp?.map(channel =>
-                            (<NavLink key={channel.name} to={`/users/${user.id}/${channel.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                            (<NavLink key={channel.name} to={`/users/${user.id}/${channel.id}`} style={{ textTransform: "lowercase", textDecoration: "none", color: "inherit" }}>
                                 <div className="channels__div"><span className="private__icon">{channel.channel_type === 'public' ? <Hash /> : <Private />}</span>{channel.name}</div>
                             </NavLink>
                             ))}
